@@ -17,3 +17,7 @@ bin/rspec
 echo " ---> Running bundler-audit"
 gem install --no-rdoc --no-ri bundler-audit
 bundle-audit check --update
+
+# Run style checker
+echo " ---> Running rubocop"
+bin/rubocop

@@ -1,6 +1,8 @@
+# frozen_string_literal: true
+
 source "https://rubygems.org"
 
-git_source(:github) {|repo_name| "https://github.com/#{repo_name}" }
+git_source(:github) { |repo_name| "https://github.com/#{repo_name}" }
 
 # Specify your gem's dependencies in radius-spec.gemspec
 gemspec
@@ -8,6 +10,10 @@ gemspec
 group :debug do
   gem "pry-byebug", "~> 3.6", require: false
   gem "travis", require: false
+end
+
+group :development do
+  gem "rubocop", "~> 0.53", require: false
 end
 
 group :documentation do

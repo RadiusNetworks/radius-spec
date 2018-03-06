@@ -1,5 +1,6 @@
+# frozen_string_literal: true
 
-lib = File.expand_path("../lib", __FILE__)
+lib = File.expand_path("lib", __dir__)
 $LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
 require "radius/spec/version"
 
@@ -9,8 +10,9 @@ Gem::Specification.new do |spec|
   spec.authors       = ["Radius Networks", "Aaron Kromer"]
   spec.email         = ["support@radiusnetworks.com"]
 
-  spec.summary       = %q{Radius Networks RSpec setup and plug-ins}
-  spec.description   = %q{Standard RSpec setup and a collection of plug-ins to help improve specs.}
+  spec.summary       = "Radius Networks RSpec setup and plug-ins"
+  spec.description   = "Standard RSpec setup and a collection of plug-ins " \
+                       "to help improve specs."
   spec.homepage      = "https://github.com/RadiusNetworks/radius-spec"
   spec.license       = "Apache-2.0"
 

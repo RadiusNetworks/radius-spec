@@ -31,6 +31,68 @@ $ gem install radius-spec
 
 TODO: Write usage instructions here
 
+## Features
+
+### Common Rubocop Config
+
+Projects can inherit from the [base Rubocop config](.rubocop.yml) by using
+either the remote raw URL or dependency gem formats:
+
+```yaml
+# Recommended Method
+inherit_gem:
+  radius-spec:
+    - .rubocop.yml
+    # Use the following instead if it is a Rails project
+    - .rubocop_rails.yml
+```
+
+```yaml
+# Available for projects which cannot include this gem (i.e. Ruby < 2.5)
+inherit_from:
+  - https://raw.githubusercontent.com/RadiusNetworks/radius-spec/master/.rubocop.yml
+  # Use the following instead if it is a Rails project
+  - https://raw.githubusercontent.com/RadiusNetworks/radius-spec/master/.rubocop_rails.yml
+```
+
+When using the raw URL you may need to add the following to the project's
+`.gitignore` file:
+
+```
+.rubocop-https---raw-githubusercontent-com-RadiusNetworks-radius-spec-master--rubocop-rails-yml
+.rubocop-https---raw-githubusercontent-com-RadiusNetworks-radius-spec-master--rubocop-yml
+```
+
+Be sure to include the project's local `.rubocop_todo.yml` **after** inheriting
+the base configuration so that they take precedence. Also, use the directive
+`inherit_mode` to specify which array configurations to merge together instead
+of overriding the inherited value. This can be set both globally and for
+specific cops:
+
+```yaml
+inherit_gem:
+  radius-spec:
+    - .rubocop.yml
+    # Use the following instead if it is a Rails project
+    - .rubocop_rails.yml
+inherit_from: .rubocop_todo.yml
+
+inherit_mode:
+  merge:
+    - Exclude
+
+Style/For:
+  inherit_mode:
+    override:
+      - Exclude
+  Exclude:
+    - bar.rb
+```
+
+Consult the [Rubocop documentation](https://rubocop.readthedocs.io/en/latest/configuration/#inheriting-configuration-from-a-remote-url)
+for the most up-to-date syntax for including the [.rubocop.yml](.rubocop.yml)
+config.
+
 ## Development
 
 After checking out the repo, run `bin/setup` to install dependencies. Then, run
