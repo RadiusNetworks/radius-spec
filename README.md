@@ -42,25 +42,25 @@ either the remote raw URL or dependency gem formats:
 # Recommended Method
 inherit_gem:
   radius-spec:
-    - .rubocop.yml
+    - common_rubocop.yml
     # Use the following instead if it is a Rails project
-    - .rubocop_rails.yml
+    - common_rubocop_rails.yml
 ```
 
 ```yaml
 # Available for projects which cannot include this gem (i.e. Ruby < 2.5)
 inherit_from:
-  - https://raw.githubusercontent.com/RadiusNetworks/radius-spec/master/.rubocop.yml
+  - https://raw.githubusercontent.com/RadiusNetworks/radius-spec/master/common_rubocop.yml
   # Use the following instead if it is a Rails project
-  - https://raw.githubusercontent.com/RadiusNetworks/radius-spec/master/.rubocop_rails.yml
+  - https://raw.githubusercontent.com/RadiusNetworks/radius-spec/master/common_rubocop_rails.yml
 ```
 
 When using the raw URL you may need to add the following to the project's
 `.gitignore` file:
 
 ```
-.rubocop-https---raw-githubusercontent-com-RadiusNetworks-radius-spec-master--rubocop-rails-yml
-.rubocop-https---raw-githubusercontent-com-RadiusNetworks-radius-spec-master--rubocop-yml
+.rubocop-https---raw-githubusercontent-com-RadiusNetworks-radius-spec-master-common-rubocop-rails-yml
+.rubocop-https---raw-githubusercontent-com-RadiusNetworks-radius-spec-master-common-rubocop-yml
 ```
 
 Be sure to include the project's local `.rubocop_todo.yml` **after** inheriting

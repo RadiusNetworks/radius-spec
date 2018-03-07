@@ -1,0 +1,105 @@
+AllCops:
+  TargetRubyVersion: 2.5.0
+  Exclude:
+    # Exclude generated binstubs
+    - bin/pry
+    - bin/rake
+    - bin/rspec
+    - bin/rubocop
+    - bin/travis
+    - bin/yard
+    # Exclude vendored content
+    - vendor/**/*
+
+# Modifiers should be indented as deep as method definitions, or as deep as the
+# class/module keyword, depending on configuration.
+#
+# Configuration parameters: EnforcedStyle, SupportedStyles, IndentationWidth.
+# SupportedStyles: outdent, indent
+Layout/AccessModifierIndentation:
+  EnforcedStyle: outdent
+
+# Configuration parameters: EnforcedStyle, EnforcedStyleForEmptyBrackets.
+# SupportedStyles: space, no_space, compact
+# SupportedStylesForEmptyBrackets: space, no_space
+#Layout/SpaceInsideArrayLiteralBrackets:
+
+# Configuration parameters: CountComments, ExcludedMethods, Max.
+Metrics/BlockLength:
+  Exclude:
+    - 'Rakefile'
+    - '**/*.rake'
+    - 'spec/spec_helper.rb'
+    - 'spec/**/*_spec.rb'
+
+# Use semantic style for blocks:
+#   - Prefer `do...end` over `{...}` for procedural blocks.
+#   - Prefer `{...}` over `do...end` for functional blocks.
+#
+# When the return value of the method receiving the block is important prefer
+# `{..}` over `do..end`.
+#
+# Configuration parameters: EnforcedStyle, SupportedStyles, ProceduralMethods,
+#   FunctionalMethods, IgnoredMethods.
+# SupportedStyles: line_count_based, semantic, braces_for_chaining
+Style/BlockDelimiters:
+  Enabled: true
+  EnforcedStyle: semantic
+  ProceduralMethods:
+    - benchmark
+    - bm
+    - bmbm
+    - measure
+    - realtime
+    - with_object
+  FunctionalMethods:
+    - each_with_object
+    - git_source
+    - let
+    - let!
+    - new
+    - subject
+    - tap
+    - watch
+  IgnoredMethods:
+    - lambda
+    - proc
+    - it
+
+# Always write methods on multiple lines.
+#
+# Configuration parameters: EnforcedStyle.
+# SupportedStyles: compact, expanded
+Style/EmptyMethod:
+  EnforcedStyle: expanded
+
+# Checks if uses of quotes match the configured preference.
+#
+# Configuration parameters: EnforcedStyle, SupportedStyles, ConsistentQuotesInMultiline.
+# SupportedStyles: single_quotes, double_quotes
+Style/StringLiterals:
+  Enabled: false
+
+# Always use trailing commas for multiline. This makes git diffs easier to read
+# by cutting down on noise when commas are appended.
+#
+# Configuration parameters: EnforcedStyleForMultiline.
+# SupportedStylesForMultiline: comma, consistent_comma, no_comma
+Style/TrailingCommaInArguments:
+  EnforcedStyleForMultiline: consistent_comma
+
+# Always use trailing commas for multiline. This makes git diffs easier to read
+# by cutting down on noise when commas are appended.
+#
+# Configuration parameters: EnforcedStyleForMultiline.
+# SupportedStylesForMultiline: comma, consistent_comma, no_comma
+Style/TrailingCommaInArrayLiteral:
+  EnforcedStyleForMultiline: consistent_comma
+
+# Always use trailing commas for multiline. This makes git diffs easier to read
+# by cutting down on noise when commas are appended.
+#
+# Configuration parameters: EnforcedStyleForMultiline.
+# SupportedStylesForMultiline: comma, consistent_comma, no_comma
+Style/TrailingCommaInHashLiteral:
+  EnforcedStyleForMultiline: consistent_comma
