@@ -1,13 +1,13 @@
-inherit_from: .rubocop.yml
-
 inherit_mode:
   merge:
     - Exclude
 
+inherit_from: common_rubocop.yml
+
 AllCops:
   Exclude:
-    - db/schema.rb
-    - db/migrate/*
+    - 'db/schema.rb'
+    - 'db/migrate/**/*'
 
 # Rails project's are not concerned with API docs normally
 Documentation:

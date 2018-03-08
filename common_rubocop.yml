@@ -2,14 +2,14 @@ AllCops:
   TargetRubyVersion: 2.5.0
   Exclude:
     # Exclude generated binstubs
-    - bin/pry
-    - bin/rake
-    - bin/rspec
-    - bin/rubocop
-    - bin/travis
-    - bin/yard
+    - 'bin/pry'
+    - 'bin/rake'
+    - 'bin/rspec'
+    - 'bin/rubocop'
+    - 'bin/travis'
+    - 'bin/yard'
     # Exclude vendored content
-    - vendor/**/*
+    - 'vendor/**/*'
 
 # Modifiers should be indented as deep as method definitions, or as deep as the
 # class/module keyword, depending on configuration.
@@ -27,7 +27,7 @@ Layout/AccessModifierIndentation:
 # Configuration parameters: CountComments, ExcludedMethods, Max.
 Metrics/BlockLength:
   Exclude:
-    - 'Rakefile'
+    - '**/Rakefile'
     - '**/*.rake'
     - 'spec/spec_helper.rb'
     - 'spec/**/*_spec.rb'
