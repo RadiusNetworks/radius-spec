@@ -29,7 +29,55 @@ $ gem install radius-spec
 
 ## Usage
 
-TODO: Write usage instructions here
+If you do not already have a project `.rspec` file we suggest creating one with
+at least the following:
+
+```ruby
+--require spec_helper
+```
+
+You _should_ check this `.rspec` file into version control. See the [RSpec
+`Configuration` docs](https://rspec.info/documentation/3.7/rspec-core/RSpec/Core/Configuration.html)
+and [Relish examples](https://relishapp.com/rspec/rspec-core/v/3-7/docs/configuration/read-command-line-configuration-options-from-files)
+for more on loading configuration options.
+
+To load the default suggested RSpec configuration, require this gem at the top
+of your `spec/spec_helper.rb` file. After requiring the gem you can include any
+custom RSpec configuration in a `RSpec.configure` block as usual:
+
+```ruby
+# /spec/spec_helper.rb
+# frozen_string_literal: true
+
+require 'radius/spec'
+
+RSpec.configure do |config|
+  # Your project specific custom settings here
+end
+```
+
+For Rails apps, we suggest a similar approach to your Rails helper:
+
+```ruby
+# /spec/rails_helper.rb
+# frozen_string_literal: true
+
+require 'spec_helper'
+ENV['RAILS_ENV'] ||= 'test'
+require File.expand_path('../../config/environment', __FILE__)
+# Prevent database truncation if the environment is production
+abort("The Rails environment is running in production mode!") if Rails.env.production?
+require 'radius/spec/rails'
+# Add additional requires below this line. Rails is not loaded until this point!
+
+# Checks for pending migration and applies them before tests are run.
+# If you are not using ActiveRecord, you can remove this line.
+ActiveRecord::Migration.maintain_test_schema!
+
+RSpec.configure do |config|
+  # Your project specific custom settings here
+end
+```
 
 ## Features
 

@@ -8,3 +8,5 @@ module Radius
     # Your code goes here...
   end
 end
+
+require "radius/spec/rspec" if defined?(RSpec)
