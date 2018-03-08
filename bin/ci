@@ -20,4 +20,4 @@ bundle-audit check --update
 
 # Run style checker
 echo " ---> Running rubocop"
-bin/rubocop
+bin/rubocop --extra-details --display-style-guide
