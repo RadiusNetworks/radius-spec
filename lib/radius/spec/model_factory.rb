@@ -65,3 +65,12 @@ module Radius
     end
   end
 end
+
+# Try to load the factories defined for the specs
+# rubocop:disable Lint/HandleExceptions
+begin
+  require 'support/model_factories'
+rescue LoadError
+  # Ignore as this is an optional convenience feature
+end
+# rubocop:enable Lint/HandleExceptions

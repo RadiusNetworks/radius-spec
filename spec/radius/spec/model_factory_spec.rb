@@ -7,6 +7,10 @@ RSpec.describe Radius::Spec::ModelFactory do
     Radius::Spec::ModelFactory.templates.clear
   end
 
+  it "loads 'spec/support/model_factories.rb' by default" do
+    expect(TEMP_SPEC_LOAD_CHECK).to eq true
+  end
+
   describe "defining a factory", "through the module" do
     it "supports the explicit `define_factory` and shorter `factory` APIs" do
       expect {
