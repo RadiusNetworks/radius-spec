@@ -3,3 +3,8 @@ inherit_mode:
     - Exclude
 
 inherit_from: common_rubocop.yml
+
+# Configuration parameters: CountComments, ExcludedMethods.
+Metrics/BlockLength:
+  Exclude:
+    - 'lib/radius/spec/rspec.rb'

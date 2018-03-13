@@ -100,4 +100,42 @@ RSpec.configure do |config|
   # test failures related to randomization by passing the same `--seed` value
   # as the one that triggered the failure.
   Kernel.srand config.seed
+
+  config.when_first_matching_example_defined(
+    :model_factory,
+    :model_factories,
+  ) do
+    require 'radius/spec/model_factory'
+    config.include Radius::Spec::ModelFactory, :model_factory, :model_factories
+  end
+
+  config.when_first_matching_example_defined(type: :controller) do
+    require 'radius/spec/model_factory'
+    config.include Radius::Spec::ModelFactory, type: :controller
+  end
+
+  config.when_first_matching_example_defined(type: :feature) do
+    require 'radius/spec/model_factory'
+    config.include Radius::Spec::ModelFactory, type: :feature
+  end
+
+  config.when_first_matching_example_defined(type: :job) do
+    require 'radius/spec/model_factory'
+    config.include Radius::Spec::ModelFactory, type: :job
+  end
+
+  config.when_first_matching_example_defined(type: :model) do
+    require 'radius/spec/model_factory'
+    config.include Radius::Spec::ModelFactory, type: :model
+  end
+
+  config.when_first_matching_example_defined(type: :request) do
+    require 'radius/spec/model_factory'
+    config.include Radius::Spec::ModelFactory, type: :request
+  end
+
+  config.when_first_matching_example_defined(type: :system) do
+    require 'radius/spec/model_factory'
+    config.include Radius::Spec::ModelFactory, type: :system
+  end
 end

@@ -473,4 +473,52 @@ RSpec.describe Radius::Spec::ModelFactory do
       }.from([]).to(%i[initialize save!])
     end
   end
+
+  context "using the model factory in specs" do
+    it "helpers are not included by default", :aggregate_failures do
+      expect {
+        build(Object)
+      }.to raise_error NoMethodError
+
+      expect {
+        create(Object)
+      }.to raise_error NoMethodError
+    end
+
+    shared_examples "factory inclusion" do
+      before do
+        stub_const "AnyClass", Struct.new(:attr1, :attr2, keyword_init: true)
+        Radius::Spec::ModelFactory.define_factory(
+          "AnyClass",
+          attr1: "Any Attr1 Value",
+          attr2: "Any Attr2 Value",
+        )
+      end
+
+      it "includes the `build` helper" do
+        an_instance = build("AnyClass", attr1: "Custom Value")
+        expect(an_instance).to be_an_instance_of(AnyClass).and have_attributes(
+          attr1: "Custom Value",
+          attr2: "Any Attr2 Value",
+        )
+      end
+
+      it "includes the `create` helper" do
+        an_instance = create("AnyClass", attr2: "Custom Value")
+        expect(an_instance).to be_an_instance_of(AnyClass).and have_attributes(
+          attr1: "Any Attr1 Value",
+          attr2: "Custom Value",
+        )
+      end
+    end
+
+    describe "using the model factory", "via module inclusion" do
+      include Radius::Spec::ModelFactory
+      include_examples "factory inclusion"
+    end
+
+    describe "using the model factory", "via metadata", :model_factory do
+      include_examples "factory inclusion"
+    end
+  end
 end
