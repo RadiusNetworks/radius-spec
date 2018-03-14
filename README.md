@@ -347,9 +347,10 @@ want:
     ```
 
     When using this metadata option you do not need to explicitly require the
-    model factory feature. This gem metadata with the RSpec's configuration
-    when it loads and RSpec is loaded. When the metadata is first used it will
-    automatically require the model factory and include the helpers.
+    model factory feature. This gem registers metadata with the RSpec
+    configuration when it loads and `RSpec` is defined. When the metadata is
+    first used it will automatically require the model factory feature and
+    include the helpers.
 
     Any of following metadata will include the factory helpers:
 
@@ -387,7 +388,7 @@ There are a few behaviors to note for using the builder:
     `Proc` as an attribute value it will be sent to new directly without
     receiving `call`.
 
-#### Optional Block
+##### Optional Block
 
 Both `build` and `create` support providing an optional block. This block is
 passed directly to `new` when creating the object. This is to support the
@@ -418,7 +419,7 @@ Also, while the common idiom is to `yield self` classes are free to yield
 anything. You need to be aware of how the class normally behaves when using
 this feature.
 
-#### "Creating" Instances
+##### "Creating" Instances
 
 We suggest that you create instances using the following syntax:
 
