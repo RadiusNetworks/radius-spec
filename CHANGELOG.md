@@ -6,7 +6,8 @@
 
 ### Bug Fixes
 
-- TODO
+- Fix `NameError: undefined local variable or method `config` for Rails RSpec
+  configuration (Aaron Kromer, #1)
 
 
 ## 0.1.0 (March 14, 2018)
