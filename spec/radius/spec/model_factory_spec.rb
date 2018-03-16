@@ -237,6 +237,32 @@ RSpec.describe Radius::Spec::ModelFactory do
       )
     end
 
+    it "supports custom attributes with string keys (converting to symbols)" do
+      stub_const(
+        "AnyClass",
+        Class.new {
+          def initialize(attrs)
+            @attrs = attrs
+          end
+          attr_reader :attrs
+        },
+      )
+      Radius::Spec::ModelFactory.define_factory(
+        "AnyClass",
+        arg1: "Any Default Arg1 Value",
+        arg2: "Any Default Arg2 Value",
+      )
+
+      an_instance = Radius::Spec::ModelFactory.build(
+        "AnyClass",
+        "arg1" => "Custom Value",
+      )
+      expect(an_instance.attrs).to eq(
+        arg1: "Custom Value",
+        arg2: "Any Default Arg2 Value",
+      )
+    end
+
     it "duplicates registered attributes to prevent state leak " \
        "between instances", :aggregate_failures do
       mutable_array = %i[any value]

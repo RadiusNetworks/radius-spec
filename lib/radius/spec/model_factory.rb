@@ -407,6 +407,7 @@ module Radius
       def build(name, custom_attrs = {}, &block)
         name = name.to_s
         template = ::Radius::Spec::ModelFactory.template(name)
+        custom_attrs = custom_attrs.transform_keys(&:to_sym)
         template_only = template.keys - custom_attrs.keys
         attrs = template.slice(*template_only)
                         .delete_if { |_, v| :optional == v }
