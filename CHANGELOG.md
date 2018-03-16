@@ -11,6 +11,8 @@
 - Fix model factory build issue in which registered template attributes, which
   use symbol keys, are not replaced by custom attributes using string keys
   (Aaron Kromer, #1)
+- Exclude `spec/support/model_factories.rb` from `Metrics/BlockLength` in
+  common Rubocop config (Aaron Kromer)
 
 
 ## 0.1.0 (March 14, 2018)
