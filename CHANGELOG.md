@@ -1,8 +1,6 @@
-## Development
+## 0.1.1 (March 16, 2018)
 
-### Enhancements
-
-- TODO
+[Full Changelog](https://github.com/RadiusNetworks/radius-spec/compare/v0.1.0...v0.1.1)
 
 ### Bug Fixes
 
@@ -17,7 +15,7 @@
 
 ## 0.1.0 (March 14, 2018)
 
-[Full Changelog](https://github.com/RadiusNetworks/radius-spec/compare/0fb9d553f493c7ba454f13c9d4332d62a336f0a4..v0.1.0)
+[Full Changelog](https://github.com/RadiusNetworks/radius-spec/compare/0fb9d553f493c7ba454f13c9d4332d62a336f0a4...v0.1.0)
 
 ### Initial release:
 
