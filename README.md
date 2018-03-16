@@ -52,9 +52,18 @@ custom RSpec configuration in a `RSpec.configure` block as usual:
 require 'radius/spec'
 
 RSpec.configure do |config|
+  # Project's with noisy dependencies, and Rails app, include this line to
+  # disable warnings.
+  config.warnings = false
+
   # Your project specific custom settings here
 end
 ```
+
+**NOTE:** By default warnings are enabled by this gem. Enabling Ruby warnings
+is generally recommended. However, for large projects, and including most Rails
+apps, with lots of noisy dependencies this can be an issue. For these projects,
+we suggest disabling warnings per the above method.
 
 For Rails apps, we suggest a similar approach to your Rails helper:
 
