@@ -5,7 +5,7 @@ require 'radius/spec'
 require 'radius/spec/rspec'
 require 'rspec/rails'
 
-RSpec.configure do
+RSpec.configure do |config|
   # Remove this line if you're not using ActiveRecord or ActiveRecord fixtures
   config.fixture_path = ::Rails.root.join("spec", "fixtures")
 

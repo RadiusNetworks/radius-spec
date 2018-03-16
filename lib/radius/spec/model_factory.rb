@@ -254,6 +254,17 @@ module Radius
         alias_method :factory, :define_factory
 
         # @private
+        def merge_attrs(template, custom_attrs)
+          template_only = template.keys - custom_attrs.keys
+          template.slice(*template_only)
+                  .delete_if { |_, v| :optional == v }
+                  .transform_values! { |v|
+                    ::Radius::Spec::ModelFactory.safe_transform(v)
+                  }
+                  .merge(custom_attrs)
+        end
+
+        # @private
         def safe_transform(value)
           return value.call if value.is_a?(Proc)
           return value if value.frozen?
@@ -407,13 +418,8 @@ module Radius
       def build(name, custom_attrs = {}, &block)
         name = name.to_s
         template = ::Radius::Spec::ModelFactory.template(name)
-        template_only = template.keys - custom_attrs.keys
-        attrs = template.slice(*template_only)
-                        .delete_if { |_, v| :optional == v }
-                        .transform_values! { |v|
-                          ::Radius::Spec::ModelFactory.safe_transform(v)
-                        }
-                        .merge(custom_attrs)
+        custom_attrs = custom_attrs.transform_keys(&:to_sym)
+        attrs = ::Radius::Spec::ModelFactory.merge_attrs(template, custom_attrs)
         # TODO: Always yield to the provided block even if new doesn't
         ::Object.const_get(name).new(attrs, &block)
       end
