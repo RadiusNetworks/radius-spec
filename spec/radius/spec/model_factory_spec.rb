@@ -400,7 +400,7 @@ RSpec.describe Radius::Spec::ModelFactory do
       expect(an_instance.arg).to eq :custom
     end
 
-    it "pass any provided block to the object's initializer" do
+    it "passes any provided block to the object's initializer" do
       block_initialized = false
       stub_const(
         "AnyClass",
