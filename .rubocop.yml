@@ -8,3 +8,9 @@ inherit_from: common_rubocop.yml
 Metrics/BlockLength:
   Exclude:
     - 'lib/radius/spec/rspec.rb'
+
+# Configuration parameters: AllowHeredoc, AllowURI, URISchemes, IgnoreCopDirectives, IgnoredPatterns.
+# URISchemes: http, https
+Metrics/LineLength:
+  Exclude:
+    - 'radius-spec.gemspec'

@@ -10,6 +10,11 @@ Gem::Specification.new do |spec|
   spec.authors       = ["Radius Networks", "Aaron Kromer"]
   spec.email         = ["support@radiusnetworks.com"]
 
+  spec.metadata      = {
+    "bug_tracker_uri" => "https://github.com/RadiusNetworks/radius-spec/issues",
+    "changelog_uri"   => "https://github.com/RadiusNetworks/radius-spec/blob/v#{Radius::Spec::VERSION}/CHANGELOG.md",
+    "source_code_uri" => "https://github.com/RadiusNetworks/radius-spec/tree/v#{Radius::Spec::VERSION}",
+  }
   spec.summary       = "Radius Networks RSpec setup and plug-ins"
   spec.description   = "Standard RSpec setup and a collection of plug-ins " \
                        "to help improve specs."
