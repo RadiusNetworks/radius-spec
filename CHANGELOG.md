@@ -4,7 +4,13 @@
 
 ### Enhancements
 
-- TODO
+- Adjust common Rubocop configuration (Aaron Kromer, #2):
+  - Ignore `Lint/AmbiguousBlockAssociation` for specs
+  - Ignore long lines due to Rubocop directives
+  - Disable ASCII only comments
+  - Set the `MinSize` for `Style/SymbolArray` and `Style/WordArray` to three
+- Adjust common Rubocop Rails configuration (Aaron Kromer, #2):
+  - Ignore `Rails/ApplicationRecord` for benchmarks
 
 ### Bug Fixes
 

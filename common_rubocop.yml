@@ -51,6 +51,28 @@ Layout/ClosingParenthesisIndentation:
 Layout/FirstParameterIndentation:
   Enabled: false
 
+# In our specs Rubocop inconsistently complains when using the block form of
+# `expect` and `change`. It accepts code when a method is chained onto
+# `change`, but otherwise it complains. Since this is a widely used pattern in
+# our specs we just tell Rubocop to ignore our spec files.
+#
+#     # Acceptable to Rubocop
+#     expect {
+#       some_action
+#     }.to change {
+#       object.state
+#     }.from(:original).to(:updated)
+#
+#     # Rubocop complains
+#     expect {
+#       some_action
+#     }.to change {
+#       object.state
+#     }
+Lint/AmbiguousBlockAssociation:
+  Exclude:
+    - 'spec/**/*_spec.rb'
+
 # Often with benchmarking we don't explictly "use" a variable or return value.
 # We simply need to perform the operation which generates said value for the
 # benchmark.
@@ -69,6 +91,19 @@ Metrics/BlockLength:
     - 'spec/**/*_spec.rb'
     - 'spec/support/model_factories.rb'
 
+# Ignore long lines caused by Rubocop comments
+#
+# The only way to disable Rubocop for a single line is either to wrap the line
+# with two comments or append the disable comment to the end of the line. For
+# guard clauses, we tend to prefer the longer line so that the comment wraps
+# don't take away from the method flow. Since these are our only options we'll
+# accept the longer lines cause because of Rubocop's own semantics.
+#
+# Configuration parameters: AllowHeredoc, AllowURI, URISchemes, IgnoreCopDirectives, IgnoredPatterns.
+# URISchemes: http, https
+Metrics/LineLength:
+  IgnoreCopDirectives: true
+
 # Configuration parameters: ExpectMatchingDefinition, Regex, IgnoreExecutableScripts, AllowedAcronyms.
 # AllowedAcronyms: CLI, DSL, ACL, API, ASCII, CPU, CSS, DNS, EOF, GUID, HTML, HTTP, HTTPS, ID, IP, JSON, LHS, QPS, RAM, RHS, RPC, SLA, SMTP, SQL, SSH, TCP, TLS, TTL, UDP, UI, UID, UUID, URI, URL, UTF8, VM, XML, XMPP, XSRF, XSS
 Naming/FileName:
@@ -86,6 +121,13 @@ Naming/FileName:
 # SupportedStyles: prefer_alias, prefer_alias_method
 Style/Alias:
   EnforcedStyle: prefer_alias_method
+
+# These days most people have editors which support unicode and other
+# non-ASCII characters.
+#
+# Configuration parameters: AllowedChars.
+Style/AsciiComments:
+  Enabled: false
 
 # Use semantic style for blocks:
 #   - Prefer `do...end` over `{...}` for procedural blocks.
@@ -224,6 +266,18 @@ Style/RegexpLiteral:
 Style/StringLiterals:
   Enabled: false
 
+# We don't feel too strongly about percent vs bracket array style. We tend to
+# use the percent style, which also happens to be Rubocop's default. So for
+# pedantic consistency we'll enforce this.
+#
+# However, as we don't feel that strongly about this we'll increase the
+# minimum size to 3 to allow very small arrays to exist either way.
+#
+# Configuration parameters: EnforcedStyle, MinSize.
+# SupportedStyles: percent, brackets
+Style/SymbolArray:
+  MinSize: 3
+
 # When ternaries become complex they can be difficult to read due to increased
 # cognative load parsing the expression. Cognative load can increase further
 # when assignment is involved.
@@ -281,6 +335,18 @@ Style/TrailingCommaInHashLiteral:
     easier to read by cutting down on noise when commas are appended. It also
     simplifies adding, removing, and re-arranging the elements.
   EnforcedStyleForMultiline: consistent_comma
+
+# We don't feel too strongly about percent vs bracket array style. We tend to
+# use the percent style, which also happens to be Rubocop's default. So for
+# pedantic consistency we'll enforce this.
+#
+# However, as we don't feel that strongly about this we'll increase the
+# minimum size to 3 to allow very small arrays to exist either way.
+#
+# Configuration parameters: EnforcedStyle, MinSize, WordRegex.
+# SupportedStyles: percent, brackets
+Style/WordArray:
+  MinSize: 3
 
 # When it comes to constants it's safer to place the constant on the right-hand
 # side. With a constant accidental assignment will produce a syntax error.
