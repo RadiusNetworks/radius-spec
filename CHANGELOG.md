@@ -7,8 +7,14 @@
 - Adjust common Rubocop configuration (Aaron Kromer, #2):
   - Ignore `Lint/AmbiguousBlockAssociation` for specs
   - Ignore long lines due to Rubocop directives
+  - Ignore long lines due to comments
+  - Prefer a line length of 80, but don't complain until 90
   - Disable ASCII only comments
   - Set the `MinSize` for `Style/SymbolArray` and `Style/WordArray` to three
+  - Use squiggly `<<~` heredoc indentation
+  - Allow common `EOF` as a heredoc delimiter
+  - Indent multi-line operations
+  - Allow unspecified rescue as a catch-all
 - Adjust common Rubocop Rails configuration (Aaron Kromer, #2):
   - Ignore `Rails/ApplicationRecord` for benchmarks
 
