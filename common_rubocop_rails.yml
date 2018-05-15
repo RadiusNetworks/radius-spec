@@ -11,9 +11,11 @@ Rails:
 AllCops:
   Exclude:
     - 'bin/puma'
+    - 'bin/pumactl'
     - 'bin/rails'
     - 'bin/shoryuken'
     - 'bin/sidekiq'
+    - 'bin/sidekiqctl'
     - 'bin/spring'
     - 'db/schema.rb'
     - 'db/migrate/**/*'

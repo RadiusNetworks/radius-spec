@@ -17,6 +17,7 @@
   - Allow unspecified rescue as a catch-all
 - Adjust common Rubocop Rails configuration (Aaron Kromer, #2):
   - Ignore `Rails/ApplicationRecord` for benchmarks
+  - Ignore more common gem binstubs
 
 ### Bug Fixes
 
