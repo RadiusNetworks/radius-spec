@@ -11,9 +11,11 @@ Rails:
 AllCops:
   Exclude:
     - 'bin/puma'
+    - 'bin/pumactl'
     - 'bin/rails'
     - 'bin/shoryuken'
     - 'bin/sidekiq'
+    - 'bin/sidekiqctl'
     - 'bin/spring'
     - 'db/schema.rb'
     - 'db/migrate/**/*'
@@ -35,6 +37,17 @@ Metrics/LineLength:
   IgnoredPatterns:
     - '\A#  fk_rails_'
     - '\A#  index_'
+
+# Ignore subclass parent for one off benchmarks
+#
+# Benchmarks are generally meant to be small and targeted. They often have
+# custom model declarations which help direct the focus of the benchmarks.
+# These one-off models exist outside of the main Rails app. We don't want this
+# cop to run for them because including `ApplicationRecord` is unnecessary in
+# these cases and just adds noise to the setup.
+Rails/ApplicationRecord:
+  Exclude:
+    - 'benchmarks/**/*'
 
 # As Rails defaults to creating timestamps you need to go out of your way to
 # explicitly have them removed from the table. This cop is almost always a

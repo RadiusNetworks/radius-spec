@@ -51,6 +51,47 @@ Layout/ClosingParenthesisIndentation:
 Layout/FirstParameterIndentation:
   Enabled: false
 
+# This project only uses newer Ruby versions which all support the "squiggly"
+# style. We prefer to use pure Ruby calls when possible instead of relying on
+# alternatives; even for Rails app.
+#
+# Configuration parameters: EnforcedStyle.
+# SupportedStyles: auto_detection, squiggly, active_support, powerpack, unindent
+Layout/IndentHeredoc:
+  EnforcedStyle: squiggly
+
+# We tend to indent multi-line operation statements. I think this is because
+# it's tends to be the default style auto-formatted by VIM (which many of us
+# use). It also helps show the continuation of the statement instead of it
+# potentially blending in with the start of the next statement.
+#
+# Configuration parameters: EnforcedStyle, IndentationWidth.
+# SupportedStyles: aligned, indented
+Layout/MultilineOperationIndentation:
+  EnforcedStyle: indented
+
+# In our specs Rubocop inconsistently complains when using the block form of
+# `expect` and `change`. It accepts code when a method is chained onto
+# `change`, but otherwise it complains. Since this is a widely used pattern in
+# our specs we just tell Rubocop to ignore our spec files.
+#
+#     # Acceptable to Rubocop
+#     expect {
+#       some_action
+#     }.to change {
+#       object.state
+#     }.from(:original).to(:updated)
+#
+#     # Rubocop complains
+#     expect {
+#       some_action
+#     }.to change {
+#       object.state
+#     }
+Lint/AmbiguousBlockAssociation:
+  Exclude:
+    - 'spec/**/*_spec.rb'
+
 # Often with benchmarking we don't explictly "use" a variable or return value.
 # We simply need to perform the operation which generates said value for the
 # benchmark.
@@ -69,6 +110,39 @@ Metrics/BlockLength:
     - 'spec/**/*_spec.rb'
     - 'spec/support/model_factories.rb'
 
+# We generally prefer to use the default line length of 80. Though sometimes
+# we just need a little extra space because it makes it easier to read.
+#
+# The only way to disable Rubocop for a single line is either to wrap the line
+# with two comments or append the disable comment to the end of the line. For
+# guard clauses, we tend to prefer trailing comments to avoid adding two lines
+# just to disable a cop on one line.
+#
+# Sometimes comments include ASCII diagrams, flow charts, etc. These cannot
+# always be reformatted to fit within the 80 column limit. Also, we write most
+# comments in markdown format. Rubocop isn't very good at understanding when
+# the line is long because of a URL in a markdown link. Instead of requiring
+# additional comments to turn this cop off for comments we ignore any long
+# lines which are only comments.
+#
+# There are also cases where for one valid reason or another we have a trailing
+# comment that extends a little too far. We'd like to be able to ignore those
+# as well. This _attempts_ to do that, however, as this uses simple regular
+# expressions we can only attempt to match so much. We probably should change
+# this for a node pattern matcher in the future.
+#
+# Configuration parameters: AllowHeredoc, AllowURI, URISchemes,
+#                           IgnoreCopDirectives, IgnoredPatterns.
+# URISchemes: http, https
+Metrics/LineLength:
+  IgnoreCopDirectives: true
+  IgnoredPatterns:
+    # Leading comments
+    - '\A\s*#'
+    # Attempt at trailing comments
+    - '\A.{1,78}\s#\s.*\z'
+  Max: 100
+
 # Configuration parameters: ExpectMatchingDefinition, Regex, IgnoreExecutableScripts, AllowedAcronyms.
 # AllowedAcronyms: CLI, DSL, ACL, API, ASCII, CPU, CSS, DNS, EOF, GUID, HTML, HTTP, HTTPS, ID, IP, JSON, LHS, QPS, RAM, RHS, RPC, SLA, SMTP, SQL, SSH, TCP, TLS, TTL, UDP, UI, UID, UUID, URI, URL, UTF8, VM, XML, XMPP, XSRF, XSS
 Naming/FileName:
@@ -76,6 +150,18 @@ Naming/FileName:
     - '**/Gemfile'
     - '**/*.gemspec'
     - '**/Brewfile'
+
+# This allows `EOF` as the only `EO*` variant.
+#
+# `EOF` is a common terminal abbreviate indicating end-of-file. We allow this
+# for those heredocs which represent "file" text.
+#
+# Configuration parameters: Blacklist.
+# Blacklist: END, (?-mix:EO[A-Z]{1})
+Naming/HeredocDelimiterNaming:
+  Blacklist:
+    - 'END'
+    - '(?-mix:EO[A-EG-Z]{1})'
 
 # `alias` behavior changes on scope. In general we expect the behavior to be
 # that which is defined by `alias_method`.
@@ -86,6 +172,13 @@ Naming/FileName:
 # SupportedStyles: prefer_alias, prefer_alias_method
 Style/Alias:
   EnforcedStyle: prefer_alias_method
+
+# These days most people have editors which support unicode and other
+# non-ASCII characters.
+#
+# Configuration parameters: AllowedChars.
+Style/AsciiComments:
+  Enabled: false
 
 # Use semantic style for blocks:
 #   - Prefer `do...end` over `{...}` for procedural blocks.
@@ -215,6 +308,47 @@ Style/NumericPredicate:
 Style/RegexpLiteral:
   EnforcedStyle: mixed
 
+# If you only need to rescue a single, or predefined set of exceptions, then
+# catch the exceptions explicitly. However, when you need to include a general
+# error handler / "catch-all" use the "unspecified rescue".
+#
+# Using the unspecified `rescue` on blocks is common Ruby practice. It is a
+# core feature of the language which has semantic meaning. The Rubocop docs do
+# not provide much justification for defaulting to an explicit style and there
+# is no real mention of this in the associated style guide except the following
+# buried in an example for [_Avoid rescuing the `Exception`
+# class_](https://github.com/bbatsov/ruby-style-guide#no-blind-rescues) though
+# the anchor suggests this is for "no blind rescues":
+#
+# > # a blind rescue rescues from StandardError, not Exception as many
+# > # programmers assume.
+#
+# Our general rule for Ruby exceptions is to create your custom errors from
+# `StandardError`. Creating custom errors off of `Exception` is reserved for
+# special edge cases where you don't intend for someone to normally catch it
+# (such as system resource issues; e.g. `NoMemoryError`, `SecurityError`).
+#
+# With that in mind, we can make the same counter argument that since
+# programmers generally assume the unspecified rescue rescues `Exception`,
+# which they normally should not be rescuing, system errors are more likely to
+# noticed.
+#
+# Additionally, use of the unspecified rescue looks and behaves like a
+# "catch-all" or the `else` clause in a `case` statement:
+#
+#   begin
+#     # do something that may cause a standard error
+#   rescue TypeError
+#     handle_type_error
+#   rescue => e
+#     handle_error e
+#   end
+#
+# Configuration parameters: EnforcedStyle.
+# SupportedStyles: implicit, explicit
+Style/RescueStandardError:
+  EnforcedStyle: implicit
+
 # We generally prefer double quotes but many generators use single quotes. We
 # don't view the performance difference to be all that much so we don't care
 # if the style is mixed or double quotes are used for static strings.
@@ -223,6 +357,18 @@ Style/RegexpLiteral:
 # SupportedStyles: single_quotes, double_quotes
 Style/StringLiterals:
   Enabled: false
+
+# We don't feel too strongly about percent vs bracket array style. We tend to
+# use the percent style, which also happens to be Rubocop's default. So for
+# pedantic consistency we'll enforce this.
+#
+# However, as we don't feel that strongly about this we'll increase the
+# minimum size to 3 to allow very small arrays to exist either way.
+#
+# Configuration parameters: EnforcedStyle, MinSize.
+# SupportedStyles: percent, brackets
+Style/SymbolArray:
+  MinSize: 3
 
 # When ternaries become complex they can be difficult to read due to increased
 # cognative load parsing the expression. Cognative load can increase further
@@ -281,6 +427,18 @@ Style/TrailingCommaInHashLiteral:
     easier to read by cutting down on noise when commas are appended. It also
     simplifies adding, removing, and re-arranging the elements.
   EnforcedStyleForMultiline: consistent_comma
+
+# We don't feel too strongly about percent vs bracket array style. We tend to
+# use the percent style, which also happens to be Rubocop's default. So for
+# pedantic consistency we'll enforce this.
+#
+# However, as we don't feel that strongly about this we'll increase the
+# minimum size to 3 to allow very small arrays to exist either way.
+#
+# Configuration parameters: EnforcedStyle, MinSize, WordRegex.
+# SupportedStyles: percent, brackets
+Style/WordArray:
+  MinSize: 3
 
 # When it comes to constants it's safer to place the constant on the right-hand
 # side. With a constant accidental assignment will produce a syntax error.
