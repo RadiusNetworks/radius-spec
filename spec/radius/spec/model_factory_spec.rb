@@ -444,7 +444,6 @@ RSpec.describe Radius::Spec::ModelFactory do
         arg3: :additional_value,
       }
 
-      # rubocop:disable Metrics/LineLength
       an_instance = nil
       expect {
         an_instance = Radius::Spec::ModelFactory.create("AnyClass", custom_attrs) { |obj|
@@ -453,7 +452,6 @@ RSpec.describe Radius::Spec::ModelFactory do
       }.to change {
         block_initialized
       }.from(false)
-      # rubocop:enable Metrics/LineLength
       expect(block_initialized).to be an_instance
       expect(an_instance).to be_an_instance_of(AnyClass).and have_attributes(
         arg1: :custom,
