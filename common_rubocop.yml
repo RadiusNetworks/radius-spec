@@ -111,9 +111,7 @@ Metrics/BlockLength:
     - 'spec/support/model_factories.rb'
 
 # We generally prefer to use the default line length of 80. Though sometimes
-# you just need a little extra space because it is easier to read the code on
-# one line instead of several. This sets the max to 90 to allow a little extra
-# room (though we'd probably prefer to get this to ~85).
+# we just need a little extra space because it makes it easier to read.
 #
 # The only way to disable Rubocop for a single line is either to wrap the line
 # with two comments or append the disable comment to the end of the line. For
@@ -143,7 +141,7 @@ Metrics/LineLength:
     - '\A\s*#'
     # Attempt at trailing comments
     - '\A.{1,78}\s#\s.*\z'
-  Max: 90
+  Max: 100
 
 # Configuration parameters: ExpectMatchingDefinition, Regex, IgnoreExecutableScripts, AllowedAcronyms.
 # AllowedAcronyms: CLI, DSL, ACL, API, ASCII, CPU, CSS, DNS, EOF, GUID, HTML, HTTP, HTTPS, ID, IP, JSON, LHS, QPS, RAM, RHS, RPC, SLA, SMTP, SQL, SSH, TCP, TLS, TTL, UDP, UI, UID, UUID, URI, URL, UTF8, VM, XML, XMPP, XSRF, XSS
