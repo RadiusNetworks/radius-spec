@@ -1,6 +1,7 @@
 inherit_mode:
   merge:
     - Exclude
+    - IgnoredPatterns
 
 inherit_from: common_rubocop.yml
 

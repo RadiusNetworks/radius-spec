@@ -8,7 +8,7 @@
 
 ### Bug Fixes
 
-- TODO
+-  Fix warning about overriding parameter (Aaron Kromer, #4)
 
 
 ## 0.2.0 (May 17, 2018)
