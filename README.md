@@ -92,11 +92,20 @@ end
 
 ### Common Rubocop Config
 
-Projects can inherit from the [base Rubocop config](.rubocop.yml) by using
-either the remote raw URL or dependency gem formats:
+Projects can inherit from the [base Rubocop config](.rubocop.yml). This can be
+accomplished by using either the remote raw URL or dependency gem formats. With
+either method we also strongly suggest setting the `inherit_mode` to `merge`
+for both `Exclude` and `IgnoredPatterns`. This way you can append additional
+exceptions without overwriting the defaults.
+
+#### Inherit from Gem (Recommended Method)
 
 ```yaml
-# Recommended Method
+inherit_mode:
+  merge:
+    - Exclude
+    - IgnoredPatterns
+
 inherit_gem:
   radius-spec:
     - common_rubocop.yml
@@ -104,7 +113,14 @@ inherit_gem:
     - common_rubocop_rails.yml
 ```
 
+#### Inherit from URL
+
 ```yaml
+inherit_mode:
+  merge:
+    - Exclude
+    - IgnoredPatterns
+
 # Available for projects which cannot include this gem (i.e. Ruby < 2.5)
 inherit_from:
   - https://raw.githubusercontent.com/RadiusNetworks/radius-spec/master/common_rubocop.yml
@@ -119,6 +135,8 @@ When using the raw URL you may need to add the following to the project's
 .rubocop-https---raw-githubusercontent-com-RadiusNetworks-radius-spec-master-common-rubocop-rails-yml
 .rubocop-https---raw-githubusercontent-com-RadiusNetworks-radius-spec-master-common-rubocop-yml
 ```
+
+#### General Inheritance Notes
 
 Be sure to include the project's local `.rubocop_todo.yml` **after** inheriting
 the base configuration so that they take precedence. Also, use the directive
@@ -137,6 +155,7 @@ inherit_from: .rubocop_todo.yml
 inherit_mode:
   merge:
     - Exclude
+    - IgnoredPatterns
 
 Style/For:
   inherit_mode:
