@@ -1,6 +1,6 @@
-## Development
+## 0.2.0 (May 17, 2018)
 
-[Full Changelog](https://github.com/RadiusNetworks/radius-spec/compare/v0.1.1...master)
+[Full Changelog](https://github.com/RadiusNetworks/radius-spec/compare/v0.1.1...v0.2.0)
 
 ### Enhancements
 
@@ -8,7 +8,7 @@
   - Ignore `Lint/AmbiguousBlockAssociation` for specs
   - Ignore long lines due to Rubocop directives
   - Ignore long lines due to comments
-  - Prefer a line length of 80, but don't complain until 90
+  - Prefer a line length of 80, but don't complain until 100
   - Disable ASCII only comments
   - Set the `MinSize` for `Style/SymbolArray` and `Style/WordArray` to three
   - Use squiggly `<<~` heredoc indentation
@@ -18,10 +18,6 @@
 - Adjust common Rubocop Rails configuration (Aaron Kromer, #2):
   - Ignore `Rails/ApplicationRecord` for benchmarks
   - Ignore more common gem binstubs
-
-### Bug Fixes
-
-- TODO
 
 
 ## 0.1.1 (March 16, 2018)
