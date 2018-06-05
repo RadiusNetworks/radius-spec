@@ -8,7 +8,8 @@
 
 ### Bug Fixes
 
-- TODO
+- Remove `Include` from common Rubocop all cops configuration to fix issues
+  with Rubocop 0.56.0+ not seeing all expected files.
 
 
 ## 0.2.1 (May 17, 2018)
