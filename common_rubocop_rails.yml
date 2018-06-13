@@ -59,13 +59,6 @@ Rails/ApplicationRecord:
 Rails/CreateTableWithTimestamps:
   Enabled: false
 
-# Disabling this as it is broken for request specs which use custom headers.
-#
-# Configuration parameters: Include.
-# Include: spec/**/*, test/**/*
-Rails/HttpPositionalArguments:
-  Enabled: false
-
 # The ActiveSupport monkey patches for `present?` are nearly all defiend as:
 #
 #     !blank?
