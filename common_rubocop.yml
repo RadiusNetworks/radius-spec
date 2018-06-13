@@ -35,16 +35,10 @@ Layout/BlockAlignment:
 # first method call is multi-line.
 #
 # See # https://github.com/bbatsov/rubocop/issues/5650
-Layout/ClosingParenthesisIndentation:
-  Enabled: false
-
-# Disabling this until it is fixed to handle multi-line method chains where the
-# first method call is multi-line.
-#
-# See # https://github.com/bbatsov/rubocop/issues/5650
 #
 # Configuration parameters: EnforcedStyle, IndentationWidth.
-# SupportedStyles: consistent, special_for_inner_method_call, special_for_inner_method_call_in_parentheses
+# SupportedStyles: consistent, consistent_relative_to_receiver,
+#                  special_for_inner_method_call, special_for_inner_method_call_in_parentheses
 Layout/FirstParameterIndentation:
   Enabled: false
 
