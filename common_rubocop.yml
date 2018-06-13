@@ -170,6 +170,20 @@ Naming/HeredocDelimiterNaming:
 Style/Alias:
   EnforcedStyle: prefer_alias_method
 
+# Keeping with our semantic style we allow use of `and` / `or` conditionals
+# when it is used for control flow:
+#
+#     system("some command") or system("another command")
+#
+# Used in this manner it provides additional semantic clues to the intent of
+# the code. However, when there is a conditional, or the intent is to perform
+# a boolean comparison, the `&&` / `||` style should be used.
+#
+# Configuration parameters: EnforcedStyle.
+# SupportedStyles: always, conditionals
+Style/AndOr:
+  EnforcedStyle: conditionals
+
 # These days most people have editors which support unicode and other
 # non-ASCII characters.
 #
@@ -206,6 +220,7 @@ Style/BlockDelimiters:
     - with_object
   FunctionalMethods:
     - each_with_object
+    - find
     - git_source
     - let
     - let!
@@ -217,6 +232,51 @@ Style/BlockDelimiters:
     - lambda
     - proc
     - it
+
+# The double negation idiom is a common Ruby-ism. All languages have various
+# idioms and part of learning the language is learning the common idioms. Once
+# learning the meaning it is not cryptic as Rubocop implies.
+#
+#   > Double negation converts converts a value to boolean.
+#   >
+#   > It converts "truthy" values to `true` and "falsey" values, `nil` and
+#   > `false`, to `false`.
+#
+# The [Rubocop style guide](https://github.com/rubocop-hq/ruby-style-guide#no-bang-bang)
+# does have a valid complaint about it's use in a conditional:
+#
+#   > you don't need this explicit conversion in the condition of a control
+#   > expression; using it only obscures your intention...
+#   >
+#   > ```ruby
+#   > # bad
+#   > x = 'test'
+#   > # obscure nil check
+#   > if !!x
+#   >   # body omitted
+#   > end
+#   >
+#   > # good
+#   > x = 'test'
+#   > if x
+#   >   # body omitted
+#   > end
+#   > ```
+#
+# This is true and we completely agree. However the check isn't limited to just
+# conditional control expressions. It affects any use of the idiom.
+#
+# We believe using the idiom is completely valid for predicate methods to
+# ensure either a `true` or `false` return, instead of just a "truthy" or
+# "falsey" response. As it is an op it is a bit faster than the alternative of
+# sending `nil?` to the object and more concise than using `obj == nil`. It
+# also works with something that is potentially `false` as expected.
+#
+# As we cannot customize this to only limit it to the conditional control
+# expressions, or instances which may be better replaced with something else
+# (like `blank?`), we are disabling it.
+Style/DoubleNegation:
+  Enabled: false
 
 # Using `case` instead of an `if` expression when the case condition is empty
 # can be more expressive of intent. Using multiple "cases" informs the reader
@@ -298,7 +358,17 @@ Style/NumericPredicate:
   Enabled: false
 
 # Prefer slashes for simple expressions. For multi-line use percent literal
-# to support comments and other advanced features.
+# to support comments and other advanced features. By using the mixed style we
+# are choosing to use `%r{}` for multi-line regexps. In general we are not a
+# fan of single vs multi-line dictating a style. We do make an exception in
+# this case because of the parity the braces give to general code block
+# grouping:
+#
+#     regex = %r{
+#       foo
+#       (bar)
+#       (baz)
+#     }x
 #
 # Configuration parameters: EnforcedStyle, AllowInnerSlashes.
 # SupportedStyles: slashes, percent_r, mixed
@@ -353,6 +423,15 @@ Style/RescueStandardError:
 # Configuration parameters: EnforcedStyle, SupportedStyles, ConsistentQuotesInMultiline.
 # SupportedStyles: single_quotes, double_quotes
 Style/StringLiterals:
+  Enabled: false
+
+# As with regular string literals we have no real preference for this. Forcing
+# one style of strings over others for this case just adds to Rubocop noise and
+# in our experience developer frustration.
+#
+# Configuration parameters: EnforcedStyle.
+# SupportedStyles: single_quotes, double_quotes
+Style/StringLiteralsInInterpolation:
   Enabled: false
 
 # We don't feel too strongly about percent vs bracket array style. We tend to

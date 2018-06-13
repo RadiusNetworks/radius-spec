@@ -4,7 +4,13 @@
 
 ### Enhancements
 
-- TODO
+- Adjust common Rubocop configuration
+  - Customize `Style/AndOr` to flag only conditionals allowing `and` / `or` for
+    control flow
+  - Add `find` to functional method blocks
+  - Disable `Style/DoubleNegation` as this is a common Ruby idiom
+  - Disable `Style/StringLiteralsInInterpolation` to stay consistent with our
+    no preferences for single versus double quotes
 
 ### Bug Fixes
 
