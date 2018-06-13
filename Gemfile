@@ -7,6 +7,13 @@ git_source(:github) { |repo_name| "https://github.com/#{repo_name}" }
 # Specify your gem's dependencies in radius-spec.gemspec
 gemspec
 
+group :benchmark, optional: true do
+  gem 'benchmark-ips', require: false
+  # TODO: See if this gem has an update in the future as it's gemspec is too
+  # strict and it was blocking other gems from installing / updating
+  gem 'kalibera', require: false, git: 'https://github.com/cupakromer/libkalibera.git'
+end
+
 group :debug do
   gem "pry-byebug", "~> 3.6", require: false
   gem "travis", require: false
