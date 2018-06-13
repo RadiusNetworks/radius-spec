@@ -2,6 +2,10 @@
 
 [Full Changelog](https://github.com/RadiusNetworks/radius-spec/compare/v0.2.1...master)
 
+### Breaking Change
+
+- Lock Rubocop to a minor release version in gemspec
+
 ### Enhancements
 
 - Adjust common Rubocop configuration

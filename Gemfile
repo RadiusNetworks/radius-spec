@@ -19,10 +19,6 @@ group :debug do
   gem "travis", require: false
 end
 
-group :development do
-  gem "rubocop", "~> 0.53", require: false
-end
-
 group :documentation do
   gem 'yard', '~> 0.9', require: false
 end
