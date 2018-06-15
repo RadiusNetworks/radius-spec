@@ -2,13 +2,24 @@
 
 [Full Changelog](https://github.com/RadiusNetworks/radius-spec/compare/v0.2.1...master)
 
+### Breaking Change
+
+- Lock Rubocop to a minor release version in gemspec (Aaron Kromer, #5)
+
 ### Enhancements
 
-- TODO
+- Adjust common Rubocop configuration (Aaron Kromer, #5)
+  - Customize `Style/AndOr` to flag only conditionals allowing `and` / `or` for
+    control flow
+  - Add `find` to functional method blocks
+  - Disable `Style/DoubleNegation` as this is a common Ruby idiom
+  - Disable `Style/StringLiteralsInInterpolation` to stay consistent with our
+    no preferences for single versus double quotes
 
 ### Bug Fixes
 
-- TODO
+- Remove `Include` from common Rubocop all cops configuration to fix issues
+  with Rubocop 0.56.0+ not seeing all expected files. (Aaron Kromer, #5)
 
 
 ## 0.2.1 (May 17, 2018)

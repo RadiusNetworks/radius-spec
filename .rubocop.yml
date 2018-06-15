@@ -8,6 +8,7 @@ inherit_from: common_rubocop.yml
 # Configuration parameters: CountComments, ExcludedMethods.
 Metrics/BlockLength:
   Exclude:
+    - 'benchmarks/**/*'
     - 'lib/radius/spec/rspec.rb'
 
 # Configuration parameters: AllowHeredoc, AllowURI, URISchemes, IgnoreCopDirectives, IgnoredPatterns.
