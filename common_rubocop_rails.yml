@@ -105,6 +105,15 @@ Rails/ApplicationRecord:
 Rails/CreateTableWithTimestamps:
   Enabled: false
 
+# We understand the trade-offs for using the through model versus a lookup
+# table. As such this cop is just noise as it flags only those cases we really
+# do want a lookup table.
+#
+# Configuration parameters: Include.
+# Include: app/models/**/*.rb
+Rails/HasAndBelongsToMany:
+  Enabled: false
+
 # The ActiveSupport monkey patches for `present?` are nearly all defiend as:
 #
 #     !blank?

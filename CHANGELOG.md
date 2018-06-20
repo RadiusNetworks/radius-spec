@@ -7,6 +7,7 @@
 - Exclude Rails controllers from Rubocop's `Metrics/MethodLength` due to
   `respond_to` / `format` and permitted params methods (Aaron Kromer, #7)
 - Disable Rubocop `Naming/BinaryOperatorParameterName` (Aaron Kromer, #7)
+- Disable Rubocop `Rails/HasAndBelongsToMany` (Aaron Kromer, #7)
 
 ### Bug Fixes
 
