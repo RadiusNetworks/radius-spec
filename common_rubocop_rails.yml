@@ -39,6 +39,52 @@ Metrics/LineLength:
     - '\A#  fk_rails_'
     - '\A#  index_'
 
+# For our Rails apps several of them use the `respond_to` with `format` blocks
+# to handle various mime types (mostly HTML and JSON). Given our `do` / `end`
+# block style for non-functional blocks (which includes both `respond_to` and
+# `format`) the general method limit of is too small. This also applies to the
+# helper methods which define the allowed parameters for the action; especially
+# for larger forms.
+#
+# Here is an example of a minimal controller `update` method which uses the
+# `respond_to` style to support just the HTML and JSON formats:
+#
+#   ```ruby
+#   def update
+#     respond_to do |format|
+#       if @resource.update(resource_params)
+#         format.html do
+#           redirect_to resources_url, notice: 'Resource was successfully updated.'
+#         end
+#         format.json do
+#           render :show, status: :ok, location: @resource
+#         end
+#       else
+#         format.html do
+#           render :edit
+#         end
+#         format.json do
+#           render json: @resource.errors, status: :unprocessable_entity
+#         end
+#       end
+#     end
+#   end
+#   ```
+#
+# We do believe that the default size of 10, which is what we explicitly
+# configure below so there's no confusion, is a good general limit to help
+# encourage a balance between terseness and procedural code. Thus we do not
+# want to raise the limit, instead we just want to exclude these controllers.
+#
+# At this time there is no way for us to exclude just the common controller
+# actions / *_params methods so we exclude the entire file.
+#
+# Configuration parameters: CountComments.
+Metrics/MethodLength:
+  Max: 10
+  Exclude:
+    - 'app/controllers/**/*_controller.rb'
+
 # Ignore subclass parent for one off benchmarks
 #
 # Benchmarks are generally meant to be small and targeted. They often have

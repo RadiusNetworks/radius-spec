@@ -4,7 +4,8 @@
 
 ### Enhancements
 
-- TODO
+- Exclude Rails controllers from Rubocop's `Metrics/MethodLength` due to
+  `respond_to` / `format` and permitted params methods (Aaron Kromer, #7)
 
 ### Bug Fixes
 
