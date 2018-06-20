@@ -212,6 +212,10 @@ Style/BlockDelimiters:
     - realtime
     - with_object
   FunctionalMethods:
+    - create
+    - create!
+    - build
+    - build!
     - each_with_object
     - find
     - git_source

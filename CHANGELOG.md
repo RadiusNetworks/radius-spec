@@ -8,7 +8,11 @@
 
 ### Bug Fixes
 
-- TODO
+- Add more functional methods to Rubocop config (Aaron Kromer, #7)
+  - `create`
+  - `create!`
+  - `build`
+  - `build!`
 
 
 ## 0.3.0 (June 15, 2018)
