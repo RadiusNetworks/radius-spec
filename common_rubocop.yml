@@ -134,6 +134,14 @@ Metrics/LineLength:
     - '\A.{1,78}\s#\s.*\z'
   Max: 100
 
+# This is overly pedantic (only allowing `other` as the parameter name). Ruby
+# core doesn't follow this consistently either. Looking at several classes
+# throughout Ruby core we do often see `other`, but also often `obj` or
+# `other_*`. In some cases, the parameter is named more meaningfully with names
+# like `real`, `numeric`, or `str`.
+Naming/BinaryOperatorParameterName:
+  Enabled: false
+
 # Configuration parameters: ExpectMatchingDefinition, Regex, IgnoreExecutableScripts, AllowedAcronyms.
 # AllowedAcronyms: CLI, DSL, ACL, API, ASCII, CPU, CSS, DNS, EOF, GUID, HTML, HTTP, HTTPS, ID, IP, JSON, LHS, QPS, RAM, RHS, RPC, SLA, SMTP, SQL, SSH, TCP, TLS, TTL, UDP, UI, UID, UUID, URI, URL, UTF8, VM, XML, XMPP, XSRF, XSS
 Naming/FileName:
