@@ -8,6 +8,8 @@
   `respond_to` / `format` and permitted params methods (Aaron Kromer, #7)
 - Disable Rubocop `Naming/BinaryOperatorParameterName` (Aaron Kromer, #7)
 - Disable Rubocop `Rails/HasAndBelongsToMany` (Aaron Kromer, #7)
+- Exclude Rails app `config/routes.rb` from Rubocop's `Metrics/BlockLength`
+  (Aaron Kromer, #7)
 
 ### Bug Fixes
 

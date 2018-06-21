@@ -27,6 +27,7 @@ Documentation:
 
 Metrics/BlockLength:
   Exclude:
+    - 'config/routes.rb'
     - 'spec/rails_helper.rb'
 
 # Rails foreign keys and indexes can get long. We want to ignore our annotation
