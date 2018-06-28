@@ -6,6 +6,7 @@
 
 - Adjust common Rubocop configuration (Aaron Kromer, #7)
   - Disable `Naming/BinaryOperatorParameterName`
+  - Disable `Style/RedundantReturn`
 - Adjust common Rubocop Rails configuration (Aaron Kromer, #7)
   - Exclude Rails controllers from Rubocop's `Metrics/MethodLength` due to
     `respond_to` / `format` and permitted params methods

@@ -362,6 +362,32 @@ Style/MultilineBlockChain:
 Style/NumericPredicate:
   Enabled: false
 
+# In Ruby every method returns a value. Implicitly this is the value of the
+# last line of the method. This means using `return` is often redundant.
+# However, there isn't anything inherently wrong about doing so. In fact, in
+# some cases it can help with a consistent style in a method:
+#
+#     def transform(value)
+#       return value.call if value.is_a?(Proc)
+#       return value if value.frozen?
+#       return value.dup
+#     end
+#
+# Other times it can add context to a seamingly oddly place value:
+#
+#     def munge(data)
+#       data.slice! 5
+#       return nil
+#     end
+#
+# We often omit the explicit `return` in our code. Though sometimes we include
+# it for improved contextual clues and we don't want Rubocop to complain for
+# those cases.
+#
+# Configuration parameters: AllowMultipleReturnValues.
+Style/RedundantReturn:
+  Enabled: false
+
 # Prefer slashes for simple expressions. For multi-line use percent literal
 # to support comments and other advanced features. By using the mixed style we
 # are choosing to use `%r{}` for multi-line regexps. In general we are not a
