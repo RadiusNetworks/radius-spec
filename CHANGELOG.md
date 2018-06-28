@@ -4,11 +4,22 @@
 
 ### Enhancements
 
-- TODO
+- Adjust common Rubocop configuration (Aaron Kromer, #7)
+  - Disable `Naming/BinaryOperatorParameterName`
+  - Disable `Style/RedundantReturn`
+- Adjust common Rubocop Rails configuration (Aaron Kromer, #7)
+  - Exclude Rails controllers from Rubocop's `Metrics/MethodLength` due to
+    `respond_to` / `format` and permitted params methods
+  - Disable `Rails/HasAndBelongsToMany`
+  - Exclude Rails app `config/routes.rb` from `Metrics/BlockLength`
 
 ### Bug Fixes
 
-- TODO
+- Add more functional methods to Rubocop config (Aaron Kromer, #7)
+  - `create`
+  - `create!`
+  - `build`
+  - `build!`
 
 
 ## 0.3.0 (June 15, 2018)

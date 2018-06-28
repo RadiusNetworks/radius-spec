@@ -134,6 +134,14 @@ Metrics/LineLength:
     - '\A.{1,78}\s#\s.*\z'
   Max: 100
 
+# This is overly pedantic (only allowing `other` as the parameter name). Ruby
+# core doesn't follow this consistently either. Looking at several classes
+# throughout Ruby core we do often see `other`, but also often `obj` or
+# `other_*`. In some cases, the parameter is named more meaningfully with names
+# like `real`, `numeric`, or `str`.
+Naming/BinaryOperatorParameterName:
+  Enabled: false
+
 # Configuration parameters: ExpectMatchingDefinition, Regex, IgnoreExecutableScripts, AllowedAcronyms.
 # AllowedAcronyms: CLI, DSL, ACL, API, ASCII, CPU, CSS, DNS, EOF, GUID, HTML, HTTP, HTTPS, ID, IP, JSON, LHS, QPS, RAM, RHS, RPC, SLA, SMTP, SQL, SSH, TCP, TLS, TTL, UDP, UI, UID, UUID, URI, URL, UTF8, VM, XML, XMPP, XSRF, XSS
 Naming/FileName:
@@ -212,6 +220,10 @@ Style/BlockDelimiters:
     - realtime
     - with_object
   FunctionalMethods:
+    - create
+    - create!
+    - build
+    - build!
     - each_with_object
     - find
     - git_source
@@ -348,6 +360,32 @@ Style/MultilineBlockChain:
 # Configuration parameters: AutoCorrect, EnforcedStyle.
 # SupportedStyles: predicate, comparison
 Style/NumericPredicate:
+  Enabled: false
+
+# In Ruby every method returns a value. Implicitly this is the value of the
+# last line of the method. This means using `return` is often redundant.
+# However, there isn't anything inherently wrong about doing so. In fact, in
+# some cases it can help with a consistent style in a method:
+#
+#     def transform(value)
+#       return value.call if value.is_a?(Proc)
+#       return value if value.frozen?
+#       return value.dup
+#     end
+#
+# Other times it can add context to a seamingly oddly place value:
+#
+#     def munge(data)
+#       data.slice! 5
+#       return nil
+#     end
+#
+# We often omit the explicit `return` in our code. Though sometimes we include
+# it for improved contextual clues and we don't want Rubocop to complain for
+# those cases.
+#
+# Configuration parameters: AllowMultipleReturnValues.
+Style/RedundantReturn:
   Enabled: false
 
 # Prefer slashes for simple expressions. For multi-line use percent literal
