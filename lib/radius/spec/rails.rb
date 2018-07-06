@@ -40,7 +40,7 @@ RSpec.configure do |config|
   #   - http://guides.rubyonrails.org/v5.1.4/testing.html#implementing-a-system-test
   #   - https://relishapp.com/rspec/rspec-core/v/3-7/docs/filtering/exclusion-filters
   #   - http://rspec.info/documentation/3.7/rspec-core/RSpec/Core/Configuration.html#filter_run_excluding-instance_method
-  config.filter_run_excluding type: "system"
+  config.filter_run_excluding type: "system" unless config.files_to_run.one?
 
   # Always clear the cache before specs to avoid state leak problems
   config.before do
