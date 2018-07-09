@@ -20,6 +20,7 @@
   - `create!`
   - `build`
   - `build!`
+- Support running system specs in isolation (Aaron Kromer, #9)
 
 
 ## 0.3.0 (June 15, 2018)
