@@ -13,12 +13,16 @@ AllCops:
     # Exclude vendored content
     - 'vendor/**/*'
 
-# Modifiers should be indented as deep as method definitions, or as deep as the
-# class/module keyword, depending on configuration.
+# We prefer outdented access modifiers as we feel they provide demarcation of
+# the class similar to `rescue` and `ensure` in a method.
 #
-# Configuration parameters: EnforcedStyle, SupportedStyles, IndentationWidth.
+# Configuration parameters: EnforcedStyle, IndentationWidth.
 # SupportedStyles: outdent, indent
 Layout/AccessModifierIndentation:
+  Details: |
+
+    Prefer outdented access modifiers to provide demarcation of the class
+    similar to `rescue` and `ensure` in a method.
   EnforcedStyle: outdent
 
 # Disabling this until it is fixed to support multi-line block chains using the
@@ -34,7 +38,7 @@ Layout/BlockAlignment:
 # Disabling this until it is fixed to handle multi-line method chains where the
 # first method call is multi-line.
 #
-# See # https://github.com/bbatsov/rubocop/issues/5650
+# See https://github.com/bbatsov/rubocop/issues/5650
 #
 # Configuration parameters: EnforcedStyle, IndentationWidth.
 # SupportedStyles: consistent, consistent_relative_to_receiver,
@@ -51,14 +55,15 @@ Layout/FirstParameterIndentation:
 Layout/IndentHeredoc:
   EnforcedStyle: squiggly
 
-# We tend to indent multi-line operation statements. I think this is because
-# it's tends to be the default style auto-formatted by VIM (which many of us
-# use). It also helps show the continuation of the statement instead of it
+# We tend to indent multi-line operation statements. I think this is because it
+# tends to be the default style auto-formatted by VIM (which many of us use).
+# It also helps show the continuation of the statement instead of it
 # potentially blending in with the start of the next statement.
 #
 # Configuration parameters: EnforcedStyle, IndentationWidth.
 # SupportedStyles: aligned, indented
 Layout/MultilineOperationIndentation:
+  Details: "This helps show expression continuation setting it apart from the following LOC."
   EnforcedStyle: indented
 
 # In our specs Rubocop inconsistently complains when using the block form of
@@ -83,7 +88,7 @@ Lint/AmbiguousBlockAssociation:
   Exclude:
     - 'spec/**/*_spec.rb'
 
-# Often with benchmarking we don't explictly "use" a variable or return value.
+# Often with benchmarking we don't explicitly "use" a variable or return value.
 # We simply need to perform the operation which generates said value for the
 # benchmark.
 #
@@ -93,6 +98,7 @@ Lint/Void:
     - 'benchmarks/**/*'
 
 # Configuration parameters: CountComments, ExcludedMethods, Max.
+# ExcludedMethods: refine
 Metrics/BlockLength:
   Exclude:
     - '**/Rakefile'
@@ -156,10 +162,33 @@ Naming/FileName:
 # for those heredocs which represent "file" text.
 #
 # Configuration parameters: Blacklist.
-# Blacklist: END, (?-mix:EO[A-Z]{1})
+# Blacklist: (?-mix:(^|\s)(EO[A-Z]{1}|END)(\s|$))
 Naming/HeredocDelimiterNaming:
+  Details: |
+
+    Use meaningful delimiter names to provide context to the text. The only
+    allowed `EO*` variant if `EOF` which has specific meaning for file content.
   Blacklist:
     - !ruby/regexp '/(^|\s)(EO[A-EG-Z]{1}|END)(\s|$)/'
+
+# It is generally a good idea to match the instance variable names with their
+# methods to keep consistent with the attribute reader / writer pattern.
+# However, this can pose an issue in Rails. Most notably, when writing modules
+# that will be used as controller plugins. The reason is that the Rails
+# controllers-to-view interface is ivars. Using a leading underscore can help
+# avoid accidental controller ivar naming conflicts.
+#
+# Configuration parameters: EnforcedStyleForLeadingUnderscores.
+# SupportedStylesForLeadingUnderscores: disallowed, required, optional
+Naming/MemoizedInstanceVariableName:
+  Details: |
+
+    It is generally a good idea to match the instance variable names with their
+    methods to keep consistent with the attribute reader / writer pattern. An
+    exception can be made for modules that want to avoid naming conflicts with
+    classes that include them. In this case a single leading underscore is
+    acceptable.
+  EnforcedStyleForLeadingUnderscores: optional
 
 # `alias` behavior changes on scope. In general we expect the behavior to be
 # that which is defined by `alias_method`.
@@ -169,6 +198,13 @@ Naming/HeredocDelimiterNaming:
 # Configuration parameters: EnforcedStyle.
 # SupportedStyles: prefer_alias, prefer_alias_method
 Style/Alias:
+  Details: |
+
+    Prefer `alias_method` because `alias` behavior changes based on scope.
+
+    See:
+      - https://stackoverflow.com/questions/4763121/should-i-use-alias-or-alias-method
+      - https://blog.bigbinary.com/2012/01/08/alias-vs-alias-method.html
   EnforcedStyle: prefer_alias_method
 
 # Keeping with our semantic style we allow use of `and` / `or` conditionals
@@ -183,6 +219,12 @@ Style/Alias:
 # Configuration parameters: EnforcedStyle.
 # SupportedStyles: always, conditionals
 Style/AndOr:
+  Details: |
+
+    Use `&&` / `||` for conditionals or general comparison. Use `and` / `or`
+    for control flow to provide additional semantic hints:
+
+        system("some command") or system("another command")
   EnforcedStyle: conditionals
 
 # These days most people have editors which support unicode and other
@@ -199,11 +241,11 @@ Style/AsciiComments:
 # When the return value of the method receiving the block is important prefer
 # `{..}` over `do..end`.
 #
-# Configuration parameters: EnforcedStyle, SupportedStyles, ProceduralMethods,
-#   FunctionalMethods, IgnoredMethods.
+# Configuration parameters: EnforcedStyle, ProceduralMethods, FunctionalMethods, IgnoredMethods.
 # SupportedStyles: line_count_based, semantic, braces_for_chaining
 Style/BlockDelimiters:
   Details: |
+
     Use semantic style for blocks:
       - Prefer `do...end` over `{...}` for procedural blocks.
       - Prefer `{...}` over `do...end` for functional blocks.
@@ -315,6 +357,7 @@ Style/EmptyMethod:
 # SupportedStyles: ruby19, hash_rockets, no_mixed_keys, ruby19_no_mixed_keys
 Style/HashSyntax:
   Details: |
+
     Prefer symbol keys using the 1.9 hash syntax. However, when keys are mixed
     use a consistent mapping style; which generally means using hash rockets.
   EnforcedStyle: ruby19_no_mixed_keys
@@ -328,6 +371,7 @@ Style/HashSyntax:
 # SupportedStyles: line_count_dependent, lambda, literal
 Style/Lambda:
   Details: |
+
     As part of our semantic style we generally use the literal `-> { }` format
     to indicate this is a function with a return value we care about. As this
     cop doesn't have a more flexible setting we prefer the literal syntax to
@@ -347,7 +391,7 @@ Style/MethodCalledOnDoEndBlock:
 Style/MultilineBlockChain:
   Enabled: false
 
-# Context for this cop is too dependent. Often using the numeric comparision is
+# Context for this cop is too dependent. Often using the numeric comparison is
 # faster. An in certain contexts, Also, depending on the context a numeric
 # comparison is more consistent and can even be more natural:
 #
@@ -373,7 +417,7 @@ Style/NumericPredicate:
 #       return value.dup
 #     end
 #
-# Other times it can add context to a seamingly oddly place value:
+# Other times it can add context to a seemingly oddly place value:
 #
 #     def munge(data)
 #       data.slice! 5
@@ -404,6 +448,13 @@ Style/RedundantReturn:
 # Configuration parameters: EnforcedStyle, AllowInnerSlashes.
 # SupportedStyles: slashes, percent_r, mixed
 Style/RegexpLiteral:
+  Details: |
+
+    Prefer slashes for simple expressions. Use `%r` for expressions containing
+    slashes and for complex expressions so then can be written across multiple
+    lines (allowing advanced features such as comments). Use of `%r` for
+    expressions spanning multiple lines provides some comprehension parity with
+    general code blocks.
   EnforcedStyle: mixed
 
 # If you only need to rescue a single, or predefined set of exceptions, then
@@ -445,13 +496,28 @@ Style/RegexpLiteral:
 # Configuration parameters: EnforcedStyle.
 # SupportedStyles: implicit, explicit
 Style/RescueStandardError:
+  Details: |
+
+    If you only need to rescue a single, or predefined set of exceptions, then
+    catch each exception explicitly. When you need to include a general error
+    handler or "catch-all" use the "unspecified rescue":
+
+        begin
+          # do something that may cause a standard error
+        rescue TypeError
+          handle_type_error
+        rescue => e
+          handle_error e
+        end
+
+    Avoid rescuing `Exception` as this may hide system errors.
   EnforcedStyle: implicit
 
 # We generally prefer double quotes but many generators use single quotes. We
 # don't view the performance difference to be all that much so we don't care
 # if the style is mixed or double quotes are used for static strings.
 #
-# Configuration parameters: EnforcedStyle, SupportedStyles, ConsistentQuotesInMultiline.
+# Configuration parameters: EnforcedStyle, ConsistentQuotesInMultiline.
 # SupportedStyles: single_quotes, double_quotes
 Style/StringLiterals:
   Enabled: false
@@ -478,7 +544,7 @@ Style/SymbolArray:
   MinSize: 3
 
 # When ternaries become complex they can be difficult to read due to increased
-# cognative load parsing the expression. Cognative load can increase further
+# cognitive load parsing the expression. Cognitive load can increase further
 # when assignment is involved.
 #
 # Configuration parameters: EnforcedStyle, AllowSafeAssignment.
@@ -486,9 +552,10 @@ Style/SymbolArray:
 Style/TernaryParentheses:
   AllowSafeAssignment: false
   Details: |
+
     When ternaries become complex they can be difficult to read due to
-    increased cognative load parsing the expression. Cognative load can
-    increase further when assignment is involved. To help reduce this cognative
+    increased cognitive load parsing the expression. Cognitive load can
+    increase further when assignment is involved. To help reduce this cognitive
     use parentheses for complex expressions.
   EnforcedStyle: require_parentheses_when_complex
 
@@ -504,6 +571,7 @@ Style/TernaryParentheses:
 # SupportedStylesForMultiline: comma, consistent_comma, no_comma
 Style/TrailingCommaInArguments:
   Details: |
+
     Always use trailing commas for multiline arguments. This makes git diffs
     easier to read by cutting down on noise when commas are appended. It also
     simplifies adding, removing, and swapping argument orders.
@@ -518,6 +586,7 @@ Style/TrailingCommaInArguments:
 # SupportedStylesForMultiline: comma, consistent_comma, no_comma
 Style/TrailingCommaInArrayLiteral:
   Details: |
+
     Always use trailing commas for multiline arrays. This makes git diffs
     easier to read by cutting down on noise when commas are appended. It also
     simplifies adding, removing, and re-arranging the elements.
@@ -530,6 +599,7 @@ Style/TrailingCommaInArrayLiteral:
 # SupportedStylesForMultiline: comma, consistent_comma, no_comma
 Style/TrailingCommaInHashLiteral:
   Details: |
+
     Always use trailing commas for multiline hashes. This makes git diffs
     easier to read by cutting down on noise when commas are appended. It also
     simplifies adding, removing, and re-arranging the elements.
