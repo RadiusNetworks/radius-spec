@@ -5,9 +5,11 @@
 ### Enhancements
 
 - Upgrade to Rubocop 0.58.x (Aaron Kromer, #10)
-- Adjust common Rubocop configuration (Aaron Kromer, #7)
-  - Disable `Naming/BinaryOperatorParameterName`
-  - Disable `Style/RedundantReturn`
+- Adjust common Rubocop configuration
+  - Disable `Naming/BinaryOperatorParameterName` (Aaron Kromer, #7)
+  - Disable `Style/RedundantReturn` (Aaron Kromer, #7)
+  - Allow optional leading underscores for memoized instance variable names to
+    support modules wanting to reduce conflicts / collisions. (Aaron Kromer, #10)
 - Adjust common Rubocop Rails configuration (Aaron Kromer, #7)
   - Exclude Rails controllers from Rubocop's `Metrics/MethodLength` due to
     `respond_to` / `format` and permitted params methods

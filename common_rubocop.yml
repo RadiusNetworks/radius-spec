@@ -162,6 +162,25 @@ Naming/HeredocDelimiterNaming:
   Blacklist:
     - !ruby/regexp '/(^|\s)(EO[A-EG-Z]{1}|END)(\s|$)/'
 
+# It is generally a good idea to match the instance variable names with their
+# methods to keep consistent with the attribute reader / writer pattern.
+# However, this can pose an issue in Rails. Most notably, when writing modules
+# that will be used as controller plugins. The reason is that the Rails
+# controllers-to-view interface is ivars. Using a leading underscore can help
+# avoid accidental controller ivar naming conflicts.
+#
+# Configuration parameters: EnforcedStyleForLeadingUnderscores.
+# SupportedStylesForLeadingUnderscores: disallowed, required, optional
+Naming/MemoizedInstanceVariableName:
+  Details: |
+
+    It is generally a good idea to match the instance variable names with their
+    methods to keep consistent with the attribute reader / writer pattern. An
+    exception can be made for modules that want to avoid naming conflicts with
+    classes that include them. In this case a single leading underscore is
+    acceptable.
+  EnforcedStyleForLeadingUnderscores: optional
+
 # `alias` behavior changes on scope. In general we expect the behavior to be
 # that which is defined by `alias_method`.
 #
