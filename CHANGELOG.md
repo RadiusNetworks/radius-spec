@@ -5,6 +5,7 @@
 ### Enhancements
 
 - Upgrade to Rubocop 0.58.x (Aaron Kromer, #10)
+- Add more custom extra details for customized cops (Aaron Kromer, #10)
 - Adjust common Rubocop configuration
   - Disable `Naming/BinaryOperatorParameterName` (Aaron Kromer, #7)
   - Disable `Style/RedundantReturn` (Aaron Kromer, #7)

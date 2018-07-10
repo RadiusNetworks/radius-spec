@@ -13,12 +13,16 @@ AllCops:
     # Exclude vendored content
     - 'vendor/**/*'
 
-# Modifiers should be indented as deep as method definitions, or as deep as the
-# class/module keyword, depending on configuration.
+# We prefer outdented access modifiers as we feel they provide demarcation of
+# the class similar to `rescue` and `ensure` in a method.
 #
 # Configuration parameters: EnforcedStyle, IndentationWidth.
 # SupportedStyles: outdent, indent
 Layout/AccessModifierIndentation:
+  Details: |
+
+    Prefer outdented access modifiers to provide demarcation of the class
+    similar to `rescue` and `ensure` in a method.
   EnforcedStyle: outdent
 
 # Disabling this until it is fixed to support multi-line block chains using the
@@ -51,14 +55,15 @@ Layout/FirstParameterIndentation:
 Layout/IndentHeredoc:
   EnforcedStyle: squiggly
 
-# We tend to indent multi-line operation statements. I think this is because
-# it's tends to be the default style auto-formatted by VIM (which many of us
-# use). It also helps show the continuation of the statement instead of it
+# We tend to indent multi-line operation statements. I think this is because it
+# tends to be the default style auto-formatted by VIM (which many of us use).
+# It also helps show the continuation of the statement instead of it
 # potentially blending in with the start of the next statement.
 #
 # Configuration parameters: EnforcedStyle, IndentationWidth.
 # SupportedStyles: aligned, indented
 Layout/MultilineOperationIndentation:
+  Details: "This helps show expression continuation setting it apart from the following LOC."
   EnforcedStyle: indented
 
 # In our specs Rubocop inconsistently complains when using the block form of
@@ -159,6 +164,10 @@ Naming/FileName:
 # Configuration parameters: Blacklist.
 # Blacklist: (?-mix:(^|\s)(EO[A-Z]{1}|END)(\s|$))
 Naming/HeredocDelimiterNaming:
+  Details: |
+
+    Use meaningful delimiter names to provide context to the text. The only
+    allowed `EO*` variant if `EOF` which has specific meaning for file content.
   Blacklist:
     - !ruby/regexp '/(^|\s)(EO[A-EG-Z]{1}|END)(\s|$)/'
 
@@ -189,6 +198,13 @@ Naming/MemoizedInstanceVariableName:
 # Configuration parameters: EnforcedStyle.
 # SupportedStyles: prefer_alias, prefer_alias_method
 Style/Alias:
+  Details: |
+
+    Prefer `alias_method` because `alias` behavior changes based on scope.
+
+    See:
+      - https://stackoverflow.com/questions/4763121/should-i-use-alias-or-alias-method
+      - https://blog.bigbinary.com/2012/01/08/alias-vs-alias-method.html
   EnforcedStyle: prefer_alias_method
 
 # Keeping with our semantic style we allow use of `and` / `or` conditionals
@@ -203,6 +219,12 @@ Style/Alias:
 # Configuration parameters: EnforcedStyle.
 # SupportedStyles: always, conditionals
 Style/AndOr:
+  Details: |
+
+    Use `&&` / `||` for conditionals or general comparison. Use `and` / `or`
+    for control flow to provide additional semantic hints:
+
+        system("some command") or system("another command")
   EnforcedStyle: conditionals
 
 # These days most people have editors which support unicode and other
@@ -426,6 +448,13 @@ Style/RedundantReturn:
 # Configuration parameters: EnforcedStyle, AllowInnerSlashes.
 # SupportedStyles: slashes, percent_r, mixed
 Style/RegexpLiteral:
+  Details: |
+
+    Prefer slashes for simple expressions. Use `%r` for expressions containing
+    slashes and for complex expressions so then can be written across multiple
+    lines (allowing advanced features such as comments). Use of `%r` for
+    expressions spanning multiple lines provides some comprehension parity with
+    general code blocks.
   EnforcedStyle: mixed
 
 # If you only need to rescue a single, or predefined set of exceptions, then
@@ -467,6 +496,21 @@ Style/RegexpLiteral:
 # Configuration parameters: EnforcedStyle.
 # SupportedStyles: implicit, explicit
 Style/RescueStandardError:
+  Details: |
+
+    If you only need to rescue a single, or predefined set of exceptions, then
+    catch each exception explicitly. When you need to include a general error
+    handler or "catch-all" use the "unspecified rescue":
+
+        begin
+          # do something that may cause a standard error
+        rescue TypeError
+          handle_type_error
+        rescue => e
+          handle_error e
+        end
+
+    Avoid rescuing `Exception` as this may hide system errors.
   EnforcedStyle: implicit
 
 # We generally prefer double quotes but many generators use single quotes. We
