@@ -4,6 +4,7 @@
 
 ### Enhancements
 
+- Upgrade to Rubocop 0.58.x (Aaron Kromer, #10)
 - Adjust common Rubocop configuration (Aaron Kromer, #7)
   - Disable `Naming/BinaryOperatorParameterName`
   - Disable `Style/RedundantReturn`

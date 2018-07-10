@@ -16,7 +16,7 @@ AllCops:
 # Modifiers should be indented as deep as method definitions, or as deep as the
 # class/module keyword, depending on configuration.
 #
-# Configuration parameters: EnforcedStyle, SupportedStyles, IndentationWidth.
+# Configuration parameters: EnforcedStyle, IndentationWidth.
 # SupportedStyles: outdent, indent
 Layout/AccessModifierIndentation:
   EnforcedStyle: outdent
@@ -34,7 +34,7 @@ Layout/BlockAlignment:
 # Disabling this until it is fixed to handle multi-line method chains where the
 # first method call is multi-line.
 #
-# See # https://github.com/bbatsov/rubocop/issues/5650
+# See https://github.com/bbatsov/rubocop/issues/5650
 #
 # Configuration parameters: EnforcedStyle, IndentationWidth.
 # SupportedStyles: consistent, consistent_relative_to_receiver,
@@ -83,7 +83,7 @@ Lint/AmbiguousBlockAssociation:
   Exclude:
     - 'spec/**/*_spec.rb'
 
-# Often with benchmarking we don't explictly "use" a variable or return value.
+# Often with benchmarking we don't explicitly "use" a variable or return value.
 # We simply need to perform the operation which generates said value for the
 # benchmark.
 #
@@ -93,6 +93,7 @@ Lint/Void:
     - 'benchmarks/**/*'
 
 # Configuration parameters: CountComments, ExcludedMethods, Max.
+# ExcludedMethods: refine
 Metrics/BlockLength:
   Exclude:
     - '**/Rakefile'
@@ -156,7 +157,7 @@ Naming/FileName:
 # for those heredocs which represent "file" text.
 #
 # Configuration parameters: Blacklist.
-# Blacklist: END, (?-mix:EO[A-Z]{1})
+# Blacklist: (?-mix:(^|\s)(EO[A-Z]{1}|END)(\s|$))
 Naming/HeredocDelimiterNaming:
   Blacklist:
     - !ruby/regexp '/(^|\s)(EO[A-EG-Z]{1}|END)(\s|$)/'
@@ -199,8 +200,7 @@ Style/AsciiComments:
 # When the return value of the method receiving the block is important prefer
 # `{..}` over `do..end`.
 #
-# Configuration parameters: EnforcedStyle, SupportedStyles, ProceduralMethods,
-#   FunctionalMethods, IgnoredMethods.
+# Configuration parameters: EnforcedStyle, ProceduralMethods, FunctionalMethods, IgnoredMethods.
 # SupportedStyles: line_count_based, semantic, braces_for_chaining
 Style/BlockDelimiters:
   Details: |
@@ -347,7 +347,7 @@ Style/MethodCalledOnDoEndBlock:
 Style/MultilineBlockChain:
   Enabled: false
 
-# Context for this cop is too dependent. Often using the numeric comparision is
+# Context for this cop is too dependent. Often using the numeric comparison is
 # faster. An in certain contexts, Also, depending on the context a numeric
 # comparison is more consistent and can even be more natural:
 #
@@ -373,7 +373,7 @@ Style/NumericPredicate:
 #       return value.dup
 #     end
 #
-# Other times it can add context to a seamingly oddly place value:
+# Other times it can add context to a seemingly oddly place value:
 #
 #     def munge(data)
 #       data.slice! 5
@@ -451,7 +451,7 @@ Style/RescueStandardError:
 # don't view the performance difference to be all that much so we don't care
 # if the style is mixed or double quotes are used for static strings.
 #
-# Configuration parameters: EnforcedStyle, SupportedStyles, ConsistentQuotesInMultiline.
+# Configuration parameters: EnforcedStyle, ConsistentQuotesInMultiline.
 # SupportedStyles: single_quotes, double_quotes
 Style/StringLiterals:
   Enabled: false
@@ -478,7 +478,7 @@ Style/SymbolArray:
   MinSize: 3
 
 # When ternaries become complex they can be difficult to read due to increased
-# cognative load parsing the expression. Cognative load can increase further
+# cognitive load parsing the expression. Cognitive load can increase further
 # when assignment is involved.
 #
 # Configuration parameters: EnforcedStyle, AllowSafeAssignment.
@@ -487,8 +487,8 @@ Style/TernaryParentheses:
   AllowSafeAssignment: false
   Details: |
     When ternaries become complex they can be difficult to read due to
-    increased cognative load parsing the expression. Cognative load can
-    increase further when assignment is involved. To help reduce this cognative
+    increased cognitive load parsing the expression. Cognitive load can
+    increase further when assignment is involved. To help reduce this cognitive
     use parentheses for complex expressions.
   EnforcedStyle: require_parentheses_when_complex
 

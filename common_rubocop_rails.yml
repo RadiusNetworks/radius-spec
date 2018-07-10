@@ -115,11 +115,11 @@ Rails/CreateTableWithTimestamps:
 Rails/HasAndBelongsToMany:
   Enabled: false
 
-# The ActiveSupport monkey patches for `present?` are nearly all defiend as:
+# The ActiveSupport monkey patches for `present?` are nearly all defined as:
 #
 #     !blank?
 #
-# For most of use `unless blank?` reads just as easily as `if present?`.
+# For most of us `unless blank?` reads just as easily as `if present?`.
 # Sometimes contextually, it can read better depending on the branch logic and
 # surrounding context. As `if present?` requires an additional negation and
 # method call it is technically slower. In the general case the perf different
@@ -135,7 +135,7 @@ Rails/Present:
 # We prefer you use the attribute readers and writes. For those special cases
 # where the intent is really to interact with the raw underlying attribute we
 # prefer `read_attribute` and `write_attribute`; as this makes the intent
-# explict. Ideally we'd never use the hash like accessor `[:attr]`.
+# explicit. Ideally we'd never use the hash like accessor `[:attr]`.
 #
 # We disable this cop because it is not configurable.
 #
