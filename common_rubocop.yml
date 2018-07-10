@@ -204,6 +204,7 @@ Style/AsciiComments:
 # SupportedStyles: line_count_based, semantic, braces_for_chaining
 Style/BlockDelimiters:
   Details: |
+
     Use semantic style for blocks:
       - Prefer `do...end` over `{...}` for procedural blocks.
       - Prefer `{...}` over `do...end` for functional blocks.
@@ -315,6 +316,7 @@ Style/EmptyMethod:
 # SupportedStyles: ruby19, hash_rockets, no_mixed_keys, ruby19_no_mixed_keys
 Style/HashSyntax:
   Details: |
+
     Prefer symbol keys using the 1.9 hash syntax. However, when keys are mixed
     use a consistent mapping style; which generally means using hash rockets.
   EnforcedStyle: ruby19_no_mixed_keys
@@ -328,6 +330,7 @@ Style/HashSyntax:
 # SupportedStyles: line_count_dependent, lambda, literal
 Style/Lambda:
   Details: |
+
     As part of our semantic style we generally use the literal `-> { }` format
     to indicate this is a function with a return value we care about. As this
     cop doesn't have a more flexible setting we prefer the literal syntax to
@@ -486,6 +489,7 @@ Style/SymbolArray:
 Style/TernaryParentheses:
   AllowSafeAssignment: false
   Details: |
+
     When ternaries become complex they can be difficult to read due to
     increased cognitive load parsing the expression. Cognitive load can
     increase further when assignment is involved. To help reduce this cognitive
@@ -504,6 +508,7 @@ Style/TernaryParentheses:
 # SupportedStylesForMultiline: comma, consistent_comma, no_comma
 Style/TrailingCommaInArguments:
   Details: |
+
     Always use trailing commas for multiline arguments. This makes git diffs
     easier to read by cutting down on noise when commas are appended. It also
     simplifies adding, removing, and swapping argument orders.
@@ -518,6 +523,7 @@ Style/TrailingCommaInArguments:
 # SupportedStylesForMultiline: comma, consistent_comma, no_comma
 Style/TrailingCommaInArrayLiteral:
   Details: |
+
     Always use trailing commas for multiline arrays. This makes git diffs
     easier to read by cutting down on noise when commas are appended. It also
     simplifies adding, removing, and re-arranging the elements.
@@ -530,6 +536,7 @@ Style/TrailingCommaInArrayLiteral:
 # SupportedStylesForMultiline: comma, consistent_comma, no_comma
 Style/TrailingCommaInHashLiteral:
   Details: |
+
     Always use trailing commas for multiline hashes. This makes git diffs
     easier to read by cutting down on noise when commas are appended. It also
     simplifies adding, removing, and re-arranging the elements.
