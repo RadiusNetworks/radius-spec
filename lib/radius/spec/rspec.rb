@@ -124,6 +124,11 @@ RSpec.configure do |config|
     config.include Radius::Spec::ModelFactory, type: :job
   end
 
+  config.when_first_matching_example_defined(type: :mailer) do
+    require 'radius/spec/model_factory'
+    config.include Radius::Spec::ModelFactory, type: :mailer
+  end
+
   config.when_first_matching_example_defined(type: :model) do
     require 'radius/spec/model_factory'
     config.include Radius::Spec::ModelFactory, type: :model
