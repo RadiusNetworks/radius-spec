@@ -4,7 +4,7 @@
 
 ### Enhancements
 
-- TODO
+- Load model factory for specs tagged with 'type: :mailer' (Aaron Kromer, #11)
 
 ### Bug Fixes
 
