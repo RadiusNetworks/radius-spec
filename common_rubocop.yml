@@ -266,7 +266,9 @@ Style/BlockDelimiters:
     - create!
     - build
     - build!
+    - default_scope
     - each_with_object
+    - filter_sensitive_data
     - find
     - git_source
     - let

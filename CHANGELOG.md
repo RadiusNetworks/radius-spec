@@ -4,6 +4,9 @@
 
 ### Enhancements
 
+- Add more functional method to Rubocop config (Aaron Kromer, #14)
+  - `default_scope`
+  - `filter_sensitive_data`
 - Load model factory for specs tagged with 'type: :mailer' (Aaron Kromer, #11)
 - Include the following negated RSpec matchers (Aaron Kromer, #12)
   - `exclude` / `excluding`
