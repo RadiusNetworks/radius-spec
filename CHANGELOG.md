@@ -5,6 +5,11 @@
 ### Enhancements
 
 - Load model factory for specs tagged with 'type: :mailer' (Aaron Kromer, #11)
+- Include the following negated RSpec matchers (Aaron Kromer, #12)
+  - `exclude` / `excluding`
+  - `not_eq`
+  - `not_change`
+  - `not_raise_error` / `not_raise_exception`
 
 ### Bug Fixes
 

@@ -475,6 +475,95 @@ simply a wrapper around `build.tap(&:save!)`, but it supports omitting the
   created_instance = create("AnyClass")
   ```
 
+### Negated Matchers
+
+This gem defines the following [negated matchers](https://relishapp.com/rspec/rspec-expectations/v/3-8/docs/define-negated-matcher)
+to allow for use [composing matchers](https://relishapp.com/rspec/rspec-expectations/v/3-8/docs/composing-matchers)
+and with [compound expectations](https://relishapp.com/rspec/rspec-expectations/v/3-8/docs/compound-expectations).
+
+| Matcher               | Inverse Of |
+|-----------------------|------------|
+| `exclude`             | [`include`](https://relishapp.com/rspec/rspec-expectations/v/3-8/docs/built-in-matchers/include-matcher) |
+| `excluding`           | [`including`](https://relishapp.com/rspec/rspec-expectations/v/3-8/docs/built-in-matchers/include-matcher) |
+| `not_eq`              | [`eq`](https://relishapp.com/rspec/rspec-expectations/v/3-8/docs/built-in-matchers/equality-matchers#compare-using-eq-(==)) |
+| `not_change`          | [`change`](https://relishapp.com/rspec/rspec-expectations/v/3-8/docs/built-in-matchers/change-matcher) |
+| `not_raise_error`     | [`raise_error`](https://relishapp.com/rspec/rspec-expectations/v/3-8/docs/built-in-matchers/raise-error-matcher) |
+| `not_raise_exception` | [`raise_exception`](https://relishapp.com/rspec/rspec-expectations/v/3-8/docs/built-in-matchers/raise-error-matcher) |
+
+#### Composing Matchers
+
+There is no equivalent of `not_to` for composed matchers when only a subset of
+the values needs to be negated. The negated matchers allow this type of fine
+grain comparison:
+
+  ```ruby
+  x = [1, 2, :value]
+  expect(x).to contain_exactly(be_odd, be_even, not_eq(:target))
+  ```
+
+This also works for verifying / stubbing a message with argument constraints:
+
+  ```ruby
+  allow(obj).to receive(:meth).with(1, 2, not_eq(5))
+  obj.meth(1, 2, 3)
+  expect(obj).to have_received(:meth).with(not_eq(2), 2, 3)
+  ```
+
+This is great for verifying option hashes:
+
+  ```ruby
+  expect(obj).to have_received(:meth).with(
+    some_value,
+    excluding(:some_opt, :another_opt),
+  )
+  ```
+
+#### Compound Negated Matchers
+
+Normally it's not possible to chain to a negative match:
+
+  ```ruby
+  a = b = 0
+  expect {
+    a = 1
+  }.not_to change {
+    b
+  }.from(0).and change {
+    a
+  }.to(1)
+  ```
+
+Fails with:
+
+  ```
+  NotImplementedError:
+    `expect(...).not_to matcher.and matcher` is not supported, since it creates
+    a bit of an ambiguity. Instead, define negated versions of whatever
+    matchers you wish to negate with `RSpec::Matchers.define_negated_matcher`
+    and use `expect(...).to matcher.and matcher`.
+  ```
+
+Per the error the negated matcher allows for the following:
+
+  ```ruby
+  a = b = 0
+  expect {
+    a = 1
+  }.to change {
+    a
+  }.to(1).and not_change {
+    b
+  }.from(0)
+  ```
+
+Similarly, complex expectations can be set on lists:
+
+  ```ruby
+  a = %i[red blue green]
+  expect(a).to include(:red).and exclude(:yellow)
+  expect(a).to exclude(:yellow).and include(:red)
+  ```
+
 ## Development
 
 After checking out the repo, run `bin/setup` to install dependencies. Then, run
