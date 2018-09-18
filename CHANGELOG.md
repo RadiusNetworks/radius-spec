@@ -4,6 +4,7 @@
 
 ### Enhancements
 
+- Upgrade to Rubocop 0.59.x (Aaron Kromer, #14)
 - Add more functional method to Rubocop config (Aaron Kromer, #14)
   - `default_scope`
   - `filter_sensitive_data`
