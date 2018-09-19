@@ -8,7 +8,8 @@
 
 ### Bug Fixes
 
-- TODO
+- Fix `NoMethodError: undefined method 'strip'` when the fixture path is a
+  `Pathname` object (Aaron Kromer, #13)
 
 
 ## 0.4.0 (July 10, 2018)
