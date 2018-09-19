@@ -144,3 +144,5 @@ RSpec.configure do |config|
     config.include Radius::Spec::ModelFactory, type: :system
   end
 end
+
+require 'radius/spec/rspec/negated_matchers'
