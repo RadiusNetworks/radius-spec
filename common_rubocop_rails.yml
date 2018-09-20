@@ -106,6 +106,34 @@ Rails/ApplicationRecord:
 Rails/CreateTableWithTimestamps:
   Enabled: false
 
+# Usage of `find_by` is more expressive of intent than `where.first`. We should
+# check all app code, not just the models to improve intent expression.
+#
+# Since rake tasks often live in `lib` we also check all of lib as well.
+#
+# Configuration parameters: Include.
+# Include: app/models/**/*.rb
+Rails/FindBy:
+  Enabled: true
+  Include:
+    - 'app/**/*.rb'
+    - 'lib/**/*.rb'
+
+# Usage of `each` for large datasets can be a performance issue; specially a
+# drain on system memory. When possible it's better to use `find_each` so that
+# chunks of data are evaluated at a time.
+#
+# We should check all app code, not just the models to help prevent this. Since
+# rake tasks often live in `lib` we also check all of lib as well.
+#
+# Configuration parameters: Include.
+# Include: app/models/**/*.rb
+Rails/FindEach:
+  Enabled: true
+  Include:
+    - 'app/**/*.rb'
+    - 'lib/**/*.rb'
+
 # We understand the trade-offs for using the through model versus a lookup
 # table. As such this cop is just noise as it flags only those cases we really
 # do want a lookup table.
@@ -122,7 +150,7 @@ Rails/HasAndBelongsToMany:
 # For most of us `unless blank?` reads just as easily as `if present?`.
 # Sometimes contextually, it can read better depending on the branch logic and
 # surrounding context. As `if present?` requires an additional negation and
-# method call it is technically slower. In the general case the perf different
+# method call it is technically slower. In the general case the perf difference
 # isn't much but in some cases it matters. Thus, we are not enforcing changing
 # `unless blank?` to `if present?` and are leaving it up to the context to
 # decide which is a better fit.
@@ -143,6 +171,37 @@ Rails/Present:
 # Include: app/models/**/*.rb
 Rails/ReadWriteAttribute:
   Enabled: false
+
+# This ensures we do not ignore potential validation issues in the code. Doing
+# so can lead to strange and surprising bugs where records are expected to
+# be created, or be modified, but are not.
+#
+#     # If author is a new record the book may not be created since the FK is
+#     # invalid. Perhaps omitting other fields, maybe new required fields, is
+#     # an oversight in the book creation as well.
+#     author.save
+#     Book.create(author: author)
+#
+# Or side effects are expected to occur but they do not:
+#
+#     # This is a condensed default Rails scaffold controller for `destroy`.
+#     #
+#     # Once a `has_many` or `has_one` associations is added which specifies
+#     # `dependent: :restrict_with_error` this no longer behaves as expected.
+#     # Given such associations are often added much later in time errors in
+#     # this action are an all to common oversight in Rails.
+#     def destroy
+#       @book.destroy
+#       respond_to do |format|
+#         format.html do
+#           redirect_to books_url, notice: 'Book was successfully destroyed.'
+#         end
+#       end
+#     end
+#
+# Configuration parameters: AllowImplicitReturn, AllowedReceivers.
+Rails/SaveBang:
+  Enabled: true
 
 # According to the Rails docs while the following methods skip validations they
 # only update the specified (single) attribute reducing risks. We'd rather not
