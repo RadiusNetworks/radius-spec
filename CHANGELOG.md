@@ -12,6 +12,8 @@
   - Add more functional methods
     - `default_scope`
     - `filter_sensitive_data`
+- Add `build!` factory method to compliment `build` to help resolving Rubocop
+  violations for `Rails/SaveBang` (Aaron Kromer, #14)
 - Load model factory for specs tagged with 'type: :mailer' (Aaron Kromer, #11)
 - Include the following negated RSpec matchers (Aaron Kromer, #12)
   - `exclude` / `excluding`

@@ -249,7 +249,7 @@ constant so no changes need to be made if that's your preference.
 
 Attribute keys may be defined using either strings or symbols. However, they
 will be stored internally as symbols. This means that when an object instance
-is create using the factory the attribute hash will be provided to `new` with
+is created using the factory the attribute hash will be provided to `new` with
 symbol keys.
 
 ##### Dynamic Attribute Values (i.e. Generators)
@@ -418,7 +418,7 @@ There are a few behaviors to note for using the builder:
 
 ##### Optional Block
 
-Both `build` and `create` support providing an optional block. This block is
+Both `build` and `build!` support providing an optional block. This block is
 passed directly to `new` when creating the object. This is to support the
 common Ruby idiom of yielding `self` within initialize:
 
@@ -452,12 +452,6 @@ this feature.
 We suggest that you create instances using the following syntax:
 
   ```ruby
-  created_instance = build("AnyClass").tap(&:save!)
-  ```
-
-Or alternatively:
-
-  ```ruby
   let(:an_instance) { build("AnyClass") }
 
   before do
@@ -465,11 +459,45 @@ Or alternatively:
   end
   ```
 
+Or alternatively:
+
+  ```ruby
+  created_instance = build("AnyClass")
+  created_instance.save!
+  ```
+
 This way it is explicit what objects need to be persisted and in what order.
 
-However, many of our existing projects use a legacy `create` helper. This is
-simply a wrapper around `build.tap(&:save!)`, but it supports omitting the
-`save!` call for objects which do not support it.
+This can get tedious at times, especially for those who only need to create an
+object to embed as an attribute of another object:
+
+```ruby
+collaborator = build("AnotherClass")
+collaborator.save!
+
+# collaborator is not used against directly after this line
+created_instance = build("AnyClass", collaborator: collaborator)
+created_instance.save!
+```
+
+For these cases the `build!` helper is available. This is simply an alias for
+`build.tap(&:save!)`, but it supports omitting the `save!` call for objects
+which do not support it. While it provides a safety guarantee that `save!` will
+be called (instead of potentially `save`) it is less explicit.
+
+```ruby
+created_instance = build("AnyClass", collaborator: build!("AnotherClass"))
+created_instance.save!
+```
+
+We still discourage the use of `build!` directly in `let` blocks for all of the
+above mentioned reasons.
+
+##### Legacy "Creating" Instances
+
+Many of our existing projects use a legacy `create` helper. This is simply an
+alias for `build!`. It is provided only for backwards compatibility support and
+will be removed in a future release. New code should not use this method.
 
   ```ruby
   created_instance = create("AnyClass")
