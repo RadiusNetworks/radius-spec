@@ -266,7 +266,9 @@ Style/BlockDelimiters:
     - create!
     - build
     - build!
+    - default_scope
     - each_with_object
+    - filter_sensitive_data
     - find
     - git_source
     - let
@@ -279,6 +281,19 @@ Style/BlockDelimiters:
     - lambda
     - proc
     - it
+
+# Prefer `Time` over `DateTime`.
+#
+# While these are not necessarily interchangeable we prefer `Time`. According
+# to the Ruby docs `DateTime` is meant more for historical dates; it also does
+# not consider leap seconds or summer time rules.
+#
+# Lastly, `DateTime` is part of the stdlib which is written in Ruby; where as
+# `Time` is part of core and written in C.
+#
+# Configuration parameters: AllowCoercion
+Style/DateTime:
+  Enabled: true
 
 # The double negation idiom is a common Ruby-ism. All languages have various
 # idioms and part of learning the language is learning the common idioms. Once
@@ -391,9 +406,10 @@ Style/MethodCalledOnDoEndBlock:
 Style/MultilineBlockChain:
   Enabled: false
 
-# Context for this cop is too dependent. Often using the numeric comparison is
-# faster. An in certain contexts, Also, depending on the context a numeric
-# comparison is more consistent and can even be more natural:
+# Context for this cop is too dependent.
+#
+# Often using the numeric comparison is faster. Also, depending on the context
+# a numeric comparison may produce a more consistent style:
 #
 #     # numeric comparison is more natural and consistent
 #     if n < 0

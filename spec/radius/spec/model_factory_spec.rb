@@ -446,7 +446,7 @@ RSpec.describe Radius::Spec::ModelFactory do
 
       an_instance = nil
       expect {
-        an_instance = Radius::Spec::ModelFactory.create("AnyClass", custom_attrs) { |obj|
+        an_instance = Radius::Spec::ModelFactory.build!("AnyClass", custom_attrs) { |obj|
           block_initialized = obj
         }
       }.to change {
@@ -471,7 +471,7 @@ RSpec.describe Radius::Spec::ModelFactory do
       )
       Radius::Spec::ModelFactory.define_factory "AnyClass"
 
-      an_instance = Radius::Spec::ModelFactory.create(
+      an_instance = Radius::Spec::ModelFactory.build!(
         "AnyClass",
         save_called: false,
       )
@@ -495,7 +495,7 @@ RSpec.describe Radius::Spec::ModelFactory do
       Radius::Spec::ModelFactory.define_factory "AnyClass"
 
       expect {
-        Radius::Spec::ModelFactory.create("AnyClass")
+        Radius::Spec::ModelFactory.build!("AnyClass")
       }.to change {
         call_order
       }.from([]).to(%i[initialize save!])
@@ -509,7 +509,7 @@ RSpec.describe Radius::Spec::ModelFactory do
       }.to raise_error NoMethodError
 
       expect {
-        create(Object)
+        build!(Object)
       }.to raise_error NoMethodError
     end
 
@@ -528,6 +528,14 @@ RSpec.describe Radius::Spec::ModelFactory do
         expect(an_instance).to be_an_instance_of(AnyClass).and have_attributes(
           attr1: "Custom Value",
           attr2: "Any Attr2 Value",
+        )
+      end
+
+      it "includes the `build!` helper" do
+        an_instance = build!("AnyClass", attr2: "Custom Value")
+        expect(an_instance).to be_an_instance_of(AnyClass).and have_attributes(
+          attr1: "Any Attr1 Value",
+          attr2: "Custom Value",
         )
       end
 

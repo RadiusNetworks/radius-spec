@@ -268,6 +268,7 @@ module Radius
         def safe_transform(value)
           return value.call if value.is_a?(Proc)
           return value if value.frozen?
+
           value.dup
         end
 
@@ -426,33 +427,46 @@ module Radius
 
       # Convenience wrapper for building, and persisting, a model template.
       #
-      # This is a thin wrapper around `build(name, attrs).tap(&:save!)`. The
-      # persistence message `save!` will only be called on objects which
+      # This is a thin wrapper around:
+      #
+      # ```ruby
+      # build(name, attrs, &block).tap(&:save!)
+      # ```
+      #
+      # The persistence message `save!` will only be called on objects which
       # respond to it.
       #
-      # ### Avoid for New Code
+      # @note It is generally suggested that you avoid using `build!` for new
+      #   code. Instead be explicit about when and how objects are persisted.
+      #   This allows you to have fine grain control over how your data is
+      #   setup.
       #
-      # It is strongly suggested that you avoid using `create` for new code.
-      # Instead be explicit about when and how objects are persisted. This
-      # allows you to have fine grain control over how your data is setup.
+      #   We suggest that you create instances which need to be persisted
+      #   before your specs using the following syntax:
       #
-      # We suggest that you create instances which need to be persisted before
-      # your specs using the following syntax:
+      #   ```ruby
+      #   let(:an_instance) { build("AnyClass") }
       #
-      # ```ruby
-      # let(:an_instance) { build("AnyClass") }
+      #   before do
+      #     an_instance.save!
+      #   end
+      #   ```
       #
-      # before do
-      #   an_instance.save!
-      # end
-      # ```
+      # @param (see .build)
+      # @return (see .build)
+      # @raise (see .build)
+      # @see .build
+      # @see .define_factory
+      def build!(name, custom_attrs = {}, &block)
+        instance = build(name, custom_attrs, &block)
+        instance.save! if instance.respond_to?(:save!)
+        instance
+      end
+
+      # Legacy helper provided for backwards compatibility support.
       #
-      # Alternatively if you really want for the instance be lazy instantiated,
-      # and persisted, pass the appropriate persistence method as the block:
-      #
-      # ```ruby
-      # let(:an_instance) { build("AnyClass", &:save!) }
-      # ```
+      # This provides the same behavior as {.build!} and will be removed in a
+      # future release.
       #
       # @param (see .build)
       # @return (see .build)
@@ -460,9 +474,7 @@ module Radius
       # @see .build
       # @see .define_factory
       def create(name, custom_attrs = {}, &block)
-        instance = build(name, custom_attrs, &block)
-        instance.save! if instance.respond_to?(:save!)
-        instance
+        build!(name, custom_attrs, &block)
       end
     end
   end

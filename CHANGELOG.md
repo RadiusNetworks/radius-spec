@@ -4,6 +4,16 @@
 
 ### Enhancements
 
+- Upgrade to Rubocop 0.59.x (Aaron Kromer, #14)
+- Adjust common Rubocop configuration (Aaron Kromer, #14)
+  - `Layout/EmptyLineAfterGuardClause` is enabled by default
+  - Enable `Rails/SaveBang` to highlight potential lurking issues
+  - Expand `Rails/FindBy` and `Rails/FindEach` to check all `/app` and `/lib`
+  - Add more functional methods
+    - `default_scope`
+    - `filter_sensitive_data`
+- Add `build!` factory method to compliment `build` to help resolving Rubocop
+  violations for `Rails/SaveBang` (Aaron Kromer, #14)
 - Load model factory for specs tagged with 'type: :mailer' (Aaron Kromer, #11)
 - Include the following negated RSpec matchers (Aaron Kromer, #12)
   - `exclude` / `excluding`
@@ -107,7 +117,7 @@
 
 ### Bug Fixes
 
-- Fix `NameError: undefined local variable or method `config` for Rails RSpec
+- Fix `NameError: undefined local variable or method config` for Rails RSpec
   configuration (Aaron Kromer, #1)
 - Fix model factory build issue in which registered template attributes, which
   use symbol keys, are not replaced by custom attributes using string keys

@@ -20,6 +20,7 @@ group :debug do
 end
 
 group :documentation do
+  gem 'redcarpet', require: false
   gem 'yard', '~> 0.9', require: false
 end
 
