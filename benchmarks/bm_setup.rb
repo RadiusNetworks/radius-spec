@@ -38,6 +38,7 @@ def as_boolean(val, default: nil)
     false
   else
     raise "Unknown boolean value #{val}" if default.nil?
+
     default
   end
 end

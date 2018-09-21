@@ -268,6 +268,7 @@ module Radius
         def safe_transform(value)
           return value.call if value.is_a?(Proc)
           return value if value.frozen?
+
           value.dup
         end
 
