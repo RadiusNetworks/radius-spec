@@ -106,6 +106,10 @@ Metrics/BlockLength:
     - 'spec/spec_helper.rb'
     - 'spec/**/*_spec.rb'
     - 'spec/support/model_factories.rb'
+  ExcludedMethods:
+    - 'refine'
+    - 'RSpec.configure'
+    - 'VCR.configure'
 
 # We generally prefer to use the default line length of 80. Though sometimes
 # we just need a little extra space because it makes it easier to read.

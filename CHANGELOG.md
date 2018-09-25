@@ -4,6 +4,17 @@
 
 ### Enhancements
 
+- Add common VCR configuration (Aaron Kromer, #16)
+  - Filters out `Authorization` headers
+  - Filters out the following sensitive/environment varying `ENV` values, as
+    well as their URL and form encoded variants:
+    - `AWS_ACCESS_KEY_ID`
+    - `AWS_SECRET_ACCESS_KEY`
+    - `GOOGLE_CLIENT_ID`
+    - `GOOGLE_CLIENT_SECRET`
+    - `RADIUS_OAUTH_PROVIDER_APP_ID`
+    - `RADIUS_OAUTH_PROVIDER_APP_SECRET`
+    - `RADIUS_OAUTH_PROVIDER_URL`
 - Add "temp file" helpers for working with file stubs (Aaron Kromer, #15)
 - Upgrade to Rubocop 0.59.x (Aaron Kromer, #14)
 - Adjust common Rubocop configuration (Aaron Kromer, #14)
