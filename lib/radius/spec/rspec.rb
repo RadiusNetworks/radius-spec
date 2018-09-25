@@ -148,6 +148,14 @@ RSpec.configure do |config|
     require 'radius/spec/model_factory'
     config.include Radius::Spec::ModelFactory, type: :system
   end
+
+  config.when_first_matching_example_defined(:webmock) do
+    require 'webmock/rspec'
+  end
+
+  config.when_first_matching_example_defined(:vcr, :vcr_record, :vcr_record_new) do
+    require 'radius/spec/vcr'
+  end
 end
 
 require 'radius/spec/rspec/negated_matchers'

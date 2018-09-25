@@ -719,6 +719,61 @@ There are a few additional behaviors to note:
     end
     ```
 
+### Common VCR Configuration
+
+A project must include both [`vcr`](https://rubygems.org/gems/vcr) and
+[`webmock`](https://rubygems.org/gems/webmock) to use this configuration.
+Neither of those gems will be installed as dependencies of this gem. This is
+intended to give projects more flexibility in choosing which additional features
+they will use.
+
+The main `radius/spec/rspec` setup will load the common VCR configuration
+automatically when a spec is tagged with the `:vcr` metadata. This will
+configure VCR to:
+
+  - save specs to `/spec/cassettes`
+
+  - use record mode `once` when a single spec or spec file is run
+
+    This helps ease the development of new specs without requiring any
+    configuration / setting changes.
+
+  - uses record mode `none` otherwise, along setting VCR to fail when unused
+    interactions remain in a cassette
+
+    This is intended to better alert developers to unexpected side effects of
+    changes as any addition or removal of a request will cause a failure.
+
+  - all `Authorization` HTTP headers are filtered by default
+
+    This is a common oversight when recording specs. Often token based
+    authentication is picked up by the other filtered environment settings, but
+    basic authentication is not. Additionally, certain types of digest
+    authentication may cause specs to leak state. This filtering guards all of
+    these cases from accidental credential leak.
+
+  - the following common sensitive, or often environment variable, settings are
+    filtered
+
+    Those settings which often change between developer machines, and even the
+    CI server, can cause for flaky specs. It may also be frustrating for
+    developers to have to adjust their local systems to match others just to
+    get a few specs to pass. This is intended to help mitigate those issues:
+
+    - `AWS_ACCESS_KEY_ID`
+    - `AWS_SECRET_ACCESS_KEY`
+    - `GOOGLE_CLIENT_ID`
+    - `GOOGLE_CLIENT_SECRET`
+    - `RADIUS_OAUTH_PROVIDER_APP_ID`
+    - `RADIUS_OAUTH_PROVIDER_APP_SECRET`
+    - `RADIUS_OAUTH_PROVIDER_URL`
+
+  - a project's local `support/vcr.rb` file will be loaded after the common
+    VCR configuration loads; if it's available
+
+    This allows projects to overwrite common settings if they need to, as well,
+    as add on addition settings or filtering of data.
+
 ## Development
 
 After checking out the repo, run `bin/setup` to install dependencies. Then, run
