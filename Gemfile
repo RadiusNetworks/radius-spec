@@ -16,7 +16,6 @@ end
 
 group :debug do
   gem "pry-byebug", "~> 3.6", require: false
-  gem "travis", require: false
 end
 
 group :documentation do
