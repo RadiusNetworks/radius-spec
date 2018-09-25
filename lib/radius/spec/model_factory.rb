@@ -457,6 +457,7 @@ module Radius
       # @raise (see .build)
       # @see .build
       # @see .define_factory
+      # @since 0.5.0
       def build!(name, custom_attrs = {}, &block)
         instance = build(name, custom_attrs, &block)
         instance.save! if instance.respond_to?(:save!)
