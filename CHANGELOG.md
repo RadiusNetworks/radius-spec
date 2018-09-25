@@ -4,6 +4,7 @@
 
 ### Enhancements
 
+- Add "temp file" helpers for working with file stubs (Aaron Kromer, #15)
 - Upgrade to Rubocop 0.59.x (Aaron Kromer, #14)
 - Adjust common Rubocop configuration (Aaron Kromer, #14)
   - `Layout/EmptyLineAfterGuardClause` is enabled by default
