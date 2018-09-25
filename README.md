@@ -590,6 +590,135 @@ expect(a).to include(:red).and exclude(:yellow)
 expect(a).to exclude(:yellow).and include(:red)
 ```
 
+### Working with Temp Files
+
+These helpers are meant to ease the creation of temporary files to either stub
+the data out or provide a location for data to be saved then verified.
+
+In the case of file stubs, using these helpers allows you to co-locate the file
+data with the specs. This makes it easy for someone to read the spec and
+understand the test case; instead of having to find a fixture file and look at
+its data. This also makes it easy to change the data between specs, allowing
+them to focus on just what they need.
+
+#### Usage
+
+There are multiple ways you can use these helpers. Which method you choose
+depends on how much perceived magic/syntactic sugar you want:
+
+  - Call the helpers directly on the module:
+
+    ```ruby
+    require 'radius/spec/tempfile'
+
+    def write_hello_world(filepath)
+      File.write filepath, "Hello World"
+    end
+
+    Radius::Spec::Tempfile.using_tempfile do |pathname|
+      write_hello_world pathname
+      File.read(pathname)
+      # => "Hello World"
+    end
+    ```
+  - Include the helper methods explicitly:
+
+    ```ruby
+    require 'radius/spec/tempfile'
+
+    RSpec.describe AnyClass do
+      include Radius::Spec::Tempfile
+
+      it "includes the file helpers" do
+        using_tempfile do |pathname|
+          code_under_test pathname
+          expect(pathname.read).to eq "Any written data"
+        end
+      end
+    end
+    ```
+  - Include the helper methods via metadata:
+
+    ```ruby
+    RSpec.describe AnyClass do
+      it "includes the file helpers", :tempfile do
+        using_tempfile do |pathname|
+          code_under_test pathname
+          expect(pathname.read).to eq "Any written data"
+        end
+      end
+    end
+    ```
+
+    When using this metadata option you do not need to explicitly require the
+    tempfile feature. This gem registers metadata with the RSpec configuration
+    when it loads and `RSpec` is defined. When the metadata is first used it
+    will automatically require the tempfile feature and include the helpers.
+
+    Any of following metadata will include the factory helpers:
+
+      - `:tempfile`
+      - `:tmpfile`
+
+There are a few additional behaviors to note:
+
+  - Data can be stubbed by the helper through the `data` keyword arg:
+
+    ```ruby
+    stub_data = "Any file stub data text."
+    Radius::Spec::Tempfile.using_tempfile(data: stub_data) do |stubpath|
+      File.read(stubpath)
+      # => "Any file stub data text."
+    end
+    ```
+
+    It can even be inlined using heredocs:
+
+    ```ruby
+    Radius::Spec::Tempfile.using_tempfile(data: <<~TEXT) do |stubpath|
+      Any file stub data text.
+    TEXT
+      # Yard formats heredoc args oddly
+      File.read(stubpath)
+      # => "Any file stub data text.\n"
+    end
+    ```
+
+    > NOTE: That when inlining like this heredocs add an extra new line. To
+    > remove it use `.chomp` on the kwarg:
+    >
+    > ```ruby
+    > using_tempfile(data: <<~TEXT.chomp) do |pathname|
+    >   This has no newline.
+    > TEXT
+    >   # ...
+    > end
+    > ```
+
+  - Additional arguments and options are forwarded directly to
+    [Tempfile.create](https://ruby-doc.org/stdlib/libdoc/tempfile/rdoc/Tempfile.html#method-c-create)
+
+    This allows you to set custom file extensions:
+
+    ```ruby
+    Radius::Spec::Tempfile.using_tempfile(%w[custom_name .myext]) do |pathname|
+      pathname.extname
+      # => ".myext"
+    end
+    ```
+
+    Or change the file encoding:
+
+    ```ruby
+    Radius::Spec::Tempfile.using_tempfile(encoding: "ISO-8859-1", data: <<~DATA) do |pathname|
+      Résumé
+    DATA
+      # Yard formats heredoc args oddly
+      File.read(pathname)
+      # => "R\xE9sum\xE9\n"
+    end
+    ```
+
 ## Development
 
 After checking out the repo, run `bin/setup` to install dependencies. Then, run

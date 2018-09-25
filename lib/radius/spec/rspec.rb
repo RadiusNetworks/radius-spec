@@ -109,6 +109,11 @@ RSpec.configure do |config|
     config.include Radius::Spec::ModelFactory, :model_factory, :model_factories
   end
 
+  config.when_first_matching_example_defined(:tempfile, :tmpfile) do
+    require 'radius/spec/tempfile'
+    config.include Radius::Spec::Tempfile, :tempfile, :tmpfile
+  end
+
   config.when_first_matching_example_defined(type: :controller) do
     require 'radius/spec/model_factory'
     config.include Radius::Spec::ModelFactory, type: :controller
