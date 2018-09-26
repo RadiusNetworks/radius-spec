@@ -1,6 +1,6 @@
-## Development
+## 0.5.0 (September 26, 2018)
 
-[Full Changelog](https://github.com/RadiusNetworks/radius-spec/compare/v0.4.0...master)
+[Full Changelog](https://github.com/RadiusNetworks/radius-spec/compare/v0.4.0...v0.5.0)
 
 ### Enhancements
 
