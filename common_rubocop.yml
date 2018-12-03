@@ -111,7 +111,9 @@ Metrics/BlockLength:
     - 'spec/**/*_spec.rb'
     - 'spec/support/model_factories.rb'
   ExcludedMethods:
+    - 'chdir'
     - 'refine'
+    - 'Capybara.register_driver'
     - 'RSpec.configure'
     - 'VCR.configure'
 
