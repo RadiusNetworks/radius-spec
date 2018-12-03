@@ -8,6 +8,7 @@ git_source(:github) { |repo_name| "https://github.com/#{repo_name}" }
 gemspec
 
 group :benchmark, optional: true do
+  gem 'activesupport', require: false
   gem 'benchmark-ips', require: false
   # TODO: See if this gem has an update in the future as it's gemspec is too
   # strict and it was blocking other gems from installing / updating
