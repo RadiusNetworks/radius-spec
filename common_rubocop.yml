@@ -29,6 +29,37 @@ Layout/AccessModifierIndentation:
     similar to `rescue` and `ensure` in a method.
   EnforcedStyle: outdent
 
+# Rubocop 0.60.0 changed how it handled value alignments in this cop. This
+# breaks our preference for wanting keys to be aligned, but allowing values to
+# either use the `key` or `table` style:
+#
+#     key_style = {
+#       key: :value,
+#       another: :value,
+#       yet_another: :value
+#     }
+#     table_style = {
+#       key:         :value,
+#       another:     :value
+#       yet_another: :value
+#     }
+#
+# This is logged with Rubocop: https://github.com/rubocop-hq/rubocop/issues/6410
+#
+# Until Rubocop resolves this we've decided to enforce the key style so that we
+# do not lose all associated formatting checks. Additionally, in response to
+# the referenced issue the Rubocop disables the alignment check by default. To
+# continue using it we force enable it here.
+#
+# Configuration parameters: EnforcedHashRocketStyle, EnforcedColonStyle, EnforcedLastArgumentHashStyle.
+# SupportedHashRocketStyles: key, separator, table
+# SupportedColonStyles: key, separator, table
+# SupportedLastArgumentHashStyles: always_inspect, always_ignore, ignore_implicit, ignore_explicit
+Layout/AlignHash:
+  Enabled: true
+  EnforcedHashRocketStyle: key
+  EnforcedColonStyle: key
+
 # Disabling this until it is fixed to support multi-line block chains using the
 # semantic style.
 #
