@@ -4,12 +4,16 @@ AllCops:
     # Exclude generated binstubs
     - 'bin/bundle'
     - 'bin/bundler-travis'
+    - 'bin/pronto'
     - 'bin/pry'
     - 'bin/rake'
     - 'bin/rspec'
     - 'bin/rubocop'
     - 'bin/travis'
+    - 'bin/webpack'
+    - 'bin/webpack-dev-server'
     - 'bin/yard'
+    - 'bin/yarn'
     # Exclude vendored content
     - 'vendor/**/*'
 

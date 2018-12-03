@@ -27,6 +27,8 @@ Documentation:
 
 Metrics/BlockLength:
   Exclude:
+    - 'bin/setup'
+    - 'bin/update'
     - 'config/routes.rb'
     - 'spec/rails_helper.rb'
 
