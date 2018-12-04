@@ -4,7 +4,10 @@
 
 ### Enhancements
 
-- TODO
+- Exclude more bundler binstubs from Rubocop (Aaron Kromer, #18)
+- Exclude `chdir` and `Capybara.register_driver` configuration blocks from
+  `Metrics/BlockLength` checks (Aaron Kromer, #18)
+- Standardize on key style of `Layout/AlignHash` (Aaron Kromer, #18)
 
 ### Bug Fixes
 
