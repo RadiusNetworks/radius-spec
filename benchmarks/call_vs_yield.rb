@@ -146,3 +146,36 @@ Comparison:
           block.call:  3557929.5 i/s - 5.12x  (± 0.14) slower
                    with 95.0% confidence
 ```
+
+### Environment
+
+ruby 2.6.0p0 (2018-12-25 revision 66547) [x86_64-darwin16]
+GC Disabled: false
+
+### Test Cases
+
+#### Block call vs yield
+
+```
+Warming up --------------------------------------
+          block.call   252.830k i/100ms
+         block yield   266.647k i/100ms
+      block arg only   275.856k i/100ms
+        no arg yield   271.677k i/100ms
+  pass through block   251.117k i/100ms
+Calculating -------------------------------------
+          block.call     11.729M (± 0.9%) i/s -     58.404M in   5.004905s
+         block yield     13.216M (± 0.8%) i/s -     65.862M in   5.007922s
+      block arg only     17.288M (± 0.9%) i/s -     86.067M in   5.009110s
+        no arg yield     16.109M (± 0.9%) i/s -     80.145M in   5.006225s
+  pass through block     10.175M (± 1.0%) i/s -     50.726M in   5.010616s
+                   with 95.0% confidence
+
+Comparison:
+      block arg only: 17287836.2 i/s
+        no arg yield: 16108506.9 i/s - 1.07x  (± 0.01) slower
+         block yield: 13215609.2 i/s - 1.31x  (± 0.02) slower
+          block.call: 11729199.4 i/s - 1.47x  (± 0.02) slower
+  pass through block: 10174648.1 i/s - 1.70x  (± 0.02) slower
+                   with 95.0% confidence
+```
