@@ -6,6 +6,7 @@ AllCops:
     - 'bin/bundler-travis'
     - 'bin/pronto'
     - 'bin/pry'
+    - 'bin/radius-cli'
     - 'bin/rake'
     - 'bin/rspec'
     - 'bin/rubocop'
@@ -145,6 +146,7 @@ Metrics/BlockLength:
     - 'chdir'
     - 'refine'
     - 'Capybara.register_driver'
+    - 'Gem::Specification.new'
     - 'RSpec.configure'
     - 'VCR.configure'
 
@@ -180,6 +182,8 @@ Metrics/LineLength:
     # Attempt at trailing comments
     - '\A.{1,78}\s#\s.*\z'
   Max: 100
+  Exclude:
+    - '**/*.gemspec'
 
 # This is overly pedantic (only allowing `other` as the parameter name). Ruby
 # core doesn't follow this consistently either. Looking at several classes
