@@ -15,7 +15,7 @@ bin/rspec
 # bundle-audit provides patch-level verification for Bundler
 # https://github.com/rubysec/bundler-audit.
 echo " ---> Running bundler-audit"
-gem install --no-rdoc --no-ri bundler-audit
+gem install --no-document bundler-audit
 bundle-audit check --update
 
 # Run style checker
