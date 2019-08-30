@@ -79,7 +79,7 @@ Layout/BlockAlignment:
 # Configuration parameters: EnforcedStyle, IndentationWidth.
 # SupportedStyles: consistent, consistent_relative_to_receiver,
 #                  special_for_inner_method_call, special_for_inner_method_call_in_parentheses
-Layout/FirstParameterIndentation:
+Layout/IndentFirstArgument:
   Enabled: false
 
 # This project only uses newer Ruby versions which all support the "squiggly"
