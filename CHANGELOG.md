@@ -9,7 +9,7 @@
   `Metrics/BlockLength` checks (Aaron Kromer, #18)
 - Exclude gem specs from block and line length metrics (Aaron Kromer, #20)
 - Standardize on key style of `Layout/AlignHash` (Aaron Kromer, #18)
-- Upgrade to Rubocop 0.61.x (Aaron Kromer, #21)
+- Upgrade to Rubocop 0.62.x (Aaron Kromer, #21)
 
 ### Bug Fixes
 
