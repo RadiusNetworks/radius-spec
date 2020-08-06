@@ -2,6 +2,6 @@
 
 module Radius
   module Spec
-    VERSION = "0.6.0"
+    VERSION = "0.7.pre"
   end
 end
