@@ -4,7 +4,16 @@
 
 ### Enhancements
 
-- TODO
+- Adjust common Rubocop configuration (Aaron Hill, Aaron Kromer, Ben Reynold,
+  Chris Hoffman, James Nebeker #24)
+  - Target Ruby 2.7 by default
+  - Enable `Lint/HeredocMethodCallPosition` by default
+  - Use `StandardError` for the suggested parent classes of errors
+  - Bump metric check maximums to provide a little more wiggle room
+  - Disable `Naming/RescuedExceptionsVariableName` by default
+- Adjust common Rubocop Rails configuration (Aaron Hill, Aaron Kromer, Ben
+  Reynold, Chris Hoffman, James Nebeker #24)
+  - Disable `Rails/IgnoredSkipActionFilterOption` by default
 
 ### Bug Fixes
 

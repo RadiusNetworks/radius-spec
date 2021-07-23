@@ -145,6 +145,13 @@ Rails/FindEach:
 Rails/HasAndBelongsToMany:
   Enabled: false
 
+# We find the combo `:only` and `:if` readable. While the `:except` and `:if`
+# combo is easier to read as a combined proc. As a team we are fine with
+# handling this in PR reviews, until such time which Rubocop provides an option
+# for us to configure this.
+Rails/IgnoredSkipActionFilterOption:
+  Enabled: false
+
 # The ActiveSupport monkey patches for `present?` are nearly all defined as:
 #
 #     !blank?
