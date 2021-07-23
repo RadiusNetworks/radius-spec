@@ -3,7 +3,7 @@ inherit_mode:
     - Exclude
     - IgnoredPatterns
 
-inherit_from: common_rubocop.yml
+inherit_from: common_rubocop_rails.yml
 
 # Configuration parameters: CountComments, ExcludedMethods.
 Metrics/BlockLength:

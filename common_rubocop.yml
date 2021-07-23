@@ -1,5 +1,5 @@
 AllCops:
-  TargetRubyVersion: 2.5.0
+  TargetRubyVersion: 2.7.0
   Exclude:
     # Exclude generated binstubs
     - 'bin/bundle'
@@ -79,7 +79,10 @@ Layout/BlockAlignment:
 # Configuration parameters: EnforcedStyle, IndentationWidth.
 # SupportedStyles: consistent, consistent_relative_to_receiver,
 #                  special_for_inner_method_call, special_for_inner_method_call_in_parentheses
-Layout/FirstParameterIndentation:
+#
+# TODO: At some point this is split into both Layout/FirstArgumentIndentation
+# and Layout/FirstParameterIndentation
+Layout/IndentFirstArgument:
   Enabled: false
 
 # This project only uses newer Ruby versions which all support the "squiggly"
@@ -124,6 +127,31 @@ Lint/AmbiguousBlockAssociation:
   Exclude:
     - 'spec/**/*_spec.rb'
 
+# We prefer to enforce a consistent usage for readability
+#
+#     <<~SQL.strip
+#       bar
+#     SQL
+#
+#     display(<<~SQL.strip)
+#       bar
+#     SQL
+#
+# Alternatively, refactoring the heredoc into a local also improves
+# readability:
+#
+#     custom_sql = <<~SQL
+#       bar
+#     SQL
+#     display(custom_sql.strip)
+Lint/HeredocMethodCallPosition:
+  Enabled: true
+
+# We prefer people suggesting people subclass `StandardError` for their custom
+# exceptions as this is a relatively common Ruby idiom.
+Lint/InheritException:
+  EnforcedStyle: standard_error
+
 # Often with benchmarking we don't explicitly "use" a variable or return value.
 # We simply need to perform the operation which generates said value for the
 # benchmark.
@@ -132,6 +160,15 @@ Lint/AmbiguousBlockAssociation:
 Lint/Void:
   Exclude:
     - 'benchmarks/**/*'
+
+Metrics/AbcSize:
+  # TODO: When we are able to upgrade to Rubocop 1.5.0 we want to enable the
+  # following `CountRepeatedAttributes` option. We often find the
+  # multi-references to the same object to be necessary for reability and that
+  # for our team it does not increase complexity.
+  #
+  # CountRepeatedAttributes: false
+  Max: 17
 
 # Configuration parameters: CountComments, ExcludedMethods, Max.
 # ExcludedMethods: refine
@@ -146,7 +183,6 @@ Metrics/BlockLength:
     - 'chdir'
     - 'refine'
     - 'Capybara.register_driver'
-    - 'Gem::Specification.new'
     - 'RSpec.configure'
     - 'VCR.configure'
 
@@ -184,6 +220,12 @@ Metrics/LineLength:
   Max: 100
   Exclude:
     - '**/*.gemspec'
+
+# TODO: Remove this when we get to 0.89.0 as the new default max is 8
+#
+# Configuration parameters: IgnoredMethods, Max
+Metrics/PerceivedComplexity:
+  Max: 8
 
 # This is overly pedantic (only allowing `other` as the parameter name). Ruby
 # core doesn't follow this consistently either. Looking at several classes
@@ -235,6 +277,13 @@ Naming/MemoizedInstanceVariableName:
     acceptable.
   EnforcedStyleForLeadingUnderscores: optional
 
+# We don't really care about this check. Sometimes using something simple such
+# as `err` is just fine. Other times it may improve readability to have a more
+# descriptive name. We feel this is a personal judgement call and not something
+# that needs to be enforced.
+Naming/RescuedExceptionsVariableName:
+  Enabled: false
+
 # `alias` behavior changes on scope. In general we expect the behavior to be
 # that which is defined by `alias_method`.
 #
@@ -284,7 +333,10 @@ Style/AsciiComments:
 #   - Prefer `{...}` over `do...end` for functional blocks.
 #
 # When the return value of the method receiving the block is important prefer
-# `{..}` over `do..end`.
+# `{...}` over `do...end`.
+#
+# Some people enjoy the compact readability of `{...}` for one-liners so we
+# allow that style as well.
 #
 # Configuration parameters: EnforcedStyle, ProceduralMethods, FunctionalMethods, IgnoredMethods.
 # SupportedStyles: line_count_based, semantic, braces_for_chaining
@@ -297,6 +349,7 @@ Style/BlockDelimiters:
 
     When the return value of the method receiving the block is important prefer
     `{..}` over `do..end`.
+  AllowBracesOnProceduralOneLiners: true
   Enabled: true
   EnforcedStyle: semantic
   ProceduralMethods:
