@@ -1,6 +1,6 @@
 ## Development
 
-[Full Changelog](https://github.com/RadiusNetworks/radius-spec/compare/v0.7.0...master)
+[Full Changelog](https://github.com/RadiusNetworks/radius-spec/compare/v0.7.0...main)
 
 ### Enhancements
 

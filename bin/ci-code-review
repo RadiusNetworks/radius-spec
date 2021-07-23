@@ -23,6 +23,6 @@ fi
 echo Rubocop Version: $(./bin/rubocop --version)
 echo Review Dog Version: $(./bin/reviewdog -version)
 
-# Add `-diff="git diff master"` to reviewdog args when running locally
+# Add `-diff="git diff main"` to reviewdog args when running locally
 ./bin/rubocop --config .rubocop.yml --extra-details --display-style-guide --rails | \
   ./bin/reviewdog -f=rubocop -reporter=github-pr-check

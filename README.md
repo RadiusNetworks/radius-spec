@@ -1,6 +1,6 @@
 # Common RSpec Setup and Plug-ins
 
-[![Build Status](https://travis-ci.org/RadiusNetworks/radius-spec.svg?branch=master)](https://travis-ci.org/RadiusNetworks/radius-spec)
+[![Build Status](https://travis-ci.org/RadiusNetworks/radius-spec.svg?branch=main)](https://travis-ci.org/RadiusNetworks/radius-spec)
 [![Maintainability](https://api.codeclimate.com/v1/badges/701295df43d53e25eafe/maintainability)](https://codeclimate.com/github/RadiusNetworks/radius-spec/maintainability)
 [![Gem Version](https://badge.fury.io/rb/radius-spec.svg)](https://badge.fury.io/rb/radius-spec)
 
@@ -123,17 +123,17 @@ inherit_mode:
 
 # Available for projects which cannot include this gem (i.e. Ruby < 2.5)
 inherit_from:
-  - https://raw.githubusercontent.com/RadiusNetworks/radius-spec/master/common_rubocop.yml
+  - https://raw.githubusercontent.com/RadiusNetworks/radius-spec/main/common_rubocop.yml
   # Use the following instead if it is a Rails project
-  - https://raw.githubusercontent.com/RadiusNetworks/radius-spec/master/common_rubocop_rails.yml
+  - https://raw.githubusercontent.com/RadiusNetworks/radius-spec/main/common_rubocop_rails.yml
 ```
 
 When using the raw URL you may need to add the following to the project's
 `.gitignore` file:
 
 ```
-.rubocop-https---raw-githubusercontent-com-RadiusNetworks-radius-spec-master-common-rubocop-rails-yml
-.rubocop-https---raw-githubusercontent-com-RadiusNetworks-radius-spec-master-common-rubocop-yml
+.rubocop-https---raw-githubusercontent-com-RadiusNetworks-radius-spec-main-common-rubocop-rails-yml
+.rubocop-https---raw-githubusercontent-com-RadiusNetworks-radius-spec-main-common-rubocop-yml
 ```
 
 #### General Inheritance Notes
@@ -798,4 +798,4 @@ conduct.
 
 Everyone interacting in the Radius::Spec project’s codebases, issue trackers,
 chat rooms and mailing lists is expected to follow the [code of
-conduct](https://github.com/RadiusNetworks/radius-spec/blob/master/CODE_OF_CONDUCT.md).
+conduct](https://github.com/RadiusNetworks/radius-spec/blob/main/CODE_OF_CONDUCT.md).
