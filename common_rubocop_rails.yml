@@ -1,13 +1,11 @@
+require: rubocop-rails
+
 inherit_mode:
   merge:
     - Exclude
     - IgnoredPatterns
 
 inherit_from: common_rubocop.yml
-
-# Enable additional Rails cops
-Rails:
-  Enabled: true
 
 AllCops:
   Exclude:

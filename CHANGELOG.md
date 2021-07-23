@@ -4,6 +4,10 @@
 
 ### Enhancements
 
+- Upgrade to Rubocop 0.73.x (Aaron Hill, Aaron Kromer, Ben Reynold, Chris
+  Hoffman, James Nebeker #24)
+- Upgrade to Rubocop Rails 2.2.x (Aaron Hill, Aaron Kromer, Ben Reynold, Chris
+  Hoffman, James Nebeker #24)
 - Adjust common Rubocop configuration (Aaron Hill, Aaron Kromer, Ben Reynold,
   Chris Hoffman, James Nebeker #24)
   - Target Ruby 2.7 by default
