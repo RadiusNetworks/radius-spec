@@ -1,6 +1,5 @@
 # Common RSpec Setup and Plug-ins
 
-[![Build Status](https://travis-ci.org/RadiusNetworks/radius-spec.svg?branch=main)](https://travis-ci.org/RadiusNetworks/radius-spec)
 [![Maintainability](https://api.codeclimate.com/v1/badges/701295df43d53e25eafe/maintainability)](https://codeclimate.com/github/RadiusNetworks/radius-spec/maintainability)
 [![Gem Version](https://badge.fury.io/rb/radius-spec.svg)](https://badge.fury.io/rb/radius-spec)
 
