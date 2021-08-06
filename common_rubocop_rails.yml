@@ -150,6 +150,30 @@ Rails/HasAndBelongsToMany:
 Rails/IgnoredSkipActionFilterOption:
   Enabled: false
 
+# We do not care about this check due to its lack of configuration.
+#
+# Some of the team finds the naming of this method is more confusing than using
+# `each_with_object`. We all agree the other examples are bad and should not be
+# used:
+#
+#     # OK for us
+#     [1, 2, 3].each_with_object({}) { |el, h| h[foo(el)] = el }
+#
+#     # Bad
+#     [1, 2, 3].to_h { |el| [foo(el), el] }
+#     [1, 2, 3].map { |el| [foo(el), el] }.to_h
+#     Hash[[1, 2, 3].collect { |el| [foo(el), el] }]
+#
+# If this check supports configuration in the future so that we can allow
+# `each_with_object` then we'll turn it back on.
+Rails/IndexBy:
+  Enabled: false
+
+# We find the name of this method to be very confusing. We'd prefer this method
+# is never used.
+Rails/IndexWith:
+  Enabled: false
+
 # The ActiveSupport monkey patches for `present?` are nearly all defined as:
 #
 #     !blank?
