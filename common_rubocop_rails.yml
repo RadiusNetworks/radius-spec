@@ -20,7 +20,7 @@ AllCops:
     - 'db/migrate/**/*'
 
 # Rails project's are not concerned with API docs normally
-Documentation:
+Style/Documentation:
   Enabled: false
 
 Metrics/BlockLength:
