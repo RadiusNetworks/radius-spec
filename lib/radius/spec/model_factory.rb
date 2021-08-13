@@ -482,10 +482,14 @@ module Radius
 end
 
 # Try to load the factories defined for the specs
-# rubocop:disable Lint/HandleExceptions
+#
+# TODO: Remove this disabling of the Lint/SuppressedException cop once we upgrade to rubocop 0.81.0,
+# where the `AllowComments` option is set to true by default.
+#
+# rubocop:disable Lint/SuppressedException
 begin
   require 'support/model_factories'
 rescue LoadError
   # Ignore as this is an optional convenience feature
 end
-# rubocop:enable Lint/HandleExceptions
+# rubocop:enable Lint/SuppressedException

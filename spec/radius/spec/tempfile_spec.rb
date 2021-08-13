@@ -110,7 +110,9 @@ RSpec.describe Radius::Spec::Tempfile do
           err_pathname = pathname
           raise "Any Error"
         end
-      rescue # rubocop:disable Lint/HandleExceptions
+      # TODO: Remove this disabling of the Lint/SuppressedException cop once we upgrade to rubocop 0.81.0,
+      # where the `AllowComments` option is set to true by default.
+      rescue # rubocop:disable Lint/SuppressedException
         # Ignore b/c we're testing behavior on raise so this is expected
       end
       expect(err_pathname).not_to be_nil

@@ -91,10 +91,14 @@ RSpec.configure do |config|
 end
 
 # Try to any custom VCR config for the app
-# rubocop:disable Lint/HandleExceptions
+#
+# TODO: Remove this disabling of the Lint/SuppressedException cop once we upgrade to rubocop 0.81.0,
+# where the `AllowComments` option is set to true by default.
+#
+# rubocop:disable Lint/SuppressedException
 begin
   require 'support/vcr'
 rescue LoadError
   # Ignore as this is an optional convenience feature
 end
-# rubocop:enable Lint/HandleExceptions
+# rubocop:enable Lint/SuppressedException
