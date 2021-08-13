@@ -56,7 +56,7 @@ Layout/AccessModifierIndentation:
 # SupportedHashRocketStyles: key, separator, table
 # SupportedColonStyles: key, separator, table
 # SupportedLastArgumentHashStyles: always_inspect, always_ignore, ignore_implicit, ignore_explicit
-Layout/AlignHash:
+Layout/HashAlignment:
   Enabled: true
   EnforcedHashRocketStyle: key
   EnforcedColonStyle: key
@@ -82,7 +82,7 @@ Layout/BlockAlignment:
 #
 # TODO: At some point this is split into both Layout/FirstArgumentIndentation
 # and Layout/FirstParameterIndentation
-Layout/IndentFirstArgument:
+Layout/FirstArgumentIndentation:
   Enabled: false
 
 # This project only uses newer Ruby versions which all support the "squiggly"
@@ -91,7 +91,7 @@ Layout/IndentFirstArgument:
 #
 # Configuration parameters: EnforcedStyle.
 # SupportedStyles: auto_detection, squiggly, active_support, powerpack, unindent
-Layout/IndentHeredoc:
+Layout/HeredocIndentation:
   EnforcedStyle: squiggly
 
 # We tend to indent multi-line operation statements. I think this is because it
@@ -248,14 +248,14 @@ Naming/FileName:
 # `EOF` is a common terminal abbreviate indicating end-of-file. We allow this
 # for those heredocs which represent "file" text.
 #
-# Configuration parameters: Blacklist.
-# Blacklist: (?-mix:(^|\s)(EO[A-Z]{1}|END)(\s|$))
+# Configuration parameters: ForbiddenDelimiters.
+# ForbiddenDelimiters: (?-mix:(^|\s)(EO[A-Z]{1}|END)(\s|$))
 Naming/HeredocDelimiterNaming:
   Details: |
 
     Use meaningful delimiter names to provide context to the text. The only
     allowed `EO*` variant if `EOF` which has specific meaning for file content.
-  Blacklist:
+  ForbiddenDelimiters:
     - !ruby/regexp '/(^|\s)(EO[A-EG-Z]{1}|END)(\s|$)/'
 
 # It is generally a good idea to match the instance variable names with their
