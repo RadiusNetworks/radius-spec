@@ -4,7 +4,19 @@
 
 ### Enhancements
 
-- TODO
+- Upgrade to Rubocop 0.82.x (Aaron Hill, Aaron Kromer, Ben Reynolds, Chris
+  Hoffman, James Nebeker, JC Avena #26)
+- Upgrade to Rubocop Rails 2.5.x (Aaron Hill, Aaron Kromer, Ben Reynolds, Chris
+  Hoffman, James Nebeker, JC Avena #26)
+- Adjust common Rubocop configuration (Aaron Hill, Aaron Kromer, Ben Reynolds,
+  Chris Hoffman, James Nebeker, JC Avena #26)
+  - Rename metrics/configuration parameters per version upgrade requirements
+  - Use the stricter `always_true` check for `Style/FrozenStringLiteralComment`
+  - Opt-in to new cops/checks behaving per their default settings
+- Adjust common Rubocop Rails configuration (Aaron Hill, Aaron Kromer, Ben
+  Reynolds, Chris Hoffman, James Nebeker, JC Avena #26)
+  - Disable `Rails/IndexBy` by default
+  - Disable `Rails/IndexWith` by default
 
 ### Bug Fixes
 
@@ -17,11 +29,11 @@
 
 ### Enhancements
 
-- Upgrade to Rubocop 0.73.x (Aaron Hill, Aaron Kromer, Ben Reynold, Chris
+- Upgrade to Rubocop 0.73.x (Aaron Hill, Aaron Kromer, Ben Reynolds, Chris
   Hoffman, James Nebeker #24)
-- Upgrade to Rubocop Rails 2.2.x (Aaron Hill, Aaron Kromer, Ben Reynold, Chris
+- Upgrade to Rubocop Rails 2.2.x (Aaron Hill, Aaron Kromer, Ben Reynolds, Chris
   Hoffman, James Nebeker #24)
-- Adjust common Rubocop configuration (Aaron Hill, Aaron Kromer, Ben Reynold,
+- Adjust common Rubocop configuration (Aaron Hill, Aaron Kromer, Ben Reynolds,
   Chris Hoffman, James Nebeker #24)
   - Target Ruby 2.7 by default
   - Enable `Lint/HeredocMethodCallPosition` by default
@@ -29,7 +41,7 @@
   - Bump metric check maximums to provide a little more wiggle room
   - Disable `Naming/RescuedExceptionsVariableName` by default
 - Adjust common Rubocop Rails configuration (Aaron Hill, Aaron Kromer, Ben
-  Reynold, Chris Hoffman, James Nebeker #24)
+  Reynolds, Chris Hoffman, James Nebeker #24)
   - Disable `Rails/IgnoredSkipActionFilterOption` by default
 
 ### Bug Fixes
