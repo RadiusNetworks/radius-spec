@@ -94,6 +94,41 @@ Layout/FirstArgumentIndentation:
 Layout/HeredocIndentation:
   EnforcedStyle: squiggly
 
+# We generally prefer to use the default line length of 80. Though sometimes
+# we just need a little extra space because it makes it easier to read.
+#
+# The only way to disable Rubocop for a single line is either to wrap the line
+# with two comments or append the disable comment to the end of the line. For
+# guard clauses, we tend to prefer trailing comments to avoid adding two lines
+# just to disable a cop on one line.
+#
+# Sometimes comments include ASCII diagrams, flow charts, etc. These cannot
+# always be reformatted to fit within the 80 column limit. Also, we write most
+# comments in markdown format. Rubocop isn't very good at understanding when
+# the line is long because of a URL in a markdown link. Instead of requiring
+# additional comments to turn this cop off for comments we ignore any long
+# lines which are only comments.
+#
+# There are also cases where for one valid reason or another we have a trailing
+# comment that extends a little too far. We'd like to be able to ignore those
+# as well. This _attempts_ to do that, however, as this uses simple regular
+# expressions we can only attempt to match so much. We probably should change
+# this for a node pattern matcher in the future.
+#
+# Configuration parameters: AllowHeredoc, AllowURI, URISchemes,
+#                           IgnoreCopDirectives, IgnoredPatterns.
+# URISchemes: http, https
+Layout/LineLength:
+  IgnoreCopDirectives: true
+  IgnoredPatterns:
+    # Leading comments
+    - '\A\s*#'
+    # Attempt at trailing comments
+    - '\A.{1,78}\s#\s.*\z'
+  Max: 100
+  Exclude:
+    - '**/*.gemspec'
+
 # We tend to indent multi-line operation statements. I think this is because it
 # tends to be the default style auto-formatted by VIM (which many of us use).
 # It also helps show the continuation of the statement instead of it
@@ -185,41 +220,6 @@ Metrics/BlockLength:
     - 'Capybara.register_driver'
     - 'RSpec.configure'
     - 'VCR.configure'
-
-# We generally prefer to use the default line length of 80. Though sometimes
-# we just need a little extra space because it makes it easier to read.
-#
-# The only way to disable Rubocop for a single line is either to wrap the line
-# with two comments or append the disable comment to the end of the line. For
-# guard clauses, we tend to prefer trailing comments to avoid adding two lines
-# just to disable a cop on one line.
-#
-# Sometimes comments include ASCII diagrams, flow charts, etc. These cannot
-# always be reformatted to fit within the 80 column limit. Also, we write most
-# comments in markdown format. Rubocop isn't very good at understanding when
-# the line is long because of a URL in a markdown link. Instead of requiring
-# additional comments to turn this cop off for comments we ignore any long
-# lines which are only comments.
-#
-# There are also cases where for one valid reason or another we have a trailing
-# comment that extends a little too far. We'd like to be able to ignore those
-# as well. This _attempts_ to do that, however, as this uses simple regular
-# expressions we can only attempt to match so much. We probably should change
-# this for a node pattern matcher in the future.
-#
-# Configuration parameters: AllowHeredoc, AllowURI, URISchemes,
-#                           IgnoreCopDirectives, IgnoredPatterns.
-# URISchemes: http, https
-Metrics/LineLength:
-  IgnoreCopDirectives: true
-  IgnoredPatterns:
-    # Leading comments
-    - '\A\s*#'
-    # Attempt at trailing comments
-    - '\A.{1,78}\s#\s.*\z'
-  Max: 100
-  Exclude:
-    - '**/*.gemspec'
 
 # TODO: Remove this when we get to 0.89.0 as the new default max is 8
 #

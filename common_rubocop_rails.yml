@@ -23,22 +23,22 @@ AllCops:
 Style/Documentation:
   Enabled: false
 
+# Rails foreign keys and indexes can get long. We want to ignore our annotation
+# comments which are for these entries.
+#
+# Configuration parameters: AllowHeredoc, AllowURI, URISchemes, IgnoreCopDirectives, IgnoredPatterns.
+# URISchemes: http, https
+Layout/LineLength:
+  IgnoredPatterns:
+    - '\A#  fk_rails_'
+    - '\A#  index_'
+
 Metrics/BlockLength:
   Exclude:
     - 'bin/setup'
     - 'bin/update'
     - 'config/routes.rb'
     - 'spec/rails_helper.rb'
-
-# Rails foreign keys and indexes can get long. We want to ignore our annotation
-# comments which are for these entries.
-#
-# Configuration parameters: AllowHeredoc, AllowURI, URISchemes, IgnoreCopDirectives, IgnoredPatterns.
-# URISchemes: http, https
-Metrics/LineLength:
-  IgnoredPatterns:
-    - '\A#  fk_rails_'
-    - '\A#  index_'
 
 # For our Rails apps several of them use the `respond_to` with `format` blocks
 # to handle various mime types (mostly HTML and JSON). Given our `do` / `end`
