@@ -12,7 +12,7 @@ Gem::Specification.new do |spec|
 
   spec.metadata      = {
     "bug_tracker_uri" => "https://github.com/RadiusNetworks/radius-spec/issues",
-    "changelog_uri"   => "https://github.com/RadiusNetworks/radius-spec/blob/v#{Radius::Spec::VERSION}/CHANGELOG.md",
+    "changelog_uri" => "https://github.com/RadiusNetworks/radius-spec/blob/v#{Radius::Spec::VERSION}/CHANGELOG.md",
     "source_code_uri" => "https://github.com/RadiusNetworks/radius-spec/tree/v#{Radius::Spec::VERSION}",
   }
   spec.summary       = "Radius Networks RSpec setup and plug-ins"
@@ -21,14 +21,14 @@ Gem::Specification.new do |spec|
   spec.homepage      = "https://github.com/RadiusNetworks/radius-spec"
   spec.license       = "Apache-2.0"
 
-  spec.files         = `git ls-files -z`.split("\x0").reject do |f|
+  spec.files         = `git ls-files -z`.split("\x0").reject { |f|
     f.match(%r{^(test|spec|features)/})
-  end
+  }
   spec.bindir        = "exe"
   spec.executables   = spec.files.grep(%r{^exe/}) { |f| File.basename(f) }
   spec.require_paths = ["lib"]
 
-  spec.required_ruby_version = ">= 2.5"
+  spec.required_ruby_version = ">= 2.5" # rubocop:disable Gemspec/RequiredRubyVersion
 
   spec.add_runtime_dependency "rspec", "~> 3.7"
   spec.add_runtime_dependency "rubocop", "~> 0.82.0"

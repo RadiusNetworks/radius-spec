@@ -5,7 +5,6 @@ require_relative 'bm_setup'
 
 display_benchmark_header
 
-# rubocop:disable Performance/RedundantBlockCall
 def block_call(&block)
   block.call
 end
@@ -77,7 +76,6 @@ section "Block call vs yield" do |bench|
     end
   end
 end
-# rubocop:enable Performance/RedundantBlockCall
 
 __END__
 

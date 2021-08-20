@@ -5,7 +5,7 @@ require_relative 'bm_setup'
 
 display_benchmark_header
 
-ENUM = (1..100)
+ENUM = (1..100).freeze
 
 def hash_merge
   tmp = {}
