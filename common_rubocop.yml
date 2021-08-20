@@ -1,5 +1,11 @@
 AllCops:
   TargetRubyVersion: 2.7.0
+  # We choose to opt-in to new checks by default. This allows us to update
+  # version by version without having to worry about adding an entry for each
+  # new "enabled by default" check. If we want to jump multiple versions and
+  # wish to be notified of all the enw check, then we'll need to change
+  # `NewCops` to `pending.
+  NewCops: enable
   Exclude:
     # Exclude generated binstubs
     - 'bin/bundle'
@@ -453,6 +459,13 @@ Style/EmptyCaseCondition:
 # SupportedStyles: compact, expanded
 Style/EmptyMethod:
   EnforcedStyle: expanded
+
+# Always require the pragma comment to be true
+#
+# Configuration parameters: EnforcedStyle.
+# SupportedStyles: always, always_true, never
+Style/FrozenStringLiteralComment:
+  EnforcedStyle: always_true
 
 # Prefer symbol keys using the 1.9 hash syntax. However, when keys are mixed
 # use a consistent mapping style; which generally means using hash rockets:
