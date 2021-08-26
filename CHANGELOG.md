@@ -1,6 +1,6 @@
-## Development
+## 0.8.0 (August 26, 2021)
 
-[Full Changelog](https://github.com/RadiusNetworks/radius-spec/compare/v0.7.0...main)
+[Full Changelog](https://github.com/RadiusNetworks/radius-spec/compare/v0.7.0...v0.8.0)
 
 ### Enhancements
 
@@ -20,7 +20,7 @@
 
 ### Bug Fixes
 
-- TODO
+None
 
 
 ## 0.7.0 (July 23, 2021)
