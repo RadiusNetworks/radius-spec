@@ -5,7 +5,7 @@ require_relative 'bm_setup'
 
 display_benchmark_header
 
-INT_RANGE = (0..15)
+INT_RANGE = (0..15).freeze
 INT_VAR = 10
 
 section "Integer ranges" do |bench|
@@ -30,7 +30,7 @@ BEGIN_OF_JULY = Time.utc(2015, 7, 1)
 END_OF_JULY = Time.utc(2015, 7, 31)
 DAY_IN_JULY = Time.utc(2015, 7, 15)
 
-TIME_RANGE = (BEGIN_OF_JULY..END_OF_JULY)
+TIME_RANGE = (BEGIN_OF_JULY..END_OF_JULY).freeze
 
 section "Time ranges" do |bench|
   bench.report('range#cover?') do

@@ -1,5 +1,11 @@
 AllCops:
   TargetRubyVersion: 2.7.0
+  # We choose to opt-in to new checks by default. This allows us to update
+  # version by version without having to worry about adding an entry for each
+  # new "enabled by default" check. If we want to jump multiple versions and
+  # wish to be notified of all the enw check, then we'll need to change
+  # `NewCops` to `pending.
+  NewCops: enable
   Exclude:
     # Exclude generated binstubs
     - 'bin/bundle'
@@ -56,7 +62,7 @@ Layout/AccessModifierIndentation:
 # SupportedHashRocketStyles: key, separator, table
 # SupportedColonStyles: key, separator, table
 # SupportedLastArgumentHashStyles: always_inspect, always_ignore, ignore_implicit, ignore_explicit
-Layout/AlignHash:
+Layout/HashAlignment:
   Enabled: true
   EnforcedHashRocketStyle: key
   EnforcedColonStyle: key
@@ -82,7 +88,7 @@ Layout/BlockAlignment:
 #
 # TODO: At some point this is split into both Layout/FirstArgumentIndentation
 # and Layout/FirstParameterIndentation
-Layout/IndentFirstArgument:
+Layout/FirstArgumentIndentation:
   Enabled: false
 
 # This project only uses newer Ruby versions which all support the "squiggly"
@@ -91,8 +97,43 @@ Layout/IndentFirstArgument:
 #
 # Configuration parameters: EnforcedStyle.
 # SupportedStyles: auto_detection, squiggly, active_support, powerpack, unindent
-Layout/IndentHeredoc:
+Layout/HeredocIndentation:
   EnforcedStyle: squiggly
+
+# We generally prefer to use the default line length of 80. Though sometimes
+# we just need a little extra space because it makes it easier to read.
+#
+# The only way to disable Rubocop for a single line is either to wrap the line
+# with two comments or append the disable comment to the end of the line. For
+# guard clauses, we tend to prefer trailing comments to avoid adding two lines
+# just to disable a cop on one line.
+#
+# Sometimes comments include ASCII diagrams, flow charts, etc. These cannot
+# always be reformatted to fit within the 80 column limit. Also, we write most
+# comments in markdown format. Rubocop isn't very good at understanding when
+# the line is long because of a URL in a markdown link. Instead of requiring
+# additional comments to turn this cop off for comments we ignore any long
+# lines which are only comments.
+#
+# There are also cases where for one valid reason or another we have a trailing
+# comment that extends a little too far. We'd like to be able to ignore those
+# as well. This _attempts_ to do that, however, as this uses simple regular
+# expressions we can only attempt to match so much. We probably should change
+# this for a node pattern matcher in the future.
+#
+# Configuration parameters: AllowHeredoc, AllowURI, URISchemes,
+#                           IgnoreCopDirectives, IgnoredPatterns.
+# URISchemes: http, https
+Layout/LineLength:
+  IgnoreCopDirectives: true
+  IgnoredPatterns:
+    # Leading comments
+    - '\A\s*#'
+    # Attempt at trailing comments
+    - '\A.{1,78}\s#\s.*\z'
+  Max: 100
+  Exclude:
+    - '**/*.gemspec'
 
 # We tend to indent multi-line operation statements. I think this is because it
 # tends to be the default style auto-formatted by VIM (which many of us use).
@@ -186,41 +227,6 @@ Metrics/BlockLength:
     - 'RSpec.configure'
     - 'VCR.configure'
 
-# We generally prefer to use the default line length of 80. Though sometimes
-# we just need a little extra space because it makes it easier to read.
-#
-# The only way to disable Rubocop for a single line is either to wrap the line
-# with two comments or append the disable comment to the end of the line. For
-# guard clauses, we tend to prefer trailing comments to avoid adding two lines
-# just to disable a cop on one line.
-#
-# Sometimes comments include ASCII diagrams, flow charts, etc. These cannot
-# always be reformatted to fit within the 80 column limit. Also, we write most
-# comments in markdown format. Rubocop isn't very good at understanding when
-# the line is long because of a URL in a markdown link. Instead of requiring
-# additional comments to turn this cop off for comments we ignore any long
-# lines which are only comments.
-#
-# There are also cases where for one valid reason or another we have a trailing
-# comment that extends a little too far. We'd like to be able to ignore those
-# as well. This _attempts_ to do that, however, as this uses simple regular
-# expressions we can only attempt to match so much. We probably should change
-# this for a node pattern matcher in the future.
-#
-# Configuration parameters: AllowHeredoc, AllowURI, URISchemes,
-#                           IgnoreCopDirectives, IgnoredPatterns.
-# URISchemes: http, https
-Metrics/LineLength:
-  IgnoreCopDirectives: true
-  IgnoredPatterns:
-    # Leading comments
-    - '\A\s*#'
-    # Attempt at trailing comments
-    - '\A.{1,78}\s#\s.*\z'
-  Max: 100
-  Exclude:
-    - '**/*.gemspec'
-
 # TODO: Remove this when we get to 0.89.0 as the new default max is 8
 #
 # Configuration parameters: IgnoredMethods, Max
@@ -248,14 +254,14 @@ Naming/FileName:
 # `EOF` is a common terminal abbreviate indicating end-of-file. We allow this
 # for those heredocs which represent "file" text.
 #
-# Configuration parameters: Blacklist.
-# Blacklist: (?-mix:(^|\s)(EO[A-Z]{1}|END)(\s|$))
+# Configuration parameters: ForbiddenDelimiters.
+# ForbiddenDelimiters: (?-mix:(^|\s)(EO[A-Z]{1}|END)(\s|$))
 Naming/HeredocDelimiterNaming:
   Details: |
 
     Use meaningful delimiter names to provide context to the text. The only
     allowed `EO*` variant if `EOF` which has specific meaning for file content.
-  Blacklist:
+  ForbiddenDelimiters:
     - !ruby/regexp '/(^|\s)(EO[A-EG-Z]{1}|END)(\s|$)/'
 
 # It is generally a good idea to match the instance variable names with their
@@ -453,6 +459,13 @@ Style/EmptyCaseCondition:
 # SupportedStyles: compact, expanded
 Style/EmptyMethod:
   EnforcedStyle: expanded
+
+# Always require the pragma comment to be true
+#
+# Configuration parameters: EnforcedStyle.
+# SupportedStyles: always, always_true, never
+Style/FrozenStringLiteralComment:
+  EnforcedStyle: always_true
 
 # Prefer symbol keys using the 1.9 hash syntax. However, when keys are mixed
 # use a consistent mapping style; which generally means using hash rockets:

@@ -15,15 +15,15 @@ MULTI_TOKEN_HASH = {
 # rubocop:disable Style/FormatString
 section "Format String" do |bench|
   bench.report("String#%") do
-    '%10s' % 'hoge'
+    '%10s' % 'hoge' # rubocop:disable Style/FormatStringToken
   end
 
   bench.report("format") do
-    format '%10s', 'hoge'
+    format '%10s', 'hoge' # rubocop:disable Style/FormatStringToken
   end
 
   bench.report("sprintf") do
-    sprintf '%10s', 'hoge'
+    sprintf '%10s', 'hoge' # rubocop:disable Style/FormatStringToken
   end
 end
 # rubocop:enable Style/FormatString

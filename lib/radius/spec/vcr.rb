@@ -91,10 +91,8 @@ RSpec.configure do |config|
 end
 
 # Try to any custom VCR config for the app
-# rubocop:disable Lint/HandleExceptions
 begin
   require 'support/vcr'
 rescue LoadError
   # Ignore as this is an optional convenience feature
 end
-# rubocop:enable Lint/HandleExceptions

@@ -5,7 +5,6 @@ require_relative 'bm_setup'
 
 display_benchmark_header
 
-# rubocop:disable Performance/UnfreezeString
 section "Unfreezing empty string" do |bench|
   bench.report("String.new") do
     String.new
@@ -34,7 +33,6 @@ section "Unfreezing string" do |bench|
     STRING.dup
   end
 end
-# rubocop:enable Performance/UnfreezeString
 
 __END__
 

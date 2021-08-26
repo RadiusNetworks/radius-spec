@@ -110,7 +110,7 @@ RSpec.describe Radius::Spec::Tempfile do
           err_pathname = pathname
           raise "Any Error"
         end
-      rescue # rubocop:disable Lint/HandleExceptions
+      rescue
         # Ignore b/c we're testing behavior on raise so this is expected
       end
       expect(err_pathname).not_to be_nil

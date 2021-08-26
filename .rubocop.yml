@@ -5,17 +5,17 @@ inherit_mode:
 
 inherit_from: common_rubocop_rails.yml
 
+# Configuration parameters: AllowHeredoc, AllowURI, URISchemes, IgnoreCopDirectives, IgnoredPatterns.
+# URISchemes: http, https
+Layout/LineLength:
+  Exclude:
+    - 'radius-spec.gemspec'
+
 # Configuration parameters: CountComments, ExcludedMethods.
 Metrics/BlockLength:
   Exclude:
     - 'benchmarks/**/*'
     - 'lib/radius/spec/rspec.rb'
-
-# Configuration parameters: AllowHeredoc, AllowURI, URISchemes, IgnoreCopDirectives, IgnoredPatterns.
-# URISchemes: http, https
-Metrics/LineLength:
-  Exclude:
-    - 'radius-spec.gemspec'
 
 Style/Documentation:
   Exclude:

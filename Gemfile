@@ -10,9 +10,7 @@ gemspec
 group :benchmark, optional: true do
   gem 'activesupport', require: false
   gem 'benchmark-ips', require: false
-  # TODO: See if this gem has an update in the future as it's gemspec is too
-  # strict and it was blocking other gems from installing / updating
-  gem 'kalibera', require: false, git: 'https://github.com/cupakromer/libkalibera.git'
+  gem 'kalibera', require: false
 end
 
 group :debug do
