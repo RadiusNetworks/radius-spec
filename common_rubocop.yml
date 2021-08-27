@@ -640,6 +640,11 @@ Style/RescueStandardError:
     Avoid rescuing `Exception` as this may hide system errors.
   EnforcedStyle: implicit
 
+# We don't really care which style we use here and would prefer rubocop not
+# complain about this.
+Style/SlicingWithRange:
+  Enabled: false
+
 # We generally prefer double quotes but many generators use single quotes. We
 # don't view the performance difference to be all that much so we don't care
 # if the style is mixed or double quotes are used for static strings.
