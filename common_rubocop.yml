@@ -205,6 +205,10 @@ Metrics/AbcSize:
 # Configuration parameters: CountComments, ExcludedMethods, Max.
 # ExcludedMethods: refine
 Metrics/BlockLength:
+  CountAsOne:
+    - 'array'
+    - 'hash'
+    - 'heredoc'
   Exclude:
     - '**/Rakefile'
     - '**/*.rake'
@@ -217,6 +221,26 @@ Metrics/BlockLength:
     - 'Capybara.register_driver'
     - 'RSpec.configure'
     - 'VCR.configure'
+
+# We want length related code metrics to count Hashs, Arrays, and
+# Heredocs as one "line"
+Metrics/ClassLength:
+  CountAsOne:
+    - 'array'
+    - 'hash'
+    - 'heredoc'
+
+Metrics/ModuleLength:
+  CountAsOne:
+    - 'array'
+    - 'hash'
+    - 'heredoc'
+
+Metrics/MethodLength:
+    CountAsOne:
+    - 'array'
+    - 'hash'
+    - 'heredoc'
 
 # TODO: Remove this when we get to 0.89.0 as the new default max is 8
 #
