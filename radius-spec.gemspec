@@ -31,7 +31,7 @@ Gem::Specification.new do |spec|
   spec.required_ruby_version = ">= 2.5" # rubocop:disable Gemspec/RequiredRubyVersion
 
   spec.add_runtime_dependency "rspec", "~> 3.7"
-  spec.add_runtime_dependency "rubocop", "~> 0.84.0"
+  spec.add_runtime_dependency "rubocop", "~> 0.85.0"
   spec.add_runtime_dependency "rubocop-rails", "~> 2.6.0"
 
   spec.add_development_dependency "bundler", ">= 2.2.10"

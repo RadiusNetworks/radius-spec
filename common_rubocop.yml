@@ -91,15 +91,6 @@ Layout/BlockAlignment:
 Layout/FirstArgumentIndentation:
   Enabled: false
 
-# This project only uses newer Ruby versions which all support the "squiggly"
-# style. We prefer to use pure Ruby calls when possible instead of relying on
-# alternatives; even for Rails app.
-#
-# Configuration parameters: EnforcedStyle.
-# SupportedStyles: auto_detection, squiggly, active_support, powerpack, unindent
-Layout/HeredocIndentation:
-  EnforcedStyle: squiggly
-
 # We generally prefer to use the default line length of 80. Though sometimes
 # we just need a little extra space because it makes it easier to read.
 #
