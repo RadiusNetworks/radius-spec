@@ -242,12 +242,6 @@ Metrics/MethodLength:
     - 'hash'
     - 'heredoc'
 
-# TODO: Remove this when we get to 0.89.0 as the new default max is 8
-#
-# Configuration parameters: IgnoredMethods, Max
-Metrics/PerceivedComplexity:
-  Max: 8
-
 # This is overly pedantic (only allowing `other` as the parameter name). Ruby
 # core doesn't follow this consistently either. Looking at several classes
 # throughout Ruby core we do often see `other`, but also often `obj` or
