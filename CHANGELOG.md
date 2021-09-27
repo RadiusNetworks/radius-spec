@@ -4,7 +4,15 @@
 
 ### Enhancements
 
-- TODO
+- Upgrade to Rubocop 0.89.x (Aaron Hill, Aaron Kromer, Ben Reynolds, Chris
+  Hoffman, James Nebeker, JC Avena, Sam Kim #27)
+- Upgrade to Rubocop Rails 2.6.x (Aaron Hill, Aaron Kromer, Ben Reynolds, Chris
+  Hoffman, James Nebeker, JC Avena, Sam Kim #27)
+- Adjust common Rubocop configuration (Aaron Hill, Aaron Kromer, Ben Reynolds,
+  Chris Hoffman, James Nebeker, JC Avena, Sam Kim #27)
+  - Configure multiple metrics to use the `CountAsOne` option for array, hash
+    and heredocs
+  - Disable `Style/SlicingWithRange` as we do not care about the style
 
 ### Bug Fixes
 

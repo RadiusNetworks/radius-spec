@@ -91,15 +91,6 @@ Layout/BlockAlignment:
 Layout/FirstArgumentIndentation:
   Enabled: false
 
-# This project only uses newer Ruby versions which all support the "squiggly"
-# style. We prefer to use pure Ruby calls when possible instead of relying on
-# alternatives; even for Rails app.
-#
-# Configuration parameters: EnforcedStyle.
-# SupportedStyles: auto_detection, squiggly, active_support, powerpack, unindent
-Layout/HeredocIndentation:
-  EnforcedStyle: squiggly
-
 # We generally prefer to use the default line length of 80. Though sometimes
 # we just need a little extra space because it makes it easier to read.
 #
@@ -214,6 +205,10 @@ Metrics/AbcSize:
 # Configuration parameters: CountComments, ExcludedMethods, Max.
 # ExcludedMethods: refine
 Metrics/BlockLength:
+  CountAsOne:
+    - 'array'
+    - 'hash'
+    - 'heredoc'
   Exclude:
     - '**/Rakefile'
     - '**/*.rake'
@@ -227,11 +222,25 @@ Metrics/BlockLength:
     - 'RSpec.configure'
     - 'VCR.configure'
 
-# TODO: Remove this when we get to 0.89.0 as the new default max is 8
-#
-# Configuration parameters: IgnoredMethods, Max
-Metrics/PerceivedComplexity:
-  Max: 8
+# We want length related code metrics to count Hashs, Arrays, and
+# Heredocs as one "line"
+Metrics/ClassLength:
+  CountAsOne:
+    - 'array'
+    - 'hash'
+    - 'heredoc'
+
+Metrics/ModuleLength:
+  CountAsOne:
+    - 'array'
+    - 'hash'
+    - 'heredoc'
+
+Metrics/MethodLength:
+    CountAsOne:
+    - 'array'
+    - 'hash'
+    - 'heredoc'
 
 # This is overly pedantic (only allowing `other` as the parameter name). Ruby
 # core doesn't follow this consistently either. Looking at several classes
@@ -639,6 +648,11 @@ Style/RescueStandardError:
 
     Avoid rescuing `Exception` as this may hide system errors.
   EnforcedStyle: implicit
+
+# We don't really care which style we use here and would prefer rubocop not
+# complain about this.
+Style/SlicingWithRange:
+  Enabled: false
 
 # We generally prefer double quotes but many generators use single quotes. We
 # don't view the performance difference to be all that much so we don't care
