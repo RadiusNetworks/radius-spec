@@ -22,6 +22,10 @@ RSpec.configure do |config|
     # ...rather than:
     #     # => "be bigger than 2"
     expectations.include_chain_clauses_in_custom_matcher_descriptions = true
+
+    # The default is to warn, but this normally just gets ignored by
+    # developers. It's best to fix the problem then live with the warning.
+    expectations.on_potential_false_positives = :raise
   end
 
   # rspec-mocks config goes here. You can use an alternate test double
@@ -100,6 +104,11 @@ RSpec.configure do |config|
   # test failures related to randomization by passing the same `--seed` value
   # as the one that triggered the failure.
   Kernel.srand config.seed
+
+  # Common shared_example / shared_context inclusion alias for behavior driven
+  # development
+  config.alias_it_should_behave_like_to :has_behavior
+  config.alias_it_should_behave_like_to :it_has_behavior, 'has behavior:'
 
   config.when_first_matching_example_defined(
     :model_factory,

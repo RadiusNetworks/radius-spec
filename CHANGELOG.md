@@ -13,10 +13,18 @@
   - Configure multiple metrics to use the `CountAsOne` option for array, hash
     and heredocs
   - Disable `Style/SlicingWithRange` as we do not care about the style
+- Includes new `shared_example` / `shared_context` inclusion aliases
+  `has_behavior` and `it_has_behavior` for behavior driven development language
+  (Aaron Kromer, Ben Reynolds #28)
 
 ### Bug Fixes
 
 - TODO
+
+### Breaking Change
+
+- Change the default behavior from `:warn` to `:raise` for RSpec expectations
+  behavior `on_potential_false_positives` (Aaron Kromer, Ben Reynolds #28)
 
 
 ## 0.8.0 (August 26, 2021)
