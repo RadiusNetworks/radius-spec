@@ -32,7 +32,7 @@ Gem::Specification.new do |spec|
 
   spec.add_runtime_dependency "rspec", "~> 3.7"
   spec.add_runtime_dependency "rubocop", "~> 0.89.0"
-  spec.add_runtime_dependency "rubocop-rails", "~> 2.6.0"
+  spec.add_runtime_dependency "rubocop-rails", "~> 2.8.1"
 
   spec.add_development_dependency "bundler", ">= 2.2.10"
   spec.add_development_dependency "rake", ">= 12.0", "< 14.0"

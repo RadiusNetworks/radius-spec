@@ -4,7 +4,8 @@
 
 ### Enhancements
 
-- TODO
+- Upgrade to Rubocop Rails 2.8.x (Aaron Kromer, Ben Reynolds, James Nebeker, JC Avena, Sam Kim, Alex
+  Stone)
 
 ### Bug Fixes
 
