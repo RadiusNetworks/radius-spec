@@ -291,7 +291,8 @@ Rails/SkipsModelValidations:
     - 'increment!'
     - 'touch'
 
-# We don't want to have to use squish in SQL heredocs.
+# We don't want to be forced to use squish in SQL or JSON heredocs (especially
+# in specs).
 Rails/SquishedSQLHeredocs:
   Enabled: false
 
