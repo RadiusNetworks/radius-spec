@@ -4,7 +4,17 @@
 
 ### Enhancements
 
-- TODO
+- Upgrade to Rubocop Rails 2.8.x (Aaron Kromer, Ben Reynolds, James Nebeker, JC Avena, Sam Kim, Alex
+  Stone #30)
+- Adjust common Rubocop Rails configuration (Aaron Kromer, Ben Reynolds, James Nebeker, JC Avena,
+  Sam Kim, Alex Stone #30)
+  - Enable `Rails/DefaultScope` by default
+  - Enable `Rails/FindById` by default
+  - Enable `Rails/PluckId` by default
+  - Use the more aggressive `aggressive` check for `Rails/PluckInWhere`
+  - Use the more aggressive `aggressive` check for `Rails/ShortI18n`
+  - Switch to new `AllowedMethods` attribute name for `Rails/SkipsModelValidations`
+  - Disable `Rails/SquishedSQLHeredocs` by default
 
 ### Bug Fixes
 
