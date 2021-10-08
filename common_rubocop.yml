@@ -4,7 +4,7 @@ AllCops:
   # version by version without having to worry about adding an entry for each
   # new "enabled by default" check. If we want to jump multiple versions and
   # wish to be notified of all the enw check, then we'll need to change
-  # `NewCops` to `pending.
+  # `NewCops` to `pending`.
   NewCops: enable
   Exclude:
     # Exclude generated binstubs
@@ -394,6 +394,15 @@ Style/BlockDelimiters:
     - lambda
     - proc
     - it
+
+# As a team we prefer the more explicit `def self.method_name` style. We find
+# the explicitness easier to read and grep for on the CLI.
+#
+# Configuration parameters: EnforcedStyle.
+# SupportedStyles: def_self, self_class
+Style/ClassMethodsDefinitions:
+  Enabled: true
+  EnforcedStyle: def_self
 
 # Prefer `Time` over `DateTime`.
 #
