@@ -4,17 +4,31 @@
 
 ### Enhancements
 
-- Upgrade to Rubocop Rails 2.8.x (Aaron Kromer, Ben Reynolds, James Nebeker, JC Avena, Sam Kim, Alex
-  Stone #30)
-- Adjust common Rubocop Rails configuration (Aaron Kromer, Ben Reynolds, James Nebeker, JC Avena,
-  Sam Kim, Alex Stone #30)
+- Upgrade to Rubocop Rails 2.8.x (Aaron Hill, Aaron Kromer, Ben Reynolds, James Nebeker, JC Avena, Sam Kim, Alex
+  Stone #30, #32)
+- Adjust common Rubocop Rails configuration (Aaron Hill, Aaron Kromer, Ben Reynolds, James Nebeker, JC Avena,
+  Sam Kim, Alex Stone #30, #32)
+  - Enable `Rails/AttributeDefaultBlockValue` by default
+  - Enable `Rails/ArelStar` by default
   - Enable `Rails/DefaultScope` by default
   - Enable `Rails/FindById` by default
   - Enable `Rails/PluckId` by default
+  - Enable `Rails/WhereEquals` by default
   - Use the more aggressive `aggressive` check for `Rails/PluckInWhere`
   - Use the more aggressive `aggressive` check for `Rails/ShortI18n`
   - Switch to new `AllowedMethods` attribute name for `Rails/SkipsModelValidations`
   - Disable `Rails/SquishedSQLHeredocs` by default
+- Adjust common Rubocop configuration (Aaron Hill, Aaron Kromer, JC Avena, Sam
+  Kim #32)
+  - Enable `Style/ClassMethodsDefinitions` by default
+  - Enable `Style/CombinableLoops` by default
+  - Enable `Style/KeywordParametersOrder` by default
+  - Enable `Style/RedundantSelfAssignment` by default
+  - Enable `Style/SoleNestedConditional` by default
+  - Enable `Lint/DuplicateRequire` by default
+  - Enable `Lint/EmptyFile` by default
+  - Enable `Lint/TrailingCommaInAttributeDeclaration` by default
+  - Enable `Lint/UselessMethodDefinition` by default
 
 ### Bug Fixes
 

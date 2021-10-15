@@ -110,6 +110,14 @@ module Radius
       class TemplateNotFound < KeyError; end
 
       class << self
+        # rubocop:disable Style/ClassMethodsDefinitions
+        # Style Note: We are using this class method style because we need to
+        # call `alias_method` within this module's singleton class context.
+        # Ruby did not introduce access to `singleton_class` until 2.7. Once we
+        # drop support for Ruby < 2.7 we can switch styles and use:
+        #
+        #     singleton_class.alias_method :factory, :define_factory
+
         # Suggested method for defining multiple factory templates at once.
         #
         # Most projects end up having many domain models which need factories
@@ -283,6 +291,7 @@ module Radius
         def templates
           @templates ||= {}
         end
+        # rubocop:enable Style/ClassMethodsDefinitions
       end
 
     module_function
