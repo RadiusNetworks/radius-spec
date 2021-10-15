@@ -36,6 +36,18 @@ Layout/AccessModifierIndentation:
     similar to `rescue` and `ensure` in a method.
   EnforcedStyle: outdent
 
+# This cop checks whether the end keyword of begin is aligned properly.
+#
+# Two modes are supported through the EnforcedStyleAlignWith configuration parameter. If it’s set to
+# begin, the end shall be aligned with the begin keyword. We chose this to be consistent with our if
+# statement styles, if you want the end to be aligned with the start of the line just put the begin
+# on the next line.
+#
+# Configuration parameters: EnforcedStyleAlignWith
+# SupportedStyles: start_of_line, begin
+Layout/BeginEndAlignment:
+  EnforcedStyleAlignWith: begin
+
 # Rubocop 0.60.0 changed how it handled value alignments in this cop. This
 # breaks our preference for wanting keys to be aligned, but allowing values to
 # either use the `key` or `table` style:
