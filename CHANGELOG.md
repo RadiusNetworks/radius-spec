@@ -1,5 +1,18 @@
 ## Development
 
+[Full Changelog](https://github.com/RadiusNetworks/radius-spec/compare/v0.10.0...main)
+
+### Enhancements
+
+- Adjust common Rubocop configuration (Aaron Hill, Aaron Kromer, Ben Reynolds, James Nebeker, JC Avena, Sam Kim)
+  - Enable `Lint/NoReturnInBeginEndBlocks` by default
+
+### Bug Fixes
+
+- TODO
+
+## Development
+
 [Full Changelog](https://github.com/RadiusNetworks/radius-spec/compare/v0.9.0...main)
 
 ### Enhancements
