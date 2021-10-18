@@ -217,9 +217,15 @@ Metrics/BlockLength:
     - 'spec/support/model_factories.rb'
   ExcludedMethods:
     - 'chdir'
+    - 'describe'
     - 'refine'
+    - 'shared_context'
+    - 'shared_examples'
     - 'Capybara.register_driver'
     - 'RSpec.configure'
+    - 'RSpec.describe'
+    - 'RSpec.shared_context'
+    - 'RSpec.shared_examples'
     - 'VCR.configure'
 
 # We want length related code metrics to count Hashs, Arrays, and
