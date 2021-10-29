@@ -10,15 +10,15 @@ VCR.configure do |config|
   config.ignore_localhost = true
 
   record_mode = case
+                when ENV['CI']
+                  # Never let CI record
+                  :none
                 when RSpec.configuration.files_to_run.one?
                   # When developing new features we often run new specs in
                   # isolation as we write the code. This is the time to allow
                   # creating the cassettes.
                   :once
-                when ENV['CI']
-                  # Never let CI record
-                  :none
-                else
+                else # rubocop:disable Lint/DuplicateBranch
                   # Default to blocking new requests to catch issues
                   :none
                 end
