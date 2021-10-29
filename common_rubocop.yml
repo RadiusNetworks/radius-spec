@@ -563,6 +563,12 @@ Style/MultilineBlockChain:
 Style/NumericPredicate:
   Enabled: false
 
+# As a general rule, we want to be explicit here instead of requiring readers
+# of our code to know what the default arguments to methods like `#join` and
+# and `#split` so we disable this cop here.
+Style/RedundantArgument:
+  Enabled: false
+
 # In Ruby every method returns a value. Implicitly this is the value of the
 # last line of the method. This means using `return` is often redundant.
 # However, there isn't anything inherently wrong about doing so. In fact, in
