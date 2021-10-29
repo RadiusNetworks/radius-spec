@@ -675,6 +675,11 @@ Style/RescueStandardError:
 Style/SlicingWithRange:
   Enabled: false
 
+# We want to turn this cop on so that rubocop can yell at us instead of Aaron
+# yelling at us.
+Style/StaticClass:
+  Enabled: true
+
 # We generally prefer double quotes but many generators use single quotes. We
 # don't view the performance difference to be all that much so we don't care
 # if the style is mixed or double quotes are used for static strings.
