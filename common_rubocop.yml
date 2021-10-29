@@ -206,12 +206,7 @@ Lint/Void:
     - 'benchmarks/**/*'
 
 Metrics/AbcSize:
-  # TODO: When we are able to upgrade to Rubocop 1.5.0 we want to enable the
-  # following `CountRepeatedAttributes` option. We often find the
-  # multi-references to the same object to be necessary for reability and that
-  # for our team it does not increase complexity.
-  #
-  # CountRepeatedAttributes: false
+  CountRepeatedAttributes: false
   Max: 17
 
 # Configuration parameters: CountComments, ExcludedMethods, Max.
