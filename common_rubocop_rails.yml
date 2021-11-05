@@ -122,10 +122,14 @@ Rails/EnvironmentVariableAccess:
 #
 # Since rake tasks often live in `lib` we also check all of lib as well.
 #
+# We are also disabling the default IgnoreWhereFirst that was added in version
+# 2.11
+#
 # Configuration parameters: Include.
 # Include: app/models/**/*.rb
 Rails/FindBy:
   Enabled: true
+  IgnoreWhereFirst: false
   Include:
     - 'app/**/*.rb'
     - 'lib/**/*.rb'
