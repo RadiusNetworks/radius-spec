@@ -11,9 +11,9 @@
 
 - TODO
 
-## Development
+## 0.10.0 (October 18, 2021)
 
-[Full Changelog](https://github.com/RadiusNetworks/radius-spec/compare/v0.9.0...main)
+[Full Changelog](https://github.com/RadiusNetworks/radius-spec/compare/v0.9.0...v0.10.0)
 
 ### Enhancements
 
@@ -32,7 +32,7 @@
   - Switch to new `AllowedMethods` attribute name for `Rails/SkipsModelValidations`
   - Disable `Rails/SquishedSQLHeredocs` by default
 - Adjust common Rubocop configuration (Aaron Hill, Aaron Kromer, JC Avena, Sam
-  Kim #32)
+  Kim #32, #34)
   - Enable `Style/ClassMethodsDefinitions` by default
   - Enable `Style/CombinableLoops` by default
   - Enable `Style/KeywordParametersOrder` by default
@@ -42,10 +42,17 @@
   - Enable `Lint/EmptyFile` by default
   - Enable `Lint/TrailingCommaInAttributeDeclaration` by default
   - Enable `Lint/UselessMethodDefinition` by default
+  - Exclude the following testing methods from `Metrics/BlockLength`
+    - 'describe'
+    - 'shared_context'
+    - 'shared_examples'
+    - 'RSpec.describe'
+    - 'RSpec.shared_context'
+    - 'RSpec.shared_examples'
 
 ### Bug Fixes
 
-- TODO
+None
 
 
 ## 0.9.0 (September 30, 2021)
