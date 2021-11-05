@@ -4,12 +4,12 @@
 
 ### Enhancements
 
-- TODO
+- Adjust common Rubocop configuration (Aaron Hill, Aaron Kromer, Ben Reynolds, James Nebeker, JC Avena, Sam Kim)
+  - Enable `Lint/NoReturnInBeginEndBlocks` by default
 
 ### Bug Fixes
 
 - TODO
-
 
 ## 0.10.0 (October 18, 2021)
 
