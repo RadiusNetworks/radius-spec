@@ -209,8 +209,8 @@ Metrics/AbcSize:
   CountRepeatedAttributes: false
   Max: 17
 
-# Configuration parameters: CountComments, ExcludedMethods, Max.
-# ExcludedMethods: refine
+# Configuration parameters: CountComments, IgnoredMethods, Max.
+# IgnoredMethods: refine
 Metrics/BlockLength:
   CountAsOne:
     - 'array'
@@ -222,7 +222,7 @@ Metrics/BlockLength:
     - 'spec/spec_helper.rb'
     - 'spec/**/*_spec.rb'
     - 'spec/support/model_factories.rb'
-  ExcludedMethods:
+  IgnoredMethods:
     - 'chdir'
     - 'describe'
     - 'refine'
