@@ -6,6 +6,11 @@
 
 - Adjust common Rubocop configuration (Aaron Hill, Aaron Kromer, Ben Reynolds, James Nebeker, JC Avena, Sam Kim)
   - Enable `Lint/NoReturnInBeginEndBlocks` by default
+- Adjust common Rubocop-Rails configuration (Alex Stone, James Nebeker, Aaron Kromer, Ben Reynolds, Sam Kim)
+  - Enable `Rails/EnvironmentVariableAccess` (`AllowReads` to `true`)
+  - Changed `Rails/FindBy`:`IgnoreWhereFirst` to `false`
+  - Enable `Rails/ReversibleMigrationMethodDefinition`
+- Upgrade to Rubocop Rails 2.12.x (Alex Stone, James Nebeker, Aaron Kromer, Ben Reynolds, Sam Kim)
 
 ### Bug Fixes
 
