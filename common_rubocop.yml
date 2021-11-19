@@ -196,6 +196,10 @@ Lint/HeredocMethodCallPosition:
 Lint/InheritException:
   EnforcedStyle: standard_error
 
+# Make developers explain themselves in a comment if they want their rescue block to do nothing.
+Lint/SuppressedException:
+  AllowNil: false
+
 # Often with benchmarking we don't explicitly "use" a variable or return value.
 # We simply need to perform the operation which generates said value for the
 # benchmark.
@@ -685,6 +689,10 @@ Style/SlicingWithRange:
 # We want to turn this cop on so that rubocop can yell at us instead of Aaron
 # yelling at us.
 Style/StaticClass:
+  Enabled: true
+
+# Enable Style/StringChars
+Style/StringChars:
   Enabled: true
 
 # We generally prefer double quotes but many generators use single quotes. We
