@@ -717,6 +717,13 @@ Style/StringLiteralsInInterpolation:
 Style/SymbolArray:
   MinSize: 3
 
+# Allow either
+#   something.do_something(foo, &:bar)
+# or
+#   something.do_something(foo) { |s| s.bar }
+Style/SymbolProc:
+  AllowMethodsWithArguments: true
+
 # When ternaries become complex they can be difficult to read due to increased
 # cognitive load parsing the expression. Cognitive load can increase further
 # when assignment is involved.
@@ -778,6 +785,11 @@ Style/TrailingCommaInHashLiteral:
     easier to read by cutting down on noise when commas are appended. It also
     simplifies adding, removing, and re-arranging the elements.
   EnforcedStyleForMultiline: consistent_comma
+
+# Don't combine && & || inside the same `unless` guard clause.
+Style/UnlessLogicalOperators:
+  Enabled: true
+  EnforcedStyle: forbid_mixed_logical_operators
 
 # We don't feel too strongly about percent vs bracket array style. We tend to
 # use the percent style, which also happens to be Rubocop's default. So for
