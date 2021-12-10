@@ -167,6 +167,18 @@ Layout/MultilineOperationIndentation:
 #     }.to change {
 #       object.state
 #     }
+#
+# WARNING TO FUTURE READERS (future being after 2021-12-10):
+# We tried to allowlist certain methods using the IgnoredMethods option (introduced 1.13.0),
+# and Rubocop successfully ignored `change` and `not_change` constructions, but it flag false
+# positives against code like
+#
+# expect { something }
+#   .to enqueue_job(SomeJobClass)
+#   .with { custom expectations about the enqueued payload }
+#
+# no matter what combination of `enqueue_job` and `with` we tried to add to the IgnoredMethods
+# array. We suspect the AST matching is somewhat half-baked.
 Lint/AmbiguousBlockAssociation:
   Exclude:
     - 'spec/**/*_spec.rb'
