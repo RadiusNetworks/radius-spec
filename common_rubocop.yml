@@ -368,6 +368,9 @@ Style/AndOr:
 # These days most people have editors which support unicode and other
 # non-ASCII characters.
 #
+# In version 1.21.0, this is disabled by default. We've chosen to leave
+# it in the config, in case it changes in future versions.
+#
 # Configuration parameters: AllowedChars.
 Style/AsciiComments:
   Enabled: false
@@ -830,3 +833,7 @@ Style/WordArray:
 # SupportedStyles: all_comparison_operators, equality_operators_only
 Style/YodaCondition:
   Enabled: false
+
+# Disabled in 1.21.0. Radius Networks has chosen to enable it.
+Naming/InclusiveLanguage:
+  Enabled: true
