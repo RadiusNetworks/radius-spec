@@ -24,6 +24,11 @@ AllCops:
     # Exclude vendored content
     - 'vendor/**/*'
 
+# We would like to disallow http for bundler sources and enforce https
+# as it is more secure.
+Bundler/InsecureProtocolSource:
+  AllowHttpProtocol: false
+
 # We prefer outdented access modifiers as we feel they provide demarcation of
 # the class similar to `rescue` and `ensure` in a method.
 #
@@ -566,6 +571,11 @@ Style/MethodCalledOnDoEndBlock:
 # 5 LOC) multi-line blocks.
 Style/MultilineBlockChain:
   Enabled: false
+
+# Disallowing numbered parameter usage because we dont prefer this style.
+# We would rather name the paramaters to clearly communicate intent.
+Style/NumberedParameters:
+  EnforcedStyle: disallow
 
 # Context for this cop is too dependent.
 #
