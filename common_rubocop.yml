@@ -284,6 +284,21 @@ Metrics/MethodLength:
 Naming/BinaryOperatorParameterName:
   Enabled: false
 
+# We don't need this configured just yet, because we dont have any applications on
+# Ruby 3.1, but pre-emptively, we want to configure this to prefer the explicit style.
+# 
+# bad
+# def foo(&)
+#   bar(&)
+# end
+
+# good
+# def foo(&block)
+#   bar(&block)
+# end
+Naming/BlockForwarding:
+  EnforcedStyle: explicit
+
 # Configuration parameters: ExpectMatchingDefinition, Regex, IgnoreExecutableScripts, AllowedAcronyms.
 # AllowedAcronyms: CLI, DSL, ACL, API, ASCII, CPU, CSS, DNS, EOF, GUID, HTML, HTTP, HTTPS, ID, IP, JSON, LHS, QPS, RAM, RHS, RPC, SLA, SMTP, SQL, SSH, TCP, TLS, TTL, UDP, UI, UID, UUID, URI, URL, UTF8, VM, XML, XMPP, XSRF, XSS
 Naming/FileName:
