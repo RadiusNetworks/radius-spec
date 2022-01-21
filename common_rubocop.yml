@@ -557,6 +557,7 @@ Style/HashSyntax:
     Prefer symbol keys using the 1.9 hash syntax. However, when keys are mixed
     use a consistent mapping style; which generally means using hash rockets.
   EnforcedStyle: ruby19_no_mixed_keys
+  EnforcedShorthandSyntax: either
 
 # As part of our semantic style we generally use the literal `-> { }` format to
 # indicate this is a function with a return value we care about. As this cop
