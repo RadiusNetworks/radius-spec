@@ -133,6 +133,11 @@ RSpec.configure do |config|
     config.include Radius::Spec::ModelFactory, type: :feature
   end
 
+  config.when_first_matching_example_defined(type: :helper) do
+    require 'radius/spec/model_factory'
+    config.include Radius::Spec::ModelFactory, type: :helper
+  end
+
   config.when_first_matching_example_defined(type: :job) do
     require 'radius/spec/model_factory'
     config.include Radius::Spec::ModelFactory, type: :job
