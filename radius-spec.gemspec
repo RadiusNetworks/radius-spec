@@ -14,6 +14,7 @@ Gem::Specification.new do |spec|
     "bug_tracker_uri" => "https://github.com/RadiusNetworks/radius-spec/issues",
     "changelog_uri" => "https://github.com/RadiusNetworks/radius-spec/blob/v#{Radius::Spec::VERSION}/CHANGELOG.md",
     "source_code_uri" => "https://github.com/RadiusNetworks/radius-spec/tree/v#{Radius::Spec::VERSION}",
+    "rubygems_mfa_required" => "true",
   }
   spec.summary       = "Radius Networks RSpec setup and plug-ins"
   spec.description   = "Standard RSpec setup and a collection of plug-ins " \
@@ -31,7 +32,7 @@ Gem::Specification.new do |spec|
   spec.required_ruby_version = ">= 2.5" # rubocop:disable Gemspec/RequiredRubyVersion
 
   spec.add_runtime_dependency "rspec", "~> 3.7"
-  spec.add_runtime_dependency "rubocop", "~> 1.7.0"
+  spec.add_runtime_dependency "rubocop", "~> 1.24.0"
   spec.add_runtime_dependency "rubocop-rails", "~> 2.12.0"
 
   spec.add_development_dependency "bundler", ">= 2.2.10"

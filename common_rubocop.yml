@@ -24,6 +24,11 @@ AllCops:
     # Exclude vendored content
     - 'vendor/**/*'
 
+# We would like to disallow http for bundler sources and enforce https
+# as it is more secure.
+Bundler/InsecureProtocolSource:
+  AllowHttpProtocol: false
+
 # We prefer outdented access modifiers as we feel they provide demarcation of
 # the class similar to `rescue` and `ensure` in a method.
 #
@@ -167,6 +172,18 @@ Layout/MultilineOperationIndentation:
 #     }.to change {
 #       object.state
 #     }
+#
+# WARNING TO FUTURE READERS (future being after 2021-12-10):
+# We tried to allowlist certain methods using the IgnoredMethods option (introduced 1.13.0),
+# and Rubocop successfully ignored `change` and `not_change` constructions, but it flag false
+# positives against code like
+#
+# expect { something }
+#   .to enqueue_job(SomeJobClass)
+#   .with { custom expectations about the enqueued payload }
+#
+# no matter what combination of `enqueue_job` and `with` we tried to add to the IgnoredMethods
+# array. We suspect the AST matching is somewhat half-baked.
 Lint/AmbiguousBlockAssociation:
   Exclude:
     - 'spec/**/*_spec.rb'
@@ -195,6 +212,10 @@ Lint/HeredocMethodCallPosition:
 # exceptions as this is a relatively common Ruby idiom.
 Lint/InheritException:
   EnforcedStyle: standard_error
+
+# Make developers explain themselves in a comment if they want their rescue block to do nothing.
+Lint/SuppressedException:
+  AllowNil: false
 
 # Often with benchmarking we don't explicitly "use" a variable or return value.
 # We simply need to perform the operation which generates said value for the
@@ -262,6 +283,21 @@ Metrics/MethodLength:
 # like `real`, `numeric`, or `str`.
 Naming/BinaryOperatorParameterName:
   Enabled: false
+
+# We don't need this configured just yet, because we dont have any applications on
+# Ruby 3.1, but pre-emptively, we want to configure this to prefer the explicit style.
+# 
+# bad
+# def foo(&)
+#   bar(&)
+# end
+
+# good
+# def foo(&block)
+#   bar(&block)
+# end
+Naming/BlockForwarding:
+  EnforcedStyle: explicit
 
 # Configuration parameters: ExpectMatchingDefinition, Regex, IgnoreExecutableScripts, AllowedAcronyms.
 # AllowedAcronyms: CLI, DSL, ACL, API, ASCII, CPU, CSS, DNS, EOF, GUID, HTML, HTTP, HTTPS, ID, IP, JSON, LHS, QPS, RAM, RHS, RPC, SLA, SMTP, SQL, SSH, TCP, TLS, TTL, UDP, UI, UID, UUID, URI, URL, UTF8, VM, XML, XMPP, XSRF, XSS
@@ -351,6 +387,9 @@ Style/AndOr:
 
 # These days most people have editors which support unicode and other
 # non-ASCII characters.
+#
+# In version 1.21.0, this is disabled by default. We've chosen to leave
+# it in the config, in case it changes in future versions.
 #
 # Configuration parameters: AllowedChars.
 Style/AsciiComments:
@@ -548,6 +587,11 @@ Style/MethodCalledOnDoEndBlock:
 Style/MultilineBlockChain:
   Enabled: false
 
+# Disallowing numbered parameter usage because we dont prefer this style.
+# We would rather name the paramaters to clearly communicate intent.
+Style/NumberedParameters:
+  EnforcedStyle: disallow
+
 # Context for this cop is too dependent.
 #
 # Often using the numeric comparison is faster. Also, depending on the context
@@ -687,6 +731,10 @@ Style/SlicingWithRange:
 Style/StaticClass:
   Enabled: true
 
+# Enable Style/StringChars
+Style/StringChars:
+  Enabled: true
+
 # We generally prefer double quotes but many generators use single quotes. We
 # don't view the performance difference to be all that much so we don't care
 # if the style is mixed or double quotes are used for static strings.
@@ -716,6 +764,13 @@ Style/StringLiteralsInInterpolation:
 # SupportedStyles: percent, brackets
 Style/SymbolArray:
   MinSize: 3
+
+# Allow either
+#   something.do_something(foo, &:bar)
+# or
+#   something.do_something(foo) { |s| s.bar }
+Style/SymbolProc:
+  AllowMethodsWithArguments: true
 
 # When ternaries become complex they can be difficult to read due to increased
 # cognitive load parsing the expression. Cognitive load can increase further
@@ -779,6 +834,11 @@ Style/TrailingCommaInHashLiteral:
     simplifies adding, removing, and re-arranging the elements.
   EnforcedStyleForMultiline: consistent_comma
 
+# Don't combine && & || inside the same `unless` guard clause.
+Style/UnlessLogicalOperators:
+  Enabled: true
+  EnforcedStyle: forbid_mixed_logical_operators
+
 # We don't feel too strongly about percent vs bracket array style. We tend to
 # use the percent style, which also happens to be Rubocop's default. So for
 # pedantic consistency we'll enforce this.
@@ -798,3 +858,7 @@ Style/WordArray:
 # SupportedStyles: all_comparison_operators, equality_operators_only
 Style/YodaCondition:
   Enabled: false
+
+# Disabled in 1.21.0. Radius Networks has chosen to enable it.
+Naming/InclusiveLanguage:
+  Enabled: true

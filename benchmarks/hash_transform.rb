@@ -13,7 +13,7 @@ end
 
 # Bad per Rubocop
 def hash_transform_key_hash_collect(hash)
-  Hash[hash.collect { |k, v| [k + 100, v] }]
+  Hash[hash.collect { |k, v| [k + 100, v] }] # rubocop:disable Style/HashConversion
 end
 
 # Bad per Rubocop
@@ -73,7 +73,7 @@ end
 
 # Bad per Rubocop
 def hash_transform_value_hash_collect(hash)
-  Hash[hash.collect { |k, v| [k, v + 100] }]
+  Hash[hash.collect { |k, v| [k, v + 100] }] # rubocop:disable Style/HashConversion
 end
 
 # Bad per Rubocop
