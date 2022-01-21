@@ -1,15 +1,30 @@
-## Development
+## 0.11.0 (January 21, 2022)
 
-[Full Changelog](https://github.com/RadiusNetworks/radius-spec/compare/v0.10.0...main)
+[Full Changelog](https://github.com/RadiusNetworks/radius-spec/compare/v0.10.0...0.11.0)
 
 ### Enhancements
 
 - Adjust common Rubocop configuration (Aaron Hill, Aaron Kromer, Ben Reynolds, James Nebeker, JC Avena, Sam Kim)
   - Enable `Lint/NoReturnInBeginEndBlocks` by default
+  - Set `AllowHttpProtocol: false` for `Bundler/InsecureProtocolSource` cop
+  - Set `AllowNil: false` for `Lint/SuppressedException` cop
+  - Enable `Naming/BlockForwarding` cop for future Ruby 3.1 usage
+  - Disallow Ruby 3 `Style/NumberedParameters`
+  - Enable `Style/StringChars` by default
+  - Set `AllowMethodsWithArguments: true` for `Style/SymbolProc` cop
+  - Disallow combined `&&` and `||` in single `unless` clauses
+  - Enable `Naming/InclusiveLanguage` by default
+- Adjust common Rubocop-Rails configuration (Alex Stone, James Nebeker, Aaron Kromer, Ben Reynolds, Sam Kim)
+  - Enable `Rails/EnvironmentVariableAccess` (`AllowReads` to `true`)
+  - Changed `Rails/FindBy`:`IgnoreWhereFirst` to `false`
+  - Enable `Rails/ReversibleMigrationMethodDefinition`
+- Upgrade to Rubocop Rails 2.13.x (Alex Stone, James Nebeker, Aaron Kromer, Ben Reynolds, Sam Kim)
+- Upgrade to Rubocop 1.25.x (Alex Stone, James Nebeker, Aaron Kromer, Ben Reynolds, Sam Kim, JC Avena, Eric Ouellette, Aaron Hill)
+- Include model factory helpers in helper specs by default (Alex Stone, James Nebeker, Aaron Kromer, Ben Reynolds, JC Avena, Eric Ouellette)
 
 ### Bug Fixes
 
-- TODO
+None
 
 ## 0.10.0 (October 18, 2021)
 
