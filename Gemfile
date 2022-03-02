@@ -23,6 +23,6 @@ group :documentation do
 end
 
 group :plugins do
-  gem "vcr", "~> 4.0", require: false
+  gem "vcr", "~> 6.0", require: false
   gem "webmock", "~> 3.3", require: false
 end
