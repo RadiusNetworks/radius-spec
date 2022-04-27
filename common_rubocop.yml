@@ -537,6 +537,11 @@ Style/EmptyMethod:
 Style/FrozenStringLiteralComment:
   EnforcedStyle: always_true
 
+# If we're using consecutive conditionals we probably know what we're doing. The good thing is this
+# cop will still flag consecutive conditionals that are identical.
+Style/GuardClause:
+  AllowConsecutiveConditionals: true
+
 # Prefer symbol keys using the 1.9 hash syntax. However, when keys are mixed
 # use a consistent mapping style; which generally means using hash rockets:
 #
