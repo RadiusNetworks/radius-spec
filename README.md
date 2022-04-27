@@ -94,7 +94,7 @@ end
 Projects can inherit from the [base Rubocop config](.rubocop.yml). This can be
 accomplished by using either the remote raw URL or dependency gem formats. With
 either method we also strongly suggest setting the `inherit_mode` to `merge`
-for both `Exclude` and `IgnoredPatterns`. This way you can append additional
+for both `Exclude` and `AllowedPatterns`. This way you can append additional
 exceptions without overwriting the defaults.
 
 #### Inherit from Gem (Recommended Method)
@@ -103,7 +103,7 @@ exceptions without overwriting the defaults.
 inherit_mode:
   merge:
     - Exclude
-    - IgnoredPatterns
+    - AllowedPatterns
 
 inherit_gem:
   radius-spec:
@@ -118,7 +118,7 @@ inherit_gem:
 inherit_mode:
   merge:
     - Exclude
-    - IgnoredPatterns
+    - AllowedPatterns
 
 # Available for projects which cannot include this gem (i.e. Ruby < 2.5)
 inherit_from:
@@ -154,7 +154,7 @@ inherit_from: .rubocop_todo.yml
 inherit_mode:
   merge:
     - Exclude
-    - IgnoredPatterns
+    - AllowedPatterns
 
 Style/For:
   inherit_mode:

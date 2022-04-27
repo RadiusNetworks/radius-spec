@@ -3,7 +3,7 @@ require: rubocop-rails
 inherit_mode:
   merge:
     - Exclude
-    - IgnoredPatterns
+    - AllowedPatterns
 
 inherit_from: common_rubocop.yml
 
@@ -26,10 +26,10 @@ Style/Documentation:
 # Rails foreign keys and indexes can get long. We want to ignore our annotation
 # comments which are for these entries.
 #
-# Configuration parameters: AllowHeredoc, AllowURI, URISchemes, IgnoreCopDirectives, IgnoredPatterns.
+# Configuration parameters: AllowHeredoc, AllowURI, URISchemes, IgnoreCopDirectives, AllowedPatterns.
 # URISchemes: http, https
 Layout/LineLength:
-  IgnoredPatterns:
+  AllowedPatterns:
     - '\A#  fk_rails_'
     - '\A#  index_'
 
