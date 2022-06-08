@@ -10,7 +10,7 @@ VCR.configure do |config|
   config.ignore_localhost = true
 
   record_mode = case
-                when ENV['CI']
+                when ENV.fetch('CI', false)
                   # Never let CI record
                   :none
                 when RSpec.configuration.files_to_run.one?
@@ -42,6 +42,9 @@ VCR.configure do |config|
     RADIUS_OAUTH_PROVIDER_APP_SECRET
     RADIUS_OAUTH_PROVIDER_URL
   ].each do |secret|
+    # WARNING: It may seem tempting, but don't try to extract ENV[secret] to a local variable
+    # here. `filter_sensitive_data` calls its block instead of exec-ing it, so a local variable
+    # set outside the blocks won't be accessible inside them.
     config.filter_sensitive_data("<#{secret}>") { ENV[secret] }
 
     config.filter_sensitive_data("<#{secret}_FORM>") {

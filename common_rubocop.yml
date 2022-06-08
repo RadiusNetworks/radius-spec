@@ -130,11 +130,11 @@ Layout/FirstArgumentIndentation:
 # this for a node pattern matcher in the future.
 #
 # Configuration parameters: AllowHeredoc, AllowURI, URISchemes,
-#                           IgnoreCopDirectives, IgnoredPatterns.
+#                           IgnoreCopDirectives, AllowedPatterns.
 # URISchemes: http, https
 Layout/LineLength:
   IgnoreCopDirectives: true
-  IgnoredPatterns:
+  AllowedPatterns:
     # Leading comments
     - '\A\s*#'
     # Attempt at trailing comments
@@ -286,7 +286,7 @@ Naming/BinaryOperatorParameterName:
 
 # We don't need this configured just yet, because we dont have any applications on
 # Ruby 3.1, but pre-emptively, we want to configure this to prefer the explicit style.
-# 
+#
 # bad
 # def foo(&)
 #   bar(&)
@@ -536,6 +536,11 @@ Style/EmptyMethod:
 # SupportedStyles: always, always_true, never
 Style/FrozenStringLiteralComment:
   EnforcedStyle: always_true
+
+# If we're using consecutive conditionals we probably know what we're doing. The good thing is this
+# cop will still flag consecutive conditionals that are identical.
+Style/GuardClause:
+  AllowConsecutiveConditionals: true
 
 # Prefer symbol keys using the 1.9 hash syntax. However, when keys are mixed
 # use a consistent mapping style; which generally means using hash rockets:

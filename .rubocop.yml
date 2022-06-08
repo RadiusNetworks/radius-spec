@@ -1,11 +1,11 @@
 inherit_mode:
   merge:
     - Exclude
-    - IgnoredPatterns
+    - AllowedPatterns
 
 inherit_from: common_rubocop_rails.yml
 
-# Configuration parameters: AllowHeredoc, AllowURI, URISchemes, IgnoreCopDirectives, IgnoredPatterns.
+# Configuration parameters: AllowHeredoc, AllowURI, URISchemes, IgnoreCopDirectives, AllowedPatterns.
 # URISchemes: http, https
 Layout/LineLength:
   Exclude:

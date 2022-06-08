@@ -18,7 +18,7 @@ end
 
 # Bad per Rubocop
 def hash_transform_key_map_to_h(hash)
-  hash.map { |k, v| [k + 100, v] }.to_h
+  hash.map { |k, v| [k + 100, v] }.to_h # rubocop:disable Style/MapToHash
 end
 
 # Bad per Rubocop
@@ -78,7 +78,7 @@ end
 
 # Bad per Rubocop
 def hash_transform_value_map_to_h(hash)
-  hash.map { |k, v| [k, v + 100] }.to_h
+  hash.map { |k, v| [k, v + 100] }.to_h # rubocop:disable Style/MapToHash
 end
 
 # Bad per Rubocop

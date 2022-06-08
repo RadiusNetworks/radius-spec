@@ -67,4 +67,4 @@ def display_benchmark_header
   puts "### Test Cases"
 end
 
-GC_DISABLED = as_boolean(ENV['GC_DISABLED'], default: false)
+GC_DISABLED = as_boolean(ENV.fetch('GC_DISABLED', nil), default: false)
