@@ -45,14 +45,14 @@ VCR.configure do |config|
     # WARNING: It may seem tempting, but don't try to extract ENV[secret] to a local variable
     # here. `filter_sensitive_data` calls its block instead of exec-ing it, so a local variable
     # set outside the blocks won't be accessible inside them.
-    config.filter_sensitive_data("<#{secret}>") { ENV[secret] }
+    config.filter_sensitive_data("<#{secret}>") { ENV.fetch(secret, nil) }
 
     config.filter_sensitive_data("<#{secret}_FORM>") {
-      URI.encode_www_form_component(ENV[secret]) if ENV[secret]
+      URI.encode_www_form_component(ENV.fetch(secret, nil)) if ENV[secret]
     }
 
     config.filter_sensitive_data("<#{secret}_URI>") {
-      ERB::Util.url_encode(ENV[secret]) if ENV[secret]
+      ERB::Util.url_encode(ENV.fetch(secret, nil)) if ENV[secret]
     }
 
     config.filter_sensitive_data('<AUTHORIZATION_HEADER>') { |interaction|
