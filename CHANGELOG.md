@@ -1,6 +1,6 @@
 ## Development
 
-[Full Changelog](https://github.com/RadiusNetworks/radius-spec/compare/v0.9.0...main)
+[Full Changelog](https://github.com/RadiusNetworks/radius-spec/compare/v0.12.0...main)
 
 ### Enhancements
 
@@ -12,14 +12,21 @@
 
 ## 0.12.0 (August 3, 2022)
 
-[Full Changelog](https://github.com/RadiusNetworks/radius-spec/compare/v0.12.0...0.12.0)
+[Full Changelog](https://github.com/RadiusNetworks/radius-spec/compare/v0.11.0...v0.12.0)
 
 ### Enhancements
 
-- Added Dependabot
-- Upgraded VCR to 6.0
-- Upgrade Rubocop Rails to 2.16
-- Upgrade Rubocop to 1.33
+- Upgrade `rubocop` (1.0 Edition 🎉 ) by @jnebeker in https://github.com/RadiusNetworks/radius-spec/pull/33
+- Rubocop rails upgrades by @benreyn in https://github.com/RadiusNetworks/radius-spec/pull/36
+- Upgrade rubocop to Latest by @alexstone in https://github.com/RadiusNetworks/radius-spec/pull/37
+- Upgrade rubocop and rubcop-rails dependecies by @benreyn in https://github.com/RadiusNetworks/radius-spec/pull/39
+- Include model factories in helpers specs by default by @benreyn in https://github.com/RadiusNetworks/radius-spec/pull/40
+- Adds Dependabot to Radius-Spec by @alexstone in https://github.com/RadiusNetworks/radius-spec/pull/42
+- Update vcr requirement from ~> 4.0 to ~> 6.0 by @dependabot in https://github.com/RadiusNetworks/radius-spec/pull/44
+- Update rubocop-rails requirement from ~> 2.13.0 to >= 2.13, < 2.15 by @dependabot in https://github.com/RadiusNetworks/radius-spec/pull/46
+- Update rubocop requirement from ~> 1.25.0 to >= 1.25, < 1.29 by @dependabot in https://github.com/RadiusNetworks/radius-spec/pull/48
+- Update rubocop-rails requirement from >= 2.13, < 2.15 to >= 2.13, < 2.16 by @dependabot in https://github.com/RadiusNetworks/radius-spec/pull/50
+- Update rubocop requirement from >= 1.25, < 1.29 to >= 1.25, < 1.31 by @dependabot in https://github.com/RadiusNetworks/radius-spec/pull/49
 
 ### Bug Fixes
 
