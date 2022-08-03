@@ -10,6 +10,20 @@
 
 - TODO
 
+## 0.12.0 (August 3, 2022)
+
+[Full Changelog](https://github.com/RadiusNetworks/radius-spec/compare/v0.12.0...0.12.0)
+
+### Enhancements
+
+- Added Dependabot
+- Upgraded VCR to 6.0
+- Upgrade Rubocop Rails to 2.16
+- Upgrade Rubocop to 1.33
+
+### Bug Fixes
+
+None
 ## 0.11.0 (January 21, 2022)
 
 [Full Changelog](https://github.com/RadiusNetworks/radius-spec/compare/v0.10.0...0.11.0)
