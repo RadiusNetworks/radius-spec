@@ -243,7 +243,7 @@ Metrics/BlockLength:
     - 'spec/spec_helper.rb'
     - 'spec/**/*_spec.rb'
     - 'spec/support/model_factories.rb'
-  IgnoredMethods:
+  AllowedMethods:
     - 'chdir'
     - 'describe'
     - 'refine'
@@ -442,7 +442,7 @@ Style/BlockDelimiters:
     - subject
     - tap
     - watch
-  IgnoredMethods:
+  AllowedMethods:
     - lambda
     - proc
     - it
