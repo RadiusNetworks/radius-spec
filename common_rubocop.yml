@@ -865,6 +865,11 @@ Style/WordArray:
 Style/YodaCondition:
   Enabled: false
 
+# Forbids Yoda expressions, i.e. binary operations (using *, +, &, |, and ^ operators)
+# where the order of expression is reversed, eg. 1 + x.
+Style/YodaExpression:
+  Enabled: true
+
 # Disabled in 1.21.0. Radius Networks has chosen to enable it.
 Naming/InclusiveLanguage:
   Enabled: true
