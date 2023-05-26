@@ -3,6 +3,8 @@
 [![Maintainability](https://api.codeclimate.com/v1/badges/701295df43d53e25eafe/maintainability)](https://codeclimate.com/github/RadiusNetworks/radius-spec/maintainability)
 [![Gem Version](https://badge.fury.io/rb/radius-spec.svg)](https://badge.fury.io/rb/radius-spec)
 
+[Cop Docs](https://docs.rubocop.org/rubocop/1.42/cops_bundler.html)
+
 Basic RSpec setup and plug-ins for use with Radius Networks Ruby / Rails
 projects.
 

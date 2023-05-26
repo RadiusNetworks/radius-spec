@@ -139,7 +139,7 @@ Layout/LineLength:
     - '\A\s*#'
     # Attempt at trailing comments
     - '\A.{1,78}\s#\s.*\z'
-  Max: 100
+  Max: 120
   Exclude:
     - '**/*.gemspec'
 
