@@ -1,6 +1,6 @@
 ## Development
 
-[Full Changelog](https://github.com/RadiusNetworks/radius-spec/compare/v0.12.0...main)
+[Full Changelog](https://github.com/RadiusNetworks/radius-spec/compare/v0.13.0...main)
 
 ### Enhancements
 
@@ -9,6 +9,28 @@
 ### Bug Fixes
 
 - TODO
+
+## 0.13.0 (September 7, 2023)
+
+[Full Changelog](https://github.com/RadiusNetworks/radius-spec/compare/v0.12.1...v0.13.0)
+
+## What's Changed
+* Removes Ruby 2.5 from list of versions to run by @corrieleech in https://github.com/RadiusNetworks/radius-spec/pull/60
+* Update rubocop requirement from >= 1.25, < 1.43 to >= 1.25, < 1.46 by @dependabot in https://github.com/RadiusNetworks/radius-spec/pull/57
+* Update rubocop-rails requirement from >= 2.13, < 2.18 to >= 2.13, < 2.19 by @dependabot in https://github.com/RadiusNetworks/radius-spec/pull/58
+* Update rubocop requirement from >= 1.25, < 1.46 to >= 1.25, < 1.53 by @dependabot in https://github.com/RadiusNetworks/radius-spec/pull/61
+* Remove Ruby 2.6 from CI workflow. by @jcavena in https://github.com/RadiusNetworks/radius-spec/pull/64
+* Update rubocop-rails requirement from >= 2.13, < 2.20 to >= 2.13, < 2.21 by @dependabot in https://github.com/RadiusNetworks/radius-spec/pull/62
+* Update rubocop requirement from >= 1.25, < 1.53 to >= 1.25, < 1.54 by @dependabot in https://github.com/RadiusNetworks/radius-spec/pull/63
+* Update rubocop requirement from >= 1.25, < 1.54 to >= 1.25, < 1.55 by @dependabot in https://github.com/RadiusNetworks/radius-spec/pull/65
+* Update rubocop requirement from >= 1.25, < 1.55 to >= 1.25, < 1.56 by @dependabot in https://github.com/RadiusNetworks/radius-spec/pull/66
+* Update rubocop requirement from >= 1.25, < 1.56 to >= 1.25, < 1.57 by @dependabot in https://github.com/RadiusNetworks/radius-spec/pull/67
+
+## New Contributors
+* @corrieleech made their first contribution in https://github.com/RadiusNetworks/radius-spec/pull/60
+* @jcavena made their first contribution in https://github.com/RadiusNetworks/radius-spec/pull/64
+
+**Full Changelog**: https://github.com/RadiusNetworks/radius-spec/compare/v0.12.1...v0.13.0
 
 ## 0.12.0 (August 3, 2022)
 
