@@ -242,6 +242,10 @@ Rails/Present:
 Rails/ReadWriteAttribute:
   Enabled: false
 
+# Brakeman currently stops us from doing unscoped ActiveRecord lookups
+Rails/RedundantActiveRecordAllMethod:
+  Enabled: false
+
 # Enabling this because it is disabled by default and we want it.
 Rails/ReversibleMigrationMethodDefinition:
   Enabled: true
