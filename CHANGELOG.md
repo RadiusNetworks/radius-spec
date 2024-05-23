@@ -1,6 +1,6 @@
 ## Development
 
-[Full Changelog](https://github.com/RadiusNetworks/radius-spec/compare/v0.13.0...main)
+[Full Changelog](https://github.com/RadiusNetworks/radius-spec/compare/v0.14.0...main)
 
 ### Enhancements
 
@@ -9,6 +9,19 @@
 ### Bug Fixes
 
 - TODO
+
+## 0.14.0 (May 23, 2024)
+
+[Full Changelog](https://github.com/RadiusNetworks/radius-spec/compare/v0.13.0...v0.14.0)
+
+## Enhancements
+- Update rubocop-rails requirement from >= 2.13, < 2.21 to >= 2.13, < 2.22 by @dependabot in https://github.com/RadiusNetworks/radius-spec/pull/68
+- Disabling `Rails/RedundantActiveRecordAllMethod` cop by @alexstone in https://github.com/RadiusNetworks/radius-spec/pull/69
+- Update rubocop requirement from >= 1.25, < 1.57 to >= 1.25, < 1.58 by @dependabot in https://github.com/RadiusNetworks/radius-spec/pull/70
+- Update rubocop requirement from >= 1.25, < 1.58 to >= 1.25, < 1.59 by @dependabot in https://github.com/RadiusNetworks/radius-spec/pull/72
+- Update rubocop requirement from >= 1.25, < 1.59 to >= 1.25, < 1.60 by @dependabot in https://github.com/RadiusNetworks/radius-spec/pull/73
+- Update rubocop requirement from >= 1.25, < 1.60 to >= 1.25, < 1.61 by @dependabot in https://github.com/RadiusNetworks/radius-spec/pull/74
+- Update rubocop requirement from >= 1.25, < 1.61 to >= 1.25, < 1.62 by @dependabot in https://github.com/RadiusNetworks/radius-spec/pull/75
 
 ## 0.13.0 (September 7, 2023)
 
