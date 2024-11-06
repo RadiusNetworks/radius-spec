@@ -7,6 +7,11 @@ git_source(:github) { |repo_name| "https://github.com/#{repo_name}" }
 # Specify your gem's dependencies in radius-spec.gemspec
 gemspec
 
+group :development do
+  gem "bundler", ">= 2.2.10"
+  gem "rake", ">= 12.0", "< 14.0"
+end
+
 group :benchmark, optional: true do
   gem 'activesupport', require: false
   gem 'benchmark-ips', require: false
