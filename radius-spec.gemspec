@@ -33,5 +33,5 @@ Gem::Specification.new do |spec|
 
   spec.add_dependency "rspec", "~> 3.7"
   spec.add_dependency "rubocop", ">= 1.25", "< 1.72"
-  spec.add_dependency "rubocop-rails", ">= 2.13", "< 2.29"
+  spec.add_dependency "rubocop-rails", ">= 2.13", "< 2.30"
 end
