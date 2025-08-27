@@ -818,27 +818,28 @@ Style/TrailingCommaInArguments:
 # by cutting down on noise when commas are appended.
 #
 # Configuration parameters: EnforcedStyleForMultiline.
-# SupportedStylesForMultiline: comma, consistent_comma, no_comma
+# SupportedStylesForMultiline: comma, consistent_comma, no_comma, diff_comma
 Style/TrailingCommaInArrayLiteral:
   Details: |
 
-    Always use trailing commas for multiline arrays. This makes git diffs
-    easier to read by cutting down on noise when commas are appended. It also
-    simplifies adding, removing, and re-arranging the elements.
-  EnforcedStyleForMultiline: consistent_comma
+    Always use trailing commas for multiline arrays, but allow no trailing comma
+    for single line arrays. This makes git diffs easier to read by cutting down on
+    noise when commas are appended. It also simplifies adding, removing, and
+    re-arranging the elements.
+  EnforcedStyleForMultiline: diff_comma
 
 # Always use trailing commas for multiline. This makes git diffs easier to read
 # by cutting down on noise when commas are appended.
 #
 # Configuration parameters: EnforcedStyleForMultiline.
-# SupportedStylesForMultiline: comma, consistent_comma, no_comma
+# SupportedStylesForMultiline: comma, consistent_comma, no_comma, diff_comma
 Style/TrailingCommaInHashLiteral:
   Details: |
 
-    Always use trailing commas for multiline hashes. This makes git diffs
-    easier to read by cutting down on noise when commas are appended. It also
-    simplifies adding, removing, and re-arranging the elements.
-  EnforcedStyleForMultiline: consistent_comma
+    Always use trailing commas for multiline hashes, but allows no trailing commas for
+    single line hashes. This makes git diffs easier to read by cutting down on noise
+    when commas are appended. It also simplifies adding, removing, and re-arranging the elements.
+  EnforcedStyleForMultiline: diff_comma
 
 # Don't combine && & || inside the same `unless` guard clause.
 Style/UnlessLogicalOperators:

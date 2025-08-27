@@ -198,6 +198,12 @@ Rails/IndexWith:
 Rails/I18nLocaleTexts:
   Enabled: false
 
+# This cop enforced a style that helps prevent ambigous calls, which we already use throughout the codebase.
+# The cop doesn't however, account for complex  calls like `.order('site_id NULLS FIRST', :description)`.
+# Team decided to disable.
+Rails/OrderArguments:
+  Enabled: false
+
 # This cop enforces the use of ids over pluck(:id) and pluck(primary_key).
 # https://rails.rubystyle.guide/#ids
 Rails/PluckId:
