@@ -24,6 +24,9 @@ AllCops:
     # Exclude vendored content
     - 'vendor/**/*'
 
+RSpecRails:
+  Enabled: false
+
 # We would like to disallow http for bundler sources and enforce https
 # as it is more secure.
 Bundler/InsecureProtocolSource:
@@ -871,6 +874,6 @@ Style/YodaCondition:
 Style/YodaExpression:
   Enabled: true
 
-# Disabled in 1.21.0. Radius Networks has chosen to enable it.
+# Re-disabling this one, as we have too much legacy code that uses "whitelisted"
 Naming/InclusiveLanguage:
-  Enabled: true
+  Enabled: false
