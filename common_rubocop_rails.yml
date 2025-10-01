@@ -1,4 +1,7 @@
-require: rubocop-rails
+plugins:
+- rubocop-rails
+- rubocop-rspec
+- rubocop-rspec_rails
 
 inherit_mode:
   merge:
@@ -22,6 +25,15 @@ AllCops:
 # Rails project's are not concerned with API docs normally
 Style/Documentation:
   Enabled: false
+
+RSpecRails:
+  Enabled: false
+
+RSpec:
+  Enabled: false
+
+RSpec/Focus:
+  Enabled: true
 
 # Rails foreign keys and indexes can get long. We want to ignore our annotation
 # comments which are for these entries.
