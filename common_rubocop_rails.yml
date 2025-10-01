@@ -1,5 +1,6 @@
 plugins:
 - rubocop-rails
+- rubocop-rspec
 - rubocop-rspec_rails
 
 inherit_mode:
@@ -24,6 +25,372 @@ AllCops:
 # Rails project's are not concerned with API docs normally
 Style/Documentation:
   Enabled: false
+
+RSpecRails:
+  Enabled: true
+
+RSpec:
+  Enabled: true
+#### rubocop-rspec defaults ####
+#RSpec/AlignLeftLetBrace:
+#  Enabled: false
+
+#RSpec/AlignRightLetBrace:
+#  Enabled: false
+
+RSpec/AnyInstance:
+  Enabled: false
+
+RSpec/AroundBlock:
+  Enabled: false
+
+RSpec/Be:
+  Enabled: false
+
+RSpec/BeEmpty:
+  Enabled: false
+
+RSpec/BeEq:
+  Enabled: false
+
+RSpec/BeEql:
+  Enabled: false
+
+RSpec/BeNil:
+  Enabled: false
+
+RSpec/BeforeAfterAll:
+  Enabled: false
+
+RSpec/ChangeByZero:
+  Enabled: false
+
+RSpec/ClassCheck:
+  Enabled: false
+
+RSpec/ContainExactly:
+  Enabled: false
+
+RSpec/ContextMethod:
+  Enabled: false
+
+RSpec/ContextWording:
+  Enabled: false
+
+RSpec/DescribeClass:
+  Enabled: false
+
+RSpec/DescribeMethod:
+  Enabled: false
+
+RSpec/DescribeSymbol:
+  Enabled: false
+
+RSpec/DescribedClass:
+  Enabled: false
+
+#RSpec/DescribedClassModuleWrapping:
+#  Enabled: false
+
+#RSpec/Dialect:
+#  Enabled: false
+
+RSpec/DuplicatedMetadata:
+  Enabled: false
+
+RSpec/EmptyExampleGroup:
+  Enabled: false
+
+RSpec/EmptyHook:
+  Enabled: false
+
+RSpec/EmptyLineAfterExample:
+  Enabled: false
+
+RSpec/EmptyLineAfterExampleGroup:
+  Enabled: false
+
+RSpec/EmptyLineAfterFinalLet:
+  Enabled: false
+
+RSpec/EmptyLineAfterHook:
+  Enabled: false
+
+RSpec/EmptyLineAfterSubject:
+  Enabled: false
+
+RSpec/EmptyMetadata:
+  Enabled: false
+
+RSpec/EmptyOutput:
+  Enabled: false
+
+RSpec/Eq:
+  Enabled: false
+
+RSpec/ExampleLength:
+  Enabled: false
+
+RSpec/ExampleWithoutDescription:
+  Enabled: false
+
+RSpec/ExampleWording:
+  Enabled: false
+
+RSpec/ExcessiveDocstringSpacing:
+  Enabled: false
+
+RSpec/ExpectActual:
+  Enabled: false
+
+RSpec/ExpectChange:
+  Enabled: false
+
+RSpec/ExpectInHook:
+  Enabled: false
+
+RSpec/ExpectInLet:
+  Enabled: false
+
+RSpec/ExpectOutput:
+  Enabled: false
+
+RSpec/Focus:
+  Enabled: true
+
+RSpec/HookArgument:
+  Enabled: false
+
+RSpec/HooksBeforeExamples:
+  Enabled: false
+
+RSpec/IdenticalEqualityAssertion:
+  Enabled: false
+
+RSpec/ImplicitBlockExpectation:
+  Enabled: false
+
+RSpec/ImplicitExpect:
+  Enabled: false
+
+RSpec/ImplicitSubject:
+  Enabled: false
+
+RSpec/IncludeExamples:
+  Enabled: false
+
+RSpec/IndexedLet:
+  Enabled: false
+
+RSpec/InstanceSpy:
+  Enabled: false
+
+RSpec/InstanceVariable:
+  Enabled: false
+
+RSpec/IsExpectedSpecify:
+  Enabled: false
+
+RSpec/ItBehavesLike:
+  Enabled: false
+
+RSpec/IteratedExpectation:
+  Enabled: false
+
+RSpec/LeadingSubject:
+  Enabled: false
+
+RSpec/LeakyConstantDeclaration:
+  Enabled: false
+
+#RSpec/LeakyLocalVariable:
+#  Enabled: false
+
+RSpec/LetBeforeExamples:
+  Enabled: false
+
+RSpec/LetSetup:
+  Enabled: false
+
+RSpec/MatchArray:
+  Enabled: false
+
+RSpec/MessageChain:
+  Enabled: false
+
+#RSpec/MessageExpectation:
+#  Enabled: false
+
+RSpec/MessageSpies:
+  Enabled: false
+
+RSpec/MetadataStyle:
+  Enabled: false
+
+RSpec/MissingExampleGroupArgument:
+  Enabled: false
+
+RSpec/MissingExpectationTargetMethod:
+  Enabled: false
+
+RSpec/MultipleDescribes:
+  Enabled: false
+
+RSpec/MultipleExpectations:
+  Enabled: false
+
+RSpec/MultipleMemoizedHelpers:
+  Enabled: false
+
+RSpec/MultipleSubjects:
+  Enabled: false
+
+RSpec/NamedSubject:
+  Enabled: false
+
+RSpec/NestedGroups:
+  Enabled: false
+
+RSpec/NoExpectationExample:
+  Enabled: false
+
+RSpec/NotToNot:
+  Enabled: false
+
+RSpec/OverwritingSetup:
+  Enabled: false
+
+#RSpec/Pending:
+#  Enabled: false
+
+RSpec/PendingWithoutReason:
+  Enabled: false
+
+RSpec/PredicateMatcher:
+  Enabled: false
+
+RSpec/ReceiveCounts:
+  Enabled: false
+
+RSpec/ReceiveMessages:
+  Enabled: false
+
+RSpec/ReceiveNever:
+  Enabled: false
+
+RSpec/RedundantAround:
+  Enabled: false
+
+RSpec/RedundantPredicateMatcher:
+  Enabled: false
+
+RSpec/RemoveConst:
+  Enabled: false
+
+RSpec/RepeatedDescription:
+  Enabled: false
+
+RSpec/RepeatedExample:
+  Enabled: false
+
+RSpec/RepeatedExampleGroupBody:
+  Enabled: false
+
+RSpec/RepeatedExampleGroupDescription:
+  Enabled: false
+
+RSpec/RepeatedIncludeExample:
+  Enabled: false
+
+RSpec/RepeatedSubjectCall:
+  Enabled: false
+
+RSpec/ReturnFromStub:
+  Enabled: false
+
+RSpec/ScatteredLet:
+  Enabled: false
+
+RSpec/ScatteredSetup:
+  Enabled: false
+
+RSpec/SharedContext:
+  Enabled: false
+
+RSpec/SharedExamples:
+  Enabled: false
+
+RSpec/SingleArgumentMessageChain:
+  Enabled: false
+
+RSpec/SkipBlockInsideExample:
+  Enabled: false
+
+RSpec/SortMetadata:
+  Enabled: false
+
+RSpec/SpecFilePathFormat:
+  Enabled: false
+
+RSpec/SpecFilePathSuffix:
+  Enabled: false
+
+RSpec/StubbedMock:
+  Enabled: false
+
+RSpec/SubjectDeclaration:
+  Enabled: false
+
+RSpec/SubjectStub:
+  Enabled: false
+
+RSpec/UndescriptiveLiteralsDescription:
+  Enabled: false
+
+RSpec/UnspecifiedException:
+  Enabled: false
+
+RSpec/VariableDefinition:
+  Enabled: false
+
+RSpec/VariableName:
+  Enabled: false
+
+RSpec/VerifiedDoubleReference:
+  Enabled: false
+
+RSpec/VerifiedDoubles:
+  Enabled: false
+
+RSpec/VoidExpect:
+  Enabled: false
+
+RSpec/Yield:
+  Enabled: false
+####
+
+### rubocop-rspec_rails
+RSpecRails/AvoidSetupHook:
+  Enabled: false
+
+RSpecRails/HaveHttpStatus:
+  Enabled: false
+
+RSpecRails/HttpStatus:
+  Enabled: false
+
+RSpecRails/InferredSpecType:
+  Enabled: false
+
+RSpecRails/MinitestAssertions:
+  Enabled: false
+
+RSpecRails/NegationBeValid:
+  Enabled: false
+
+RSpecRails/TravelAround:
+  Enabled: false
+####
 
 # Rails foreign keys and indexes can get long. We want to ignore our annotation
 # comments which are for these entries.
