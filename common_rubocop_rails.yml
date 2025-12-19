@@ -123,6 +123,11 @@ Rails/CreateTableWithTimestamps:
 Rails/DefaultScope:
   Enabled: true
 
+# This cop checks for usage of Rails.env.foo? and prefers it to be replaced with Feature Flags. Since our team
+# uses Rails.env.foo rarely in configuration files, this isn't a problem we need to have a cop in place for.
+Rails/Env:
+  Enabled: false
+
 # We were originally going to disable this, but after much discussion agreed that enabling
 # this cop with AllowReads: true should be relatively painless.
 Rails/EnvironmentVariableAccess:
