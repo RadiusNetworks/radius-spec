@@ -87,14 +87,21 @@ Metrics/BlockLength:
 # We do believe that the default size of 10, which is what we explicitly
 # configure below so there's no confusion, is a good general limit to help
 # encourage a balance between terseness and procedural code. Thus we do not
-# want to raise the limit, instead we just want to exclude these controllers.
+# want to raise the limit, instead we just want to exclude these controllers. (@cupakromer 2019)
+#
+# We have since raised this limit to 20. We found that too often this cop was being
+# imposed on methods that eked above 10 lines, and the resulting refactoring created
+# code that was less readable overall. Some of us felt the method should be removed
+# entirely, or made significantly larger (trusting devs to self-regulate),
+# but we compromised by doubling it to 20 instead. Devs should still be encouraged to
+# be pragmatic about this, and to see this as a guardrail and not an absolute limit. (@armahillo 2026)
 #
 # At this time there is no way for us to exclude just the common controller
-# actions / *_params methods so we exclude the entire file.
+# actions / *_params methods so we exclude the entire file. (@cupakromer 2019)
 #
 # Configuration parameters: CountComments.
 Metrics/MethodLength:
-  Max: 10
+  Max: 20
   Exclude:
     - 'app/controllers/**/*_controller.rb'
 
